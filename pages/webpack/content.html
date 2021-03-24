@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>webpack</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">webpack</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region setup -->
+      <h1 id="setup" class="bookmark">Setup</h1>
+      <p>Static module bundler for JavaScript.</p>
+      <h2>Install</h2>
+      <pre><code class="lang-js">
+npm install --save-dev webpack webpack-cli
+
+// specific version (older)
+npm install --save-dev webpack@version
+</code></pre>
+      <h2>Edit package.json</h2>
+      <p>
+        - (remove)<br />
+        + (add)
+      </p>
+      <pre><code class="lang-js">
+-  "main": "index.js",
++  "private": true,
+</code></pre>
+      <h2>Structure</h2>
+      <dl>
+        <dt>dist</dt>
+        <dd>Generated output.</dd>
+        <dt>src</dt>
+        <dd>Coded input.</dd>
+        <dt>webpack.config.js</dt>
+        <dd>Default configuration file</dd>
+      </dl>
+      <pre><code class="lang-js">
+ webpack-demo
+  |- package.json
+  |- webpack.config.js
+  |- /dist
+    |- index.html
+    |- main.js
+  |- /src
+    |- index.js
+</code></pre>
+      <h3>index.html</h3>
+      <pre><code class="lang-js">
+&lt;body&gt;
+  ...
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+      <h2>Build</h2>
+      <dl>
+        <dt>npx webpack</dt>
+        <dd>Generates dist/main.js from src files.</dd>
+        <dd>Node 8.2/npm 5.2.0 or higher.</dd>
+      </dl>
+      <pre><code class="lang-js">
+npx webpack
+</code></pre>
+      <p><a href="#npm-scripts">npm scripts</a></p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region mode -->
+      <h1 id="mode" class="bookmark">Mode</h1>
+      <p>Built-in optimizations that correspond to each environment:</p>
+      <ul>
+        <li>development</li>
+        <li>production (default)</li>
+        <li>none</li>
+      </ul>
+      <h2>webpack.config.js</h2>
+      <pre><code class="lang-js">
+module.exports = {
+  mode: 'production',
+};</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region source-maps -->
+      <h1 id="source-maps" class="bookmark">Source maps</h1>
+      <p>
+        Maps compiled code to source files for debugging.<br />
+        none is more secure as source code is not exposed to clients.<br />
+        <a href="https://webpack.js.org/configuration/devtool/">Source Maps</a>
+      </p>
+      <dl>
+        <dt>none</dt>
+        <dd>Omit devtool line</dd>
+      </dl>
+      <h2>webpack.config.js</h2>
+      <pre><code class="lang-js">
+module.exports = {
+  mode: 'development',
+  devtool: 'eval-source-map',
+  /*
+  mode: 'production',
+  devtool: 'source-map',
+  */
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region plugins -->
+      <h1 id="plugins" class="bookmark">Plugins</h1>
+      <p>Others tasks like:</p>
+      <ul>
+        <li>Bundle optimization</li>
+        <li>Asset management</li>
+        <li>Injection of environment variables</li>
+      </ul>
+      <h2>webpack.config.js</h2>
+      <pre><code class="lang-js">
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({ 
+      template: './src/index.html',
+    })
+  ],
+};</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region entry -->
+      <h1 id="entry" class="bookmark">Entry</h1>
+      <p>
+        Entry point file.<br />
+        <strong>./src/index.js</strong> is default.
+      </p>
+      <h2>webpack.config.js</h2>
+      <h3>Single entry</h3>
+      <pre><code class="lang-js">
+module.exports = {
+  entry: './src/index.js',
+};
+</code></pre>
+      <h3>Multiple entries</h3>
+      <pre><code class="lang-js">
+module.exports = {
+  entry: {
+    index: './src/index.js',
+    print: './src/print.js',
+  },
+};
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region output -->
+      <h1 id="output" class="bookmark">Output</h1>
+      <p>
+        Defines path and name of the output.<br />
+        <strong>./dist/main.js</strong> is default for the main output.<br />
+        <strong>./dist</strong> is default for any other.
+      </p>
+      <h2>HtmlWebpackPlugin</h2>
+      <p>Generates the html file.</p>
+      <pre><code class="lang-js">
+npm install --save-dev html-webpack-plugin
+</code></pre>
+      <h2>webpack.config.js</h2>
+      <h3>Single output</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  // mode: 'production',
+  mode: 'development',
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Page title',
+    }),
+  ],
+  entry: 'index.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'main.js',
+    clean: true,
+  },
+};
+</code></pre>
+      <h3>Multiple outputs</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  // mode: 'production',
+  mode: 'development',
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Page title',
+    }),
+  ],
+  entry: {
+    index: './src/index.js',
+    print: './src/print.js',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    clean: true,
+  },
+};
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region config -->
+      <h1 id="config" class="bookmark">webpack.config.js</h1>
+      <p>
+        Since version 4, webpack comes with basic configuration.<br />
+        For complex configuration edit webpack.config.js
+      </p>
+      <h3>webpack.config.js</h3>
+      <pre><code class="lang-js">
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  // mode: 'production',
+  mode: 'development',
+  devtool: 'eval-source-map',
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Page title',
+    }),
+  ],
+  module: {
+    rules: [
+      // CSS
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      // Images
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      // Fonts
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  entry: './src/index.js',  
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'main.js',
+    clean: true,
+  },
+}
+</code></pre>
+      <h2>Use of another config file</h2>
+      <pre><code class="lang-js">
+npx webpack --config myConfig.config.js
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region npm-scripts -->
+      <h1 id="npm-scripts" class="bookmark">npm scripts</h1>
+      <pre><code class="lang-js">
+"scripts": {
+  /* Specify config file
+  "build": "webpack --config webpack.config.js"
+  */
+  "build": "webpack",
+  "watch": "webpack --watch"
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region dev-server -->
+      <h1 id="dev-server" class="bookmark">webpack-dev-server</h1>
+      <p>
+        Provides a web server and live reloading.<br />
+        <a href="https://webpack.js.org/configuration/dev-server/">DevServer</a>
+      </p>
+      <pre><code class="lang-js">
+npm install --save-dev webpack-dev-server
+</code></pre>
+      <h2>webpack.config.js</h2>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
+};
+</code></pre>
+      <h2>package.json</h2>
+      <pre><code class="lang-js">
+"scripts": {
+  "start": "webpack serve --open"
+},
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region transpilers -->
+      <h1 id="transpilers" class="bookmark">Transpilers</h1>
+      <p>
+        By default webpack transpile ES6 imports/exports.<br />
+        For other ES6 features use Babel loader.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region loaders -->
+      <h1 id="loaders" class="bookmark">Loaders</h1>
+      <p>Allows to process other types of files.</p>
+      <dl>
+        <dt>test</dt>
+        <dd>Which files should be transformed.</dd>
+        <dd>Regex.</dd>
+        <dt>use</dt>
+        <dd>Which loader should be used</dd>
+      </dl>
+      <h3>webpack.config.js</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+  },
+};</code></pre>
+      <p>
+        If a '.txt' is found inside a require()/import, use the raw-loader to transform it before
+        you add it to the bundle.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region css -->
+      <h1 id="css" class="bookmark">CSS</h1>
+      <p><a href="https://webpack.js.org/guides/asset-management/">Official Guide</a></p>
+      <pre><code class="lang-js">
+npm install --save-dev style-loader css-loader
+</code></pre>
+      <h3>webpack.config.js</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+</code></pre>
+      <h3>src/index.js</h3>
+      <pre><code class="lang-js">
+import './style.css';
+
+function component() {
+  const element = document.createElement('div')
+  element.innerHTML = 'Hello webpack'
+  element.classList.add('hello');
+  return element
+}
+
+document.body.appendChild(component());
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region images -->
+      <h1 id="images" class="bookmark">Images</h1>
+      <p><a href="https://webpack.js.org/guides/asset-management/">Official Guide</a></p>
+      <p>
+        Since webpack 5 no loader is needed.<br />
+        webpack will link the image wherever it's called.
+      </p>
+      <h3>webpack.config.js</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+</code></pre>
+      <h3>src/index.js</h3>
+      <pre><code class="lang-js">
+import Icon from './icon.png';
+
+function component() {
+  const element = document.createElement('div');
+
+  // Add the image to our existing div.
+  const myIcon = new Image();
+  myIcon.src = Icon;
+  element.appendChild(myIcon);
+
+  return element;
+}
+
+document.body.appendChild(component());
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region fonts -->
+      <h1 id="fonts" class="bookmark">Fonts</h1>
+      <p><a href="https://webpack.js.org/guides/asset-management/">Official Guide</a></p>
+      <p>
+        Since webpack 5 no loader is needed.<br />
+        webpack will link the font wherever it's called.
+      </p>
+      <h3>webpack.config.js</h3>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+</code></pre>
+      <h3>src/style.css</h3>
+      <pre><code class="lang-css">
+@font-face {
+  font-family: 'MyFont';
+  src: url('./my-font.woff2') format('woff2'),
+  url('./my-font.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hello {
+  font-family: 'MyFont';
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region data -->
+      <h1 id="data" class="bookmark">Data</h1>
+      <p><a href="https://webpack.js.org/guides/asset-management/">Official Guide</a></p>
+      <p>JSON does not need a loader.</p>
+      <pre><code class="lang-js">
+// xml loader
+npm install --save-dev xml-loader
+
+// csv loader
+npm install --save-dev csv-loader
+</code></pre>
+      <h3>webpack.config.js</h3>
+      <p>JSON is supported by default.</p>
+      <pre><code class="lang-js">
+const path = require('path');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(csv|tsv)$/i,
+        use: ['csv-loader'],
+      },
+      {
+        test: /\.xml$/i,
+        use: ['xml-loader'],
+      },
+    ],
+  },
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+</code></pre>
+      <h3>src/index.js</h3>
+      <pre><code class="lang-js">
+import data from './data.json';
+import Data from './data.xml';
+import Notes from './data.csv';
+
+function component() {
+  const element = document.createElement('div');
+
+  console.log(Data);
+  console.log(Notes);
+
+  return element;
+}
+
+document.body.appendChild(component());
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

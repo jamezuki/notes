@@ -1,0 +1,44 @@
+@use '../abstracts/variables' as *;
+
+.index-title {
+  text-align: center;
+  margin: 40px 0 20px 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 0;
+}
+
+.index {
+  color: $index-color;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  section {
+    width: 250px;
+    margin: 20px;
+  }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    background: $index-background;
+  }
+  a {
+    color: $index-color;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  hr {
+    background: $index-color;
+    width: 100%;
+    height: 2px;
+    margin: 10px 0;
+  }
+}

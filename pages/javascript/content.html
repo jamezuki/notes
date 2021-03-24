@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>JavaScript</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">JavaScript</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region basics -->
+      <h1 id="basics" class="bookmark">Basics</h1>
+      <ul>
+        <li>Just-In-Time (compiled at runtime)</li>
+        <li>Client-side</li>
+        <li>Server-side with Node.js</li>
+        <li>Dynamically typed</li>
+      </ul>
+      <h2>Variables</h2>
+      <ul>
+        <li>Only letters, digits, $, _.</li>
+        <li>The first character must not be a digit.</li>
+        <li><strong>Should not be declared twice</strong></li>
+      </ul>
+      <pre><code class="lang-js">
+let x = 5;
+let x = 8; // ERROR</code></pre>
+      <h3>let</h3>
+      <ul>
+        <li>cammelCase</li>
+        <li>Not bound to data types.</li>
+      </ul>
+      <pre><code class="lang-js">
+let magicNumber = 30;
+magicNumber = 'string'; // No error</code></pre>
+      <h3>const</h3>
+      <ul>
+        <li>CAPITALS</li>
+        <li>snake_case</li>
+      </ul>
+      <pre><code class="lang-js">
+const MAGIC_NUMBER = 30;</code></pre>
+      <h2>Data types</h2>
+      <p>8 data types:</p>
+      <h3>Primitives</h3>
+      <ol>
+        <li>
+          undefined
+          <pre><code class="lang-js">
+let x;
+typeof(x); //undefined</code></pre>
+        </li>
+        <li>
+          null
+          <pre><code class="lang-js">
+let x = null;
+typeof(x); // null</code></pre>
+        </li>
+        <li>
+          boolean
+          <pre><code class="lang-js">
+let x = true;
+typeof(x); // boolean</code></pre>
+        </li>
+        <li>
+          number
+          <pre><code class="lang-js">
+// MIN_SAFE_INTEGER: -2<sup>53</sup>-1
+// MAX_SAFE_INTEGER: 2<sup>53</sup>-1
+let x = 2;
+typeof(x); // number</code></pre>
+        </li>
+        <li>
+          string
+          <pre><code class="lang-js">
+let x = "Hello";
+let x = 'Hello';
+let x = `Hello ${y}`;
+typeof(x); // string</code></pre>
+        </li>
+        <li>
+          bigint
+          <p>Arbitrary length</p>
+          <pre><code class="lang-js">
+let x = 2n;
+typeof(x); // bigint</code></pre>
+        </li>
+        <li>
+          symbol
+          <ul>
+            <li>Unique and immutable.</li>
+            <li>May be used as the key of an Object.</li>
+          </ul>
+          <pre><code class="lang-js">
+let x = Symbol("x");
+typeof(x); // symbol</code></pre>
+        </li>
+      </ol>
+      <h3>Structural</h3>
+      <ol start="8">
+        <li>
+          Object
+          <p>Data structure with properties and methods.</p>
+          <p>Everything made with <strong>new</strong> keyword.</p>
+        </li>
+      </ol>
+      <h2>Logical operators</h2>
+      <table>
+        <tr>
+          <th>||</th>
+          <td>OR</td>
+        </tr>
+        <tr>
+          <th>&&</th>
+          <td>AND</td>
+        </tr>
+        <tr>
+          <th>!</th>
+          <td>NOT</td>
+        </tr>
+      </table>
+      <strong>Precedence of && is higher than ||</strong>
+      <p>a && b || c && d <strong>==</strong> (a && b) || (c && d)</p>
+      <h2>Falsy values</h2>
+      <ul>
+        <li>false</li>
+        <li>undefined</li>
+        <li>null</li>
+        <li>0</li>
+        <li>NaN</li>
+        <li>'', "", ``</li>
+      </ul>
+      <strong>Everything else returns true.</strong>
+      <h2>Comparators</h2>
+      <ul>
+        <li>&gt;</li>
+        <li>&lt;</li>
+        <li>&gt;=</li>
+        <li>&lt;=</li>
+        <li>==</li>
+        <li>!=</li>
+        <li>
+          ===
+          <ul>
+            <li>Strict equal</li>
+            <li>Compares value and data type.</li>
+          </ul>
+          <pre><code class="lang-js">
+let x = 0;
+let y = false;
+x == y // true
+x === y // false</code></pre>
+        </li>
+      </ul>
+      <hr />
+      <!--#endregion-->
+
+      <!-- #region use -->
+      <h1 id="use" class="bookmark">How to use</h1>
+      <h2>inline</h2>
+      <ul>
+        <li>single element</li>
+        <li>attribute in tag</li>
+      </ul>
+      <p></p>
+      <pre><code class="lang-html">
+&lt;button onclick="alert('hi');"&gt;&lt;/button&gt;</code></pre>
+      <h2>internal</h2>
+      <ul>
+        <li>single page</li>
+        <li>inside head tag</li>
+      </ul>
+      <pre><code class="lang-html">
+&lt;head&gt;
+    &lt;script&gt; ... &lt;/script&gt;
+&lt;/head&gt;</code></pre>
+      <h2>external</h2>
+      <ul>
+        <li>many pages</li>
+        <li>linked in head tag</li>
+      </ul>
+      <pre><code class="lang-html">
+&lt;head&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region script-load -->
+      <h1 id="script-load" class="bookmark">Script load</h1>
+      <p>JS must be loaded in his own thread</p>
+      <h2>in file.js</h2>
+      <pre><code class="lang-js">
+document.addEventListener("DOMContentLoaded", function() { 
+    ... 
+});</code></pre>
+      <h2>in file.html</h2>
+      <dl>
+        <dt>defer</dt>
+        <dd>executed when the page has been loaded</dd>
+        <dd>for dependencies ( use of DOM, etc.. )</dd>
+        <dd>executed in order.</dd>
+      </dl>
+      <pre><code class="lang-html">
+&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+      <dl>
+        <dt>async</dt>
+        <dd>executed independently</dd>
+        <dd>no dependencies</dd>
+      </dl>
+      <pre><code class="lang-html">
+&lt;script src="script.js" async&gt;&lt;/script&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region modules -->
+      <h1 id="modules" class="bookmark">ES6 Modules</h1>
+      <h2>export</h2>
+      <dl>
+        <dt>default export</dt>
+        <dd>Only one per module.</dd>
+        <dd>Can use any name when imported.</dd>
+        <dt>named export</dt>
+        <dd>Multiple per module.</dd>
+        <dd>Import must use same name as exported.</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Export default
+export default myDefault
+
+// Export named
+export { myExport1, myExport2 }
+</code></pre>
+      <h2>import</h2>
+      <pre><code class="lang-js">
+// Import entire module
+import * as myModule from './module.js'
+
+// Import default export
+import myDefault from './module.js'
+
+// Import a single export
+import {myExport} from './module.js'
+
+// Import multiple exports
+import {foo, bar} from './module.js'
+
+// Import with alias
+import {name1 as name2} from './module.js'
+</code></pre>
+      <h2>index.html</h2>
+      <p>
+        type='module' automatically defers script<br />
+        Only link entry point
+      </p>
+      <pre><code class="lang-html">
+&lt;head&gt;
+  ...
+  &lt;script type='module' src='main.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region prompt -->
+      <h1 id="prompt" class="bookmark">prompt</h1>
+      <ul>
+        <li>input from user</li>
+        <li>message and default are optional</li>
+      </ul>
+      <p>input from user</p>
+      <pre><code class="lang-js">
+// string
+let str = prompt('message', 'defaultValue');
+
+// number
+let test = parseInt(
+    prompt('message', 'defaultValue')
+);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region console -->
+      <h1 id="console" class="bookmark">console</h1>
+      <h2>print</h2>
+      <pre><code class="lang-js">
+console.log('text');</code></pre>
+      <h2>table</h2>
+      <ul>
+        <li>array</li>
+        <li>object</li>
+      </ul>
+      <pre><code class="lang-js">
+console.table(argument);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region alert -->
+      <h1 id="alert" class="bookmark">alert</h1>
+      <p>popup window</p>
+      <pre><code class="lang-js">
+alert('Hello');</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region if-else -->
+      <h1 id="if-else" class="bookmark">if else</h1>
+      <pre><code class="lang-js">
+let option = 'Cheddar';
+if (option) {
+    // code
+} else {
+    // code
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region switch -->
+      <h1 id="switch" class="bookmark">switch</h1>
+      <pre><code class="lang-js">
+let option = 5;
+switch (option) {
+    case 1:
+        // code
+        break;
+    default:
+        // code
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region for -->
+      <h1 id="for" class="bookmark">for</h1>
+      <pre><code class="lang-js">
+for (begin; condition; step) {
+    // code
+}
+
+for (let i = 0; i &lt; 3; i++) { 
+    alert(i);
+}
+// shows 0, then 1, then 2</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region while -->
+      <h1 id="while" class="bookmark">while</h1>
+      <pre><code class="lang-js">
+while (condition) {
+    // code
+}
+
+let i = 0;
+while (i &lt; 3) { 
+    alert(i);
+    i++;
+}
+// shows 0, then 1, then 2</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region do-while -->
+      <h1 id="do-while" class="bookmark">do while</h1>
+      <pre><code class="lang-js">
+do {
+    // code
+} while (condition);
+
+let i = 0;
+do {
+  alert(i);
+  i++;
+} while (i &lt; 3);
+// shows 0, then 1, then 2</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region ternary -->
+      <h1 id="ternary" class="bookmark">ternary</h1>
+      <table>
+        <tr>
+          <th>?</th>
+          <td>if true</td>
+        </tr>
+        <tr>
+          <th>:</th>
+          <td>else</td>
+        </tr>
+      </table>
+      <pre><code class="lang-js">
+let condition = true;
+let x = condition ? 10 : 20;
+// 10
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region continue-break -->
+      <h1 id="continue-break" class="bookmark">continue/break</h1>
+      <table>
+        <tr>
+          <th>continue;</th>
+          <td>skip interation</td>
+        </tr>
+        <tr>
+          <th>break;</th>
+          <td>exit control structure</td>
+        </tr>
+      </table>
+      <h2>labels</h2>
+      <p>reference for continue and break</p>
+      <pre><code class="lang-js">
+label:
+    statements
+
+break labelname;
+continue labelname;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region numbers -->
+      <h1 id="numbers" class="bookmark">Numbers</h1>
+      <h2>Exponentiation</h2>
+      <pre><code class="lang-js">
+let x = 5 ** 2;</code></pre>
+      <h2>Round to fixed decimals</h2>
+      <pre><code class="lang-js">
+let x = 1.7664325;
+x = x.toFixed(2); // 1.76</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region dates -->
+      <h1 id="dates" class="bookmark">Dates</h1>
+      <p>
+        January is 0, December is 11<br />
+        One parameter will be treated as milliseconds
+      </p>
+      <pre><code class="lang-js">
+new Date()
+new Date(year, month, day, hours, minutes, seconds, milliseconds)
+new Date(milliseconds)
+new Date(dateString)
+</code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+// Current date and time
+console.log(new Date())
+
+// Current year
+console.log(new Date().getFullYear())
+
+// 6 de Nov de 1990
+console.log(new Date(1990, 10, 06))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region data -->
+      <h1 id="data" class="bookmark">data-*</h1>
+      <ul>
+        <li>Store extra information on tags</li>
+        <li>Associated with element but does not need any defined meaning</li>
+      </ul>
+      <p>
+        Any attribute on any element whose attribute name starts with data- is a data attribute.
+      </p>
+      <h2>Html</h2>
+      <pre><code class="lang-html">
+&lt;article
+    id="myArticle"
+    data-columns="3"
+    data-index-number="12314"&gt;
+    ...
+&lt;/article&gt;</code></pre>
+      <h2>JavaScript access</h2>
+      <p><strong>Dashes are converted to camelCase</strong></p>
+      <pre><code class="lang-js">
+const article = document.querySelector('#myArticle');
+
+article.dataset.columns // "3"
+article.dataset.indexNumber // "12314"</code></pre>
+      <h2>CSS access</h2>
+      <pre><code class="lang-css">
+article::before {
+    content: attr(data-index-number);
+}
+
+article[data-columns='3'] {
+    width: 400px;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region webcomponents -->
+      <h1 id="webcomponents" class="bookmark">Web components</h1>
+      <h2>Custom element</h2>
+      <p>file.html</p>
+      <pre><code class="lang-js">
+&lt;custom-x&gt;  &lt;/custom-x&gt;</code></pre>
+      <p>file.js</p>
+      <pre><code class="lang-js">
+/* Custom class */
+class CustomX extends HTMLElement {
+    constructor() {
+        super();
+        this.innerHTML = 'html code';
+    }
+}
+
+window.customElements.define('custom-x', CustomX);</code></pre>
+      <dl>
+        <dt>constructor()</dt>
+        <dd>Called when an instance of the element is created or upgraded</dd>
+        <dt>connectedCallback()</dt>
+        <dd>Called when the element is inserted into de DOM</dd>
+        <dt>disconnectedCallback()</dt>
+        <dd>Called when the element is removed from the DOM</dd>
+        <dt>attributeChangedCallback(attributeName, oldValue, newValue)</dt>
+        <dd>Called when an attribute is added, removed, updated or replaced</dd>
+      </dl>
+      <h2>Shadow DOM</h2>
+      <ul>
+        <li>Used for self-contained components</li>
+        <li>Encapsulate styles and markup</li>
+      </ul>
+      <h2>HTML Templates</h2>
+      <ul>
+        <li>Define the encapsulated markup</li>
+        <li>Include HTML and CSS in template</li>
+        <li>Use slots to add custom text</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

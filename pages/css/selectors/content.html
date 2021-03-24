@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>CSS Selectors</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">CSS Selectors</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region universal -->
+      <h1 id="universal" class="bookmark">Universal</h1>
+      <pre><code class="lang-css">
+* { }
+// Targets all elements</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region element -->
+      <h1 id="element" class="bookmark">Element</h1>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;p&gt;text&lt;/p&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+p { color: red; }
+// Targets all p elements</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region id-class -->
+      <h1 id="id-class" class="bookmark">id</h1>
+      <ul>
+        <li>ids are unique</li>
+      </ul>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;p id="text"&gt;text&lt;/p&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code  class="lang-css">
+#text { color: red; }
+// Targets element with id="text"</code></pre>
+      <h1>Selectors - class</h1>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;p class="c1"&gt;text1&lt;/p&gt;
+&lt;p class="c1"&gt;text2&lt;/p&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+.c1 { color: red; }
+// Targets all elements with c1 class</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region descendant -->
+      <h1 id="descendant" class="bookmark">Descendant</h1>
+      <div id="css-selectors-descendant-ex" class="css-example">
+        <p>descendant & child</p>
+        <div>
+          <p>descendant</p>
+        </div>
+        <p>descendant & child</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div class="descendant"&gt;
+    &lt;p&gt;descendant & child&lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;descendant&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;descendant & child&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+.descendant p { color: red; }
+// Targets all p inside class="descendant"</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region children -->
+      <h1 id="children" class="bookmark">Children</h1>
+      <div id="css-selectors-children-ex" class="css-example">
+        <p>descendant & child</p>
+        <div>
+          <p>descendant</p>
+        </div>
+        <p>descendant & child</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div class="children"&gt;
+    &lt;p&gt;descendant & child&lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;descendant&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;descendant & child&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+.children &gt; p { color: red; }
+// Targets direct p inside class="children"</code></pre>
+      <h1>Selectors - Child</h1>
+      <ul>
+        <li>:first-child</li>
+        <li>:last-child</li>
+        <li>
+          :nth-child(n)
+          <ul>
+            <li>even</li>
+            <li>odd</li>
+          </ul>
+        </li>
+      </ul>
+      <div id="css-selectors-child-ex" class="css-example">
+        <p>child 1</p>
+        <p>child 2</p>
+        <p>child 3</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div class="child"&gt;
+    &lt;p&gt;child 1&lt;/p&gt;
+    &lt;p&gt;child 2&lt;/p&gt;
+    &lt;p&gt;child 3&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+.child p:nth-child(3) { color: red; }
+// Targets third p inside class="child"</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region siblings -->
+      <h1 id="siblings" class="bookmark">Siblings</h1>
+      <div class="css-example">
+        <p>sibling</p>
+        <p id="css-selectors-siblings-ex">subject ~ p</p>
+        <p>sibling</p>
+        <p>sibling</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div&gt;
+    &lt;p>sibling&lt;/p&gt;
+    &lt;p id="subject">subject ~ p&lt;/p&gt;
+    &lt;p>sibling&lt;/p&gt;
+    &lt;p>sibling&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#subject ~ p {
+  color: red;
+}
+// Targets all forward p siblings</code></pre>
+      <h1>Selectors - Sibling</h1>
+      <div class="css-example">
+        <p>sibling</p>
+        <p id="css-selectors-sibling-ex">subject + p</p>
+        <p>sibling</p>
+        <p>sibling</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div&gt;
+    &lt;p>sibling&lt;/p&gt;
+    &lt;p id="subject">subject + p&lt;/p&gt;
+    &lt;p>sibling&lt;/p&gt;
+    &lt;p>sibling&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#subject + p {
+    color: red;
+}
+// Targets forward p sibling
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region state -->
+      <h1 id="state" class="bookmark">State</h1>
+      <ul>
+        <li>a:visited</li>
+        <li>a:hover</li>
+        <li>a:focus</li>
+      </ul>
+      <div id="css-selectors-state-ex" class="css-example">
+        <p>:hover</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div id="subject"&gt;
+    &lt;p&gt;:hover&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#subject:hover {
+    background: red;
+}
+// red when mouse hover
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region part -->
+      <h1 id="part" class="bookmark">Part</h1>
+      <ul>
+        <li>::first-line</li>
+        <li>::first-letter</li>
+        <li>::selection</li>
+        <li>::before</li>
+        <li>::after</li>
+      </ul>
+      <div class="css-example">
+        <p id="css-selectors-part-ex">::selection</p>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div&gt;
+    &lt;p id="subject">::selection&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#subject::selection {
+    background: red;
+}
+// red when selected</code></pre>
+      <h2>::before / ::after</h2>
+      <ul>
+        <li>add something before or after a selected element</li>
+        <li>must have a content property</li>
+      </ul>
+      <pre><code class="lang-css">
+.heart::after {
+    background-color: pink;
+    content: "";
+    border-radius: 50%;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region attribute -->
+      <h1 id="attribute" class="bookmark">Attribute</h1>
+      <table>
+        <tr>
+          <th>ele[attr]</th>
+          <td>elements with attr</td>
+        </tr>
+        <tr>
+          <th>ele[attr="value"]</th>
+          <td>matchs "value"</td>
+        </tr>
+        <tr>
+          <th>ele[attr*="value"]</th>
+          <td>contains "value"</td>
+        </tr>
+        <tr>
+          <th>ele[attr^="value"]</th>
+          <td>value preceded by "value"</td>
+        </tr>
+        <tr>
+          <th>ele[attr$="value"]</th>
+          <td>value followed by "value"</td>
+        </tr>
+        <tr>
+          <th>ele[attr~="value"]</th>
+          <td>"value" is one of its values</td>
+        </tr>
+      </table>
+      <div class="css-example">
+        <a href="#css-selectors-attribute">element[attr="value"]</a>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;a href="#selectors-attribute"&gt;
+    element[attr="value"]
+&lt;/a&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+a[href="#selectors-attribute"] {
+    color: purple;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region adjacent -->
+      <h1 id="adjacent" class="bookmark">Adjacent</h1>
+      <ul>
+        <li>Matches the second element only if it immediately follows the first element.</li>
+        <li>Both elements must be children of the same parent.</li>
+      </ul>
+      <pre><code class="lang-css">
+/* &lt;p&gt; that come immediately after any img */
+img + p {
+    font-weight: bold;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region not -->
+      <h1 id="not" class="bookmark">:not()</h1>
+      <p>Represents elements that do not match a list of selectors.</p>
+      <pre><code class="lang-css">
+/* Selects any element that is NOT a &lt;p&gt; */
+:not(p) {
+    color: blue;
+}
+
+/* &lt;p&gt; elements that are not .fancy */
+p:not(.fancy) {
+    color: green;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region first-of-type -->
+      <h1 id="first-of-type" class="bookmark">:first-of-type</h1>
+      <ul>
+        <li>First element of its type among a group of sibling elements</li>
+        <li>Universal selector (*) is implied when no selector is written.</li>
+      </ul>
+      <pre><code class="lang-css">
+p:first-of-type {
+    color: red;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region nth-child -->
+      <h1 id="nth-child" class="bookmark">.class:nth-child()</h1>
+      <pre><code class="lang-css">
+/* Selects child 3 of class */
+.class:nth-child(3) { }
+
+/* Selects class childs:
+  3*0 + 1,
+  3*1 + 1,
+  3*2 + 1, 
+  ... */
+.class:nth-child(3n + 1) { }</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

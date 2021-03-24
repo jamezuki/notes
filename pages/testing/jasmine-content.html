@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Jasmine</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="jasmine-index.html">Jasmine</a>
+      <a
+        id="nav__github"
+        href="https://github.com/Jamezuki/notes"
+        target="_blank"
+        >GitHub</a
+      >
+    </nav>
+    <main>
+      <!-- #region jasmine-basics -->
+      <h1 id="jasmine-basics" class="bookmark">Jasmine: Basics</h1>
+      <h2>helloWorld.js</h2>
+      <pre><code class="lang-js">
+const helloWorld = function() {
+    return 'Hello, World!';
+}
+module.exports = helloWorld</code></pre>
+      <dl>
+        <dt>module.exports</dt>
+        <dd>Exports the function so it can be imported with require()</dd>
+      </dl>
+      <h2>helloWorld.spec.js</h2>
+      <pre><code class="lang-js">
+const helloWorld = require('./helloWorld');
+
+describe('Hello World', function() {
+    it('says hello world', function() {
+        expect(helloWorld()).toEqual('Hello, World!');
+    });
+});</code></pre>
+      <dl>
+        <dt>require()</dt>
+        <dd>Imports the code to be tested.</dd>
+        <dt>describe()</dt>
+        <dd>Body of the test.</dd>
+        <dt>it()</dt>
+        <dd>Describes what should be happening in plain english.</dd>
+        <dt>xit()</dt>
+        <dd>Disable test</dd>
+        <dt>expect()</dt>
+        <dd>Test condition.</dd>
+      </dl>
+      <h2>Run in console:</h2>
+      <pre><code class="lang-bash">
+jasmine helloWorld.spec.js</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

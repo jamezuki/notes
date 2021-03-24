@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>CSS Layout</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">CSS Layout</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region flex -->
+      <h1 id="flex" class="bookmark">Flex</h1>
+      <div id="css-flex-container">
+        <div class="css-flex-box">box 1</div>
+        <div class="css-flex-box">box 2</div>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div id="container"&gt;
+    &lt;div class="box">box 1&lt;/div&gt;
+    &lt;div class="box">box 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#container {
+    display: flex;
+    flex-direction: row;
+}
+      
+.box {
+    border: thin solid;
+    padding: 50px;
+}</code></pre>
+      <table>
+        <tr>
+          <th>display: flex</th>
+          <td>Element turns into a flex container</td>
+        </tr>
+        <tr>
+          <th>flex-direction</th>
+          <td>
+            <ul>
+              <li>row - default</li>
+              <li>column</li>
+              <li>row-reverse</li>
+              <li>column-reverse</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-justify -->
+      <h1 id="flex-justify" class="bookmark">Flexbox: justify-content</h1>
+      <ul>
+        <li>justify items around main axis</li>
+        <li>for flex container</li>
+      </ul>
+      <figure>
+        <figcaption>Horizontal main axis</figcaption>
+        <img src="../../images/css/flex-justify-content.png" alt="flex-justify-content.png" />
+      </figure>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Main axis</th>
+        </tr>
+        <tr>
+          <th>horizontal</th>
+          <td>flex-direction: row</td>
+        </tr>
+        <tr>
+          <th>vertical</th>
+          <td>flex-direction: column</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">value</th>
+        </tr>
+        <tr>
+          <th>center</th>
+          <td>Center, space on edges</td>
+        </tr>
+        <tr>
+          <th>flex-start</th>
+          <td>
+            <ul>
+              <li>default</li>
+              <li>if flex-direction: row - aligns to left</li>
+              <li>if flex-direction: column - aligns to top</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>flex-end</th>
+          <td>
+            <ul>
+              <li>if flex-direction: row - aligns to right</li>
+              <li>if flex-direction: column - aligns to bottom</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>space-between</th>
+          <td>First and last pushed to edges</td>
+        </tr>
+        <tr>
+          <th>space-around</th>
+          <td>Half space on first and last</td>
+        </tr>
+        <tr>
+          <th>space-evenly</th>
+          <td>Full space evenly</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-align -->
+      <h1 id="flex-align" class="bookmark">Felxbox: align</h1>
+      <ul>
+        <li>aligns elements around cross axis</li>
+      </ul>
+      <figure>
+        <figcaption>Vertical cross axis</figcaption>
+        <img src="../../images/css/flex-align-items.png" alt="flex-align-items.png" />
+      </figure>
+      <p></p>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Cross axis</th>
+        </tr>
+        <tr>
+          <th>vertical</th>
+          <td>flex-direction: row</td>
+        </tr>
+        <tr>
+          <th>horizontal</th>
+          <td>flex-direction: column</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">property</th>
+        </tr>
+        <tr>
+          <th>align-items</th>
+          <td>for flex container</td>
+        </tr>
+        <tr>
+          <th>align-self</th>
+          <td>for flex items</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">value</th>
+        </tr>
+        <tr>
+          <th>center</th>
+          <td>Center, space on edges</td>
+        </tr>
+        <tr>
+          <th>flex-start</th>
+          <td>
+            <ul>
+              <li>if flex-direction: row - aligns to top</li>
+              <li>if flex-direction: column - aligns to left</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>flex-end</th>
+          <td>
+            <ul>
+              <li>if flex-direction: row - aligns to bottom</li>
+              <li>if flex-direction: column - aligns to right</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>stretch</th>
+          <td>
+            <ul>
+              <li>default</li>
+              <li>Fills the flex container</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>baseline</th>
+          <td>
+            <p>like flex-start but aligns text baseline</p>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-flex-wrap -->
+      <h1 id="flex-flex-wrap" class="bookmark">Flexbox: flex-wrap</h1>
+      <ul>
+        <li>Extra items move to new row or column</li>
+        <li>Break point depends on sizes</li>
+        <li>For flex container</li>
+      </ul>
+      <p><img src="../../images/css/flex-wrap.png" alt="flex-wrap.png" /></p>
+      <table>
+        <tr>
+          <th>nowrap</th>
+          <td>default</td>
+        </tr>
+        <tr>
+          <th>wrap</th>
+          <td>
+            <ul>
+              <li>row = wraps top to bottom</li>
+              <li>column = wraps left to right</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>wrap-reverse</th>
+          <td>
+            <ul>
+              <li>row = wraps bottom to top</li>
+              <li>column = wraps right to left</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-flex -->
+      <h1 id="flex-flex" class="bookmark">Flexbox: flex</h1>
+      <ul>
+        <li>flex-grow + flex-shrink + flex-basis</li>
+        <li>for flex items</li>
+      </ul>
+      <table>
+        <tr>
+          <th>flex-grow</th>
+          <td>
+            <ul>
+              <li>container &gt; items</li>
+              <li>item grows</li>
+              <li>number value</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>flex-shrink</th>
+          <td>
+            <ul>
+              <li>items &gt; container</li>
+              <li>item shrinks</li>
+              <li>number value</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>flex-basis</th>
+          <td>
+            <ul>
+              <li>sets the initial size</li>
+              <li>unit value</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <pre><code class="lang-css">
+// For flex items
+
+/* unitless number: flex-grow */
+flex: 2;
+
+/* width/height: flex-basis */
+flex: 10em;
+flex: 30%;
+flex: min-content;
+
+/* flex-grow | flex-basis */
+flex: 1 30px;
+
+/* flex-grow | flex-shrink */
+flex: 2 2;
+
+/* flex-grow | flex-shrink | flex-basis */
+flex: 2 2 10%;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-order -->
+      <h1 id="flex-order" class="bookmark">Flexbox: order</h1>
+      <ul>
+        <li>Order of how flex items appear in the flex container</li>
+        <li>Can have negative values</li>
+        <li>For flex items</li>
+      </ul>
+      <pre><code class="lang-css">
+.container {
+    display: flex;
+}
+       
+.box {
+    order: 2;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region flex-examples -->
+      <h1 id="flex-examples" class="bookmark">Flexbox: Examples</h1>
+      <figure>
+        <figcaption>justify-content: flex-end + margin:auto</figcaption>
+        <img src="../../images/css/flex-ex1.png" alt="flex-ex1.png" />
+      </figure>
+      <figure>
+        <figcaption>justify-content: center + margin:auto</figcaption>
+        <img src="../../images/css/flex-ex2.png" alt="flex-ex2.png" />
+      </figure>
+      <figure>
+        <figcaption>align-self: flex-end + margin:auto</figcaption>
+        <img src="../../images/css/flex-ex3.png" alt="flex-ex3.png" />
+      </figure>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region grid-template-rows-cols -->
+      <h1 id="grid-template-rows-cols" class="bookmark">Grid: grid-template-rows/cols</h1>
+      <div id="css-grid-template-rows-cols-container">
+        <div id="css-grid-template-rows-cols-box1">
+          <p>box 1</p>
+        </div>
+        <div id="css-grid-template-rows-cols-box2">
+          <p>box 2</p>
+        </div>
+        <div id="css-grid-template-rows-cols-box3">
+          <p>box 3</p>
+        </div>
+        <div id="css-grid-template-rows-cols-box4">
+          <p>box 4</p>
+        </div>
+        <div id="css-grid-template-rows-cols-box5">
+          <p>box 5</p>
+        </div>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div id="container"&gt;
+    &lt;div id="box1"&gt;box 1&lt;/div&gt;
+    &lt;div id="box2"&gt;box 2&lt;/div&gt;
+    &lt;div id="box3"&gt;box 3&lt;/div&gt;
+    &lt;div id="box4"&gt;box 4&lt;/div&gt;
+    &lt;div id="box5"&gt;box 5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+      
+#box1 {
+    grid-row: 1/2;
+    grid-column: 1/4;
+}
+      
+#box2 {
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+      
+#box3 {
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+      
+#box4 {
+    grid-row: 2/3;
+    grid-column: 3/4;
+}
+      
+#box5 {
+    grid-row: 3/4;
+    grid-column: 1/4;
+}</code></pre>
+      <h2>grid-template-rows/columns</h2>
+      <ul>
+        <li>for grid container</li>
+      </ul>
+      <table>
+        <tr>
+          <th>number of parameters</th>
+          <td>number of rows/cols</td>
+        </tr>
+        <tr>
+          <th>value of parameters</th>
+          <td>width of each row/col</td>
+        </tr>
+        <tr>
+          <th>repeat(100, 50px)</th>
+          <td>100 rows/cols of 50px</td>
+        </tr>
+        <tr>
+          <th>repeat(auto-fill, 50px)</th>
+          <td>fill with rows/cols of 50px</td>
+        </tr>
+        <tr>
+          <th>repeat(auto-fit, 50px)</th>
+          <td>stretches rows/cols</td>
+        </tr>
+        <tr>
+          <th>minmax(50px, 200px)</th>
+          <td>limit row/col size</td>
+        </tr>
+      </table>
+      <p>example:</p>
+      <pre><code class="lang-css">
+/* 3 columns of 90px - 1fr */
+grid-template-columns: repeat(3, minmax(90px, 1fr));
+
+/* fill with rows of 60px - 1fr */
+grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));</code></pre>
+      <h2>grid-row/column/area</h2>
+      <ul>
+        <li>for grid items</li>
+      </ul>
+      <table>
+        <tr>
+          <th>grid-row</th>
+          <td>
+            <ul>
+              <li>rows an item will consume</li>
+              <li>grid-row: row1/row2</li>
+              <li>grid-row: 1/2</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>grid-column</th>
+          <td>
+            <ul>
+              <li>columns an item will consume</li>
+              <li>grid-column: col1/col2</li>
+              <li>grid-column: 1/2</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>grid-area</th>
+          <td>
+            <ul>
+              <li>rows & columns</li>
+              <li>grid-area: row1/col1/row2/col2</li>
+              <li>grid-column: 1/1/2/2</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <p><img src="../../images/css/grid-lines.png" alt="grid-lines.png" /></p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region grid-template-areas -->
+      <h1 id="grid-template-areas" class="bookmark">Grid: grid-template-areas</h1>
+      <div id="css-grid-template-areas-container">
+        <div id="css-grid-template-areas-box1">
+          <p>box 1</p>
+        </div>
+        <div id="css-grid-template-areas-box2">
+          <p>box 2</p>
+        </div>
+        <div id="css-grid-template-areas-box3">
+          <p>box 3</p>
+        </div>
+        <div id="css-grid-template-areas-box4">
+          <p>box 4</p>
+        </div>
+        <div id="css-grid-template-areas-box5">
+          <p>box 5</p>
+        </div>
+      </div>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;div id="container"&gt;
+    &lt;div id="box1"&gt;box 1&lt;/div&gt;
+    &lt;div id="box2"&gt;box 2&lt;/div&gt;
+    &lt;div id="box3"&gt;box 3&lt;/div&gt;
+    &lt;div id="box4"&gt;box 4&lt;/div&gt;
+    &lt;div id="box5"&gt;box 5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+#container {
+    display: grid;
+    grid-template-areas:
+        "box1 box1 box1"
+        "box2 box3 box4"
+        "box5 box5 box5";   
+}
+        
+#box1 {
+    grid-area: box1;
+}
+        
+#box2 {
+    grid-area: box2;
+}
+        
+#box3 {
+    grid-area: box3;
+}
+        
+#box4 {
+    grid-area: box4;
+}
+        
+#box5 {
+    grid-area: box5;
+}</code></pre>
+      <ul>
+        <li>words represents cells</li>
+        <li>quotations represents rows</li>
+        <li>Period ( . ) = empty cell</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region grid-justify -->
+      <h1 id="grid-justify" class="bookmark">Grid: justify</h1>
+      <ul>
+        <li>justify cell content horizontally</li>
+      </ul>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">property</th>
+        </tr>
+        <tr>
+          <th>justify-items</th>
+          <td>for grid container</td>
+        </tr>
+        <tr>
+          <th>justify-self</th>
+          <td>for grid items</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">value</th>
+        </tr>
+        <tr>
+          <th>stretch</th>
+          <td>fill cell</td>
+        </tr>
+        <tr>
+          <th>center</th>
+          <td>center of cell</td>
+        </tr>
+        <tr>
+          <th>start</th>
+          <td>left of cell</td>
+        </tr>
+        <tr>
+          <th>end</th>
+          <td>right of cell</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region grid-align -->
+      <h1 id="grid-align" class="bookmark">Grid: align</h1>
+      <ul>
+        <li>aligns cell content vertically</li>
+      </ul>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">property</th>
+        </tr>
+        <tr>
+          <th>align-items</th>
+          <td>for grid container</td>
+        </tr>
+        <tr>
+          <th>align-self</th>
+          <td>for grid items</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">value</th>
+        </tr>
+        <tr>
+          <th>stretch</th>
+          <td>fill cell</td>
+        </tr>
+        <tr>
+          <th>center</th>
+          <td>center of cell</td>
+        </tr>
+        <tr>
+          <th>start</th>
+          <td>top of cell</td>
+        </tr>
+        <tr>
+          <th>end</th>
+          <td>bottom of cell</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region grid-gap -->
+      <h1 id="grid-gap" class="bookmark">Grid: grid-gap</h1>
+      <ul>
+        <li>For grid container</li>
+      </ul>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">property</th>
+        </tr>
+        <tr>
+          <th>grid-row-gap</th>
+          <td>all rows gap</td>
+        </tr>
+        <tr>
+          <th>grid-column-gap</th>
+          <td>all columns gap</td>
+        </tr>
+        <tr>
+          <th>grid-gap</th>
+          <td>rows columns gap</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

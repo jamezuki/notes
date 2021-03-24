@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../../images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../styles/master.css" />
+  <script src="../../scripts/prism.js" defer></script>
+  <title>Heroku</title>
+</head>
+
+<body>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+  </nav>
+  <main>
+    <!-- #region heroku -->
+    <h1 id="heroku" class="bookmark">Heroku</h1>
+    <ol>
+      <li>Create app in Heroku webpage</li>
+      <li>Set environment variables in settings/config vars section</li>
+      <li>Check deployment section</li>
+    </ol>
+    </p>
+    <h2>Code</h2>
+    <h3>index.js</h3>
+    <pre><code class="lang-js">
+// For Deployment
+const PORT = process.env.PORT || 3000;
+
+// Server Start
+app.listen(PORT, () => console.log("Server Started"));
+</code></pre>
+    <h3>package.json</h3>
+    <pre><code class="lang-js">
+"scripts": {
+  "start": "node index",
+  "dev": "nodemon index"
+},
+</code></pre>
+    <h3>.gitignore</h3>
+    <pre><code class="lang-js">
+.env
+requests.http
+node_modules
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+  </main>
+</body>
+
+</html>

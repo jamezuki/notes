@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>Asynchronous JS</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">Asynchronous JS</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region settimeout -->
+      <h1 id="settimeout" class="bookmark">setTimeout</h1>
+      <dl>
+        <dt>setTimeout(function, ms)</dt>
+        <dd>Executes function when milliseconds have passed.</dd>
+      </dl>
+      <pre><code class="lang-js">
+const users = ['James', 'Yuna']
+
+function getUsers() {
+    setTimeout(() => {
+        users.forEach(user => console.log(user))
+    }, 1000)
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region callbacks -->
+      <h1 id="callbacks" class="bookmark">Callbacks</h1>
+      <p>Pass a callback to execute when needed.</p>
+      <pre><code class="lang-js">
+const users = ['James', 'Yuna']
+
+function getUsers() {
+    setTimeout(() => {
+        users.forEach(user => console.log(user))
+    }, 1000)
+}
+
+function createUser(user, callback) {
+    setTimeout(() => {
+        users.push(user)
+        callback()
+    }, 2000)
+}
+
+createUser('Ridley', getUsers)
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region promises -->
+      <h1 id="promises" class="bookmark">Promises</h1>
+      <dl>
+        <dt>.then()</dt>
+        <dd>Called when resolve()</dd>
+        <dt>.catch()</dt>
+        <dd>Called when reject()</dd>
+      </dl>
+      <pre><code class="lang-js">
+const users = ['James', 'Yuna']
+
+function getUsers() {
+    setTimeout(() => {
+        users.forEach(user => console.log(user))
+    }, 1000)
+}
+
+function createUser(user) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            users.push(user)
+            const error = false
+            !error ? resolve() : reject('Error')
+        }, 2000)
+    })
+}
+
+createUser('Ridley')
+    .then(getUsers())
+    .catch(err => console.log(err))
+</code></pre>
+      <h2>Promise.all</h2>
+      <p>
+        For many promises.<br />
+        Returns a single promise.<br />
+        Resolves to an array of the results of the promises.<br />
+        Rejects if any of its promises rejects.<br />
+      </p>
+      <pre><code class="lang-js">
+const p1 = Promise.resolve('Hello World')
+const p2 = 10
+const p3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 2000, 'Goodbye')
+})
+const p4 = fetch('someApi').then(res => res.json())
+
+Promise.all([p1, p2, p3, p4])
+    .then(values => console.log(values))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region async-await -->
+      <h1 id="async-await" class="bookmark">async/await</h1>
+      <p>Cleaner way to use promises.</p>
+      <dl>
+        <dt>async</dt>
+        <dd>Allows the use of await inside.</dd>
+        <dt>await</dt>
+        <dd>Suspends execution until promise is resolved or rejected.</dd>
+      </dl>
+      <pre><code class="lang-js">
+async function init() {
+    const res = await fetch('someApi')
+    const data = await res.json()
+    console.log(data)
+}
+init()
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region ajax -->
+      <h1 id="ajax" class="bookmark">AJAX</h1>
+      <p>
+        Asynchronous JavaScript & XML.<br />
+        Send & Receive data asynchronously.<br />
+        Does not have to reload webpage.<br />
+        JSON, XML and plain text.
+      </p>
+      <p>
+        Plain JS: XmlHttpRequest (XHR)<br />
+        Libraries: Fetch API, Axios, etc..
+      </p>
+      <p><img src="../../../images/javascript/ajax.png" alt="ajax.png" /></p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region cors -->
+      <h1 id="cors" class="bookmark">CORS</h1>
+      <p>Cross Origin Resource Sharing</p>
+      <h2>fetch API</h2>
+      <pre><code class="lang-js">
+fetch('url.url.com/api', {
+  mode: 'cors'
+});
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region xhr -->
+      <h1 id="xhr" class="bookmark">XmlHttpRequest (XHR)</h1>
+      <p>
+        <strong>Native - Old</strong><br />
+        Provided by the browser's JS environment.<br />
+        Can be used with other protocols than HTTP.
+      </p>
+      <h2>GET</h2>
+      <pre><code class="lang-js">
+let xhr = new XMLHttpRequest()
+xhr.open('GET', 'someApi', true)
+
+// OPTIONAL - used for loaders
+xhr.onprogress = function () { }
+
+xhr.onload = function () {
+  if (this.status == 200) {
+    let users = JSON.parse(this.responseText)
+    let output = ''
+    for (let i in users) {
+      output += `&lt;p&gt;${users[i].id}&lt;/p&gt;`
+    }
+    document.querySelector('#users').innerHTML = output
+  } else if (this.status = 404) {
+    document.querySelector('#users').innerHTML = 'Not Found'
+  }
+}
+
+xhr.onerror = function () {
+  document.querySelector('#users').innerHTML = 'Request Error...';
+}
+
+xhr.send();
+</code></pre>
+      <h2>readyState</h2>
+      <dl>
+        <dt>readyState</dt>
+        <dd>0: request not initialized</dd>
+        <dd>1: server connection established</dd>
+        <dd>2: request received</dd>
+        <dd>3: processing request</dd>
+        <dd>4: request finished and response is ready</dd>
+      </dl>
+      <pre><code class="lang-js">
+xhr.open('GET', 'someApi', true);
+console.log('READYSTATE: ', xhr.readyState);
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region fetch-api -->
+      <h1 id="fetch-api" class="bookmark">Fetch API</h1>
+      <p>
+        <strong>Native - New</strong><br />
+        Promise based (can use .then() .catch() or async await)
+      </p>
+      <dl>
+        <dt>.json()</dt>
+        <dd>Converts response to JSON format.</dd>
+        <dd>Returns a Promise.</dd>
+        <dt>JSON.stringify()</dt>
+        <dd>Converts JSON to String.</dd>
+        <dd>For POST.</dd>
+      </dl>
+      <h2>GET</h2>
+      <pre><code class="lang-js">
+fetch('someApi')
+  .then(res => res.json())
+  .then(data => {
+    let output = ''
+    data.forEach(user => {
+      output += `&lt;p&gt;${user.id}&lt;/p&gt;`
+    })
+    document.querySelector('#users').innerHTML = output
+  })
+  .catch(console.log('ERROR'))
+</code></pre>
+      <h2>POST</h2>
+      <pre><code class="lang-js">
+let title = document.querySelector('#title').value
+let body = document.querySelector('#body').value
+
+fetch('someApi', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-type': 'application/json'
+  },
+  body: JSON.stringify({title: title, body: body})
+})
+.then(res => res.json())
+.then(data => console.log(data))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region axios -->
+      <h1 id="axios" class="bookmark">Axios</h1>
+      <p><strong>3rd party - New</strong><br /></p>
+      <pre><code class="lang-js">
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region http-statuses -->
+      <h1 id="http-statuses" class="bookmark">HTTP Statuses</h1>
+      <table>
+        <tr>
+          <th>200</th>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <th>400</th>
+          <td>Bad request</td>
+        </tr>
+        <tr>
+          <th>401</th>
+          <td>Unauthorized</td>
+        </tr>
+        <tr>
+          <th>403</th>
+          <td>Forbidden</td>
+        </tr>
+        <tr>
+          <th>404</th>
+          <td>Not found</td>
+        </tr>
+        <tr>
+          <th>500</th>
+          <td>Internal server error</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

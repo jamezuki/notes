@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>CSS SASS</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">CSS SASS</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region basics -->
+      <h1 id="basics" class="bookmark">Basics</h1>
+      <ul>
+        <li>Syntactically Awesome StyleSheets</li>
+        <li>CSS Preprocessor</li>
+        <li>Adds features to CSS</li>
+      </ul>
+      <p>Sass files are compiled to regular CSS</p>
+      <table>
+        <tr>
+          <th>.scss</th>
+          <td>Use of brackets</td>
+        </tr>
+        <tr>
+          <th>.sass</th>
+          <td>Use of identation</td>
+        </tr>
+      </table>
+      <p>
+        CSS imports require the browser to make multiple HTTP requests, Sass imports are handled
+        entirely during compilation.
+      </p>
+      <h2>variables</h2>
+      <ul>
+        <li>Prefixed with "$"</li>
+      </ul>
+      <pre><code class="lang-css">
+$primary-color: #333;</code></pre>
+      <h2>nesting</h2>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+parent { 
+    property: value;
+}
+
+parent child {
+    property: value;
+}</code></pre>
+      <p>file.scss</p>
+      <pre><code class="lang-css">
+parent {
+    property: value;
+    child {
+        property: value;
+    }     
+}</code></pre>
+      <h2>arithmetic</h2>
+      <pre><code class="lang-css">
+@mixin hard-math($value) {
+    width: 600px / 960px * $value;
+}
+
+.box {
+    @include hard-math(30);
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region setup -->
+      <h1 id="setup" class="bookmark">Setup</h1>
+      <h2>Node.js</h2>
+      <pre><code  class="lang-bash">
+npm install -g sass</code></pre>
+      <p>package.json script:</p>
+      <pre><code class="lang-js">"sass": "sass --style=compressed --no-source-map 
+--watch styles/sass/master.scss styles/master.css"</code></pre>
+      <p>to watch run in terminal:</p>
+      <pre><code class="lang-bash">
+npm run sass</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region structure -->
+      <h1 id="structure" class="bookmark">Structure</h1>
+      <p>The sass compiler ignores underscore names</p>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">directories</th>
+        </tr>
+        <tr>
+          <th>abstracts</th>
+          <td>_variables.scss, _functions.scss ..</td>
+        </tr>
+        <tr>
+          <th>base</th>
+          <td>_normalize.scss, _typography.scss ..</td>
+        </tr>
+        <tr>
+          <th>components</th>
+          <td>_buttons.scss ..</td>
+        </tr>
+        <tr>
+          <th>layout</th>
+          <td>_header.scss, _grid.scss ..</td>
+        </tr>
+        <tr>
+          <th>pages</th>
+          <td>_home.scss, _contact.scss ..</td>
+        </tr>
+        <tr>
+          <th>themes</th>
+          <td>_dark.scss, _light.scss ..</td>
+        </tr>
+        <tr>
+          <th>vendors</th>
+          <td>_bootstrap.scss, _prism.scss ..</td>
+        </tr>
+      </table>
+      <p>master.scss / main.scss</p>
+      <pre><code class="lang-css">
+@charset "UTF-8";
+
+@use "abstracts/variables";
+@use "base/normalize";    
+@use "vendors/prism";</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region use -->
+      <h1 id="use" class="bookmark">@use</h1>
+      <p>_variables.scss</p>
+      <pre><code class="lang-css">
+$primary-color: #333;</code></pre>
+      <p>_base.scss</p>
+      <pre><code class="lang-css">
+@use 'variables';
+
+body {
+    color: variables.$primary-color;
+}</code></pre>
+      <p>main.scss</p>
+      <pre><code class="lang-css">
+@use 'variables';
+@use 'base';</code></pre>
+      <h2>Custom namespace</h2>
+      <pre><code class="lang-css">
+@use 'variables' as *;
+            
+body {
+    color: $primary-color;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region mixin -->
+      <h1 id="mixin" class="bookmark">@mixin</h1>
+      <ul>
+        <li>DRY among unrelated selectors</li>
+        <li>Does not have return</li>
+      </ul>
+      <ul>
+        <li>@mixin</li>
+        <li>@include</li>
+      </ul>
+      <p>file.scss</p>
+      <pre><code class="lang-css">
+@mixin webfont() {
+    font-family: webfont, sans-serif;
+    font-weight: 700;
+}
+            
+.foo {
+    @include webfont();
+}
+            
+.bar {
+    @include webfont();
+}</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">                        
+.foo {
+    font-family: webfont, sans-serif;
+    font-weight: 700;
+}
+                        
+.bar {
+    font-family: webfont, sans-serif;
+    font-weight: 700;
+}</code></pre>
+      <h2>with parameters</h2>
+      <pre><code class="lang-css">
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+            
+.box {
+    @include transform(rotate(30deg));
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region extend -->
+      <h1 id="extend" class="bookmark">@extend</h1>
+      <ul>
+        <li>DRY for related selectors</li>
+      </ul>
+      <ul>
+        <li>@extend</li>
+      </ul>
+      <table>
+        <tr>
+          <th>%</th>
+          <td>
+            <ul>
+              <li>placeholder</li>
+              <li>not compiled</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <p>file.scss</p>
+      <pre><code class="lang-css">
+.message,
+%message-shared {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+            
+.success {
+    @extend %message-shared;
+    border-color: green;
+}
+            
+.error {
+    @extend %message-shared;
+    border-color: red;
+}</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+.message,
+.success,
+.error {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+                        
+.success {
+    border-color: green;
+}
+                        
+.error {
+    border-color: red;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region function -->
+      <h1 id="function" class="bookmark">@function</h1>
+      <ul>
+        <li>@function</li>
+        <li>@return</li>
+      </ul>
+      <pre><code class="lang-css">
+@function pow($base, $exponent) {
+    $result: 1;
+    @for $i from 1 through $exponent {
+        $result: $result * $base;
+    }
+    @return $result;
+}
+          
+.sidebar {
+    float: left;
+    margin-left: pow(4, 3) * 1px;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region conditionals -->
+      <h1 id="conditionals" class="bookmark">conditionals</h1>
+      <ul>
+        <li>@if</li>
+        <li>@else</li>
+        <li>@else if</li>
+      </ul>
+      <pre><code class="lang-css">
+@mixin theme-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: $light-background;
+        color: $light-text;
+    } @else {
+        background-color: $dark-background;
+        color: $dark-text;
+    }
+}
+
+.banner {
+    @include theme-colors($light-theme: true);
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region loops -->
+      <h1 id="loops" class="bookmark">loops</h1>
+      <h2>@for</h2>
+      <pre><code class="lang-css">
+$base-color: #036;
+
+@for $i from 1 through 3 {
+    ul:nth-child(3n + #{$i}) {
+        background: lighten($base-color, $i * 5%);
+    }
+}</code></pre>
+      <h2>@each</h2>
+      <pre><code class="lang-css">
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+    .icon-#{$size} {
+        font-size: $size;
+        height: $size;
+        width: $size;
+    }
+}</code></pre>
+      <h2>@while</h2>
+      <pre><code class="lang-css">
+$count: 0;
+
+@while $count &lt; 5 {
+    .length-#{$count} {
+        width: (10 * $count) + px;
+    }    
+    $count: $count + 1;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-base -->
+      <h1 id="examples-base" class="bookmark">_base.scss</h1>
+      <pre><code class="lang-css">
+html {
+    box-sizing: border-box;
+}
+            
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+            
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+            
+body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-nav -->
+      <h1 id="examples-nav" class="bookmark">_nav.scss</h1>
+      <pre><code class="lang-css">
+nav {
+    color: #ddd;
+    background: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 5px;
+    font-family: sans-serif;
+    font-size: 16px;
+    z-index: 1;
+    a {
+        color: white;
+        margin: 0 5px;
+        padding: 0;
+        text-decoration: none;
+        outline: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-button -->
+      <h1 id="examples-button" class="bookmark">_button.scss</h1>
+      <a id="sass-examples-button-ex" href="#sass-button-link">example</a>
+      <pre><code class="lang-css">
+a:link,
+a:visited {
+    background-color: #f44336;
+    color: white;
+    display: inline-block;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+}
+                  
+a:hover,
+a:active {
+    background-color: red;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-table -->
+      <h1 id="examples-table" class="bookmark">_table.scss</h1>
+      <table>
+        <tr>
+          <td class="table-hide"></td>
+          <th class="table-title" colspan="2">title</th>
+        </tr>
+        <tr>
+          <th>header</th>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+        <tr>
+          <th>header</th>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+      </table>
+      <pre><code class="lang-css">
+table {
+    color: #333;
+    margin: 1rem 0;
+    border-collapse: collapse;
+}
+            
+th,
+td {
+    padding: 10px;
+    border: thin solid;
+    text-align: left;
+    ul {
+        margin: 0;
+        padding: 0 0 0 20px;
+    }
+}
+            
+th {
+    background-color: #bbb;
+}
+            
+td {
+    background-color: #ddd;
+}
+            
+.table-title {
+    color: #eee;
+    background: #333;
+    border: thin solid #333;
+    text-align: center; 
+}
+            
+.table-hide {
+    background: none;
+    border: none;
+}
+
+.table-center {
+    text-align: center;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-dialog  -->
+      <h1 id="examples-dialog" class="bookmark">_dialog.scss</h1>
+      <pre><code class="lang-css">
+@use '../abstracts/variables' as *;
+
+.dialog {
+    color: $dialog-color;
+    background: $dialog-background;
+    /* Center element */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /******************/
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid;
+    box-shadow: 2px 2px 5px 1px #333;
+    z-index: 2;
+}
+
+.dialog-button {
+    color: $dialog-button-color;
+    background: $dialog-button-background;
+    width: 100px;
+    height: 40px;
+    border: none;
+    font-family: $font-family;
+    font-size: 1.2rem;
+    &:hover,
+    &:active {
+        background: lighten($dialog-button-background, 20%);
+    }
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region examples-switch  -->
+      <h1 id="examples-switch" class="bookmark">_switch.scss</h1>
+      <pre><code class="lang-css">
+@use '../abstracts/variables' as *;
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    input {
+        display: none;
+        &:checked + .slider {
+            background-color: $switch-on;
+        }
+        &:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    }
+    .slider {
+        background-color: $switch-off;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        transition: 0.4s;
+        &:before {
+            background-color: $switch-slider;
+            position: absolute;
+            content: "";
+            width: 26px;
+            height: 26px;
+            left: 4px;
+            bottom: 4px;
+            transition: 0.4s;
+        }
+        &.round {
+            border-radius: 34px;
+        }
+
+        &.round:before {
+            border-radius: 50%;
+        }
+    }
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

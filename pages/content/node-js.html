@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../../images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../styles/master.css" />
+  <script src="../../scripts/prism.js" defer></script>
+  <title>Node.js</title>
+</head>
+
+<body>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="../index/node-js.html">Node.js</a>
+    <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+  </nav>
+  <main>
+    <!-- #region setup -->
+    <h1 id="setup" class="bookmark">Setup</h1>
+    <p>Good for anything that is not cpu intensive.</p>
+    <h2>Install</h2>
+    <p>Install LTS version.<br>
+      <a href="https://github.com/nodesource/distributions" target="_blank">
+        https://github.com/nodesource/distributions
+      </a><br>
+      Restart terminal.
+    </p>
+    <pre><code class="lang-js">
+node -v
+npm -v</code></pre>
+    <h2>Config</h2>
+    <h3>set</h3>
+    <pre><code class="lang-js">
+npm config set init-author-name "James Layne"
+npm config set init-license "MIT"
+</code></pre>
+    <h3>get</h3>
+    <pre><code class="lang-js">
+npm config get init-author-name
+</code></pre>
+    <h3>default</h3>
+    <pre><code class="lang-js">
+npm config delete init-author-name
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region nvm -->
+    <h1 id="nvm" class="bookmark">Node Version Manager</h1>
+    <p>For managing multiple node versions.<br>
+      <a href="https://github.com/nvm-sh/nvm" target="_blank">https://github.com/nvm-sh/nvm</a><br>
+      Restart terminal.
+    </p>
+    <pre><code class="lang-bash">
+# Must return nvm
+command -v nvm
+
+# Install node & npm
+nvm install node
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region start-project -->
+    <h1 id="start-project" class="bookmark">Start project</h1>
+    <pre><code class="lang-js">
+npm init -y
+npm install 'package'
+npm install 'package' --save-dev
+</code></pre>
+    <h2>.gitignore</h2>
+    <pre><code class="lang-bash">
+node_modules/
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region install-uninstall-update -->
+    <h1 id="install-uninstall-update" class="bookmark">install/uninstall/update</h1>
+    <h2>install</h2>
+    <pre><code class="lang-js">
+/* downloads all dependencies */
+npm install	
+
+/* downloads non dev dependencies */
+npm install --production
+</code></pre>
+    <pre><code class="lang-js">
+npm install 'package'
+npm install 'package' --save-dev
+npm install 'package' -g
+npm install 'package@version'
+</code></pre>
+    <h2>uninstall</h2>
+    <pre><code class="lang-js">
+npm uninstall 'package'
+npm uninstall 'package' --save-dev
+npm uninstall 'package' -g
+</code></pre>
+    <h2>update</h2>
+    <pre><code class="lang-js">
+npm update 'package'
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region scripts -->
+    <h1 id="scripts" class="bookmark">scripts</h1>
+    <pre><code class="lang-js">
+"scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "sass": "sass --style=compressed --no-source-map 
+--watch styles/sass/master.scss styles/master.css"
+}
+</code></pre>
+    <pre><code class="lang-js">
+npm start
+npm run dev
+npm run sass
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region list -->
+    <h1 id="list" class="bookmark">List dependencies</h1>
+    <pre><code class="lang-js">
+/* show all dependencies */
+npm list
+
+/* top level dependencies 1, 2, .. */
+npm list --depth 0</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region versioning -->
+    <h1 id="versioning" class="bookmark">versioning</h1>
+    <p>package.json</p>
+    <pre><code class="lang-js">
+"package": "^4.17.4"</code></pre>
+    <p><img src="../../images/node-js/patch.png" alt="patch.png" /></p>
+    <table>
+      <tr>
+        <th class="table-center">~</th>
+        <td>Updates Patch</td>
+      </tr>
+      <tr>
+        <th class="table-center">^</th>
+        <td>Updates Minor and Patch (Default)</td>
+      </tr>
+      <tr>
+        <th class="table-center">*</th>
+        <td>Updates Major, Minor & Patch</td>
+      </tr>
+      <tr>
+        <th class="table-center">none</th>
+        <td>Installs exact version</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region modules -->
+    <h1 id="modules" class="bookmark">Modules</h1>
+    <h2>--save-dev</h2>
+    <p>For modules needed only in development.</p>
+    <table>
+      <tr>
+        <th>dotenv</th>
+        <td>Environment variables (credentials)</td>
+      </tr>
+    </table>
+    <h2>-g</h2>
+    <p>for modules you want to use in the command line</p>
+    <ul>
+      <li>installs on machine</li>
+      <li>not package.json</li>
+      <li>not node_modules</li>
+    </ul>
+    <table>
+      <tr>
+        <th>sass</th>
+        <td>CSS preprocessor</td>
+      </tr>
+      <tr>
+        <th>nodemon</th>
+        <td>Restarts server when file changes</td>
+      </tr>
+      <tr>
+        <th>live server</th>
+        <td>Refresh browser when file changes</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region require-export -->
+    <h1 id="require-export" class="bookmark">require/export</h1>
+    <h2>require</h2>
+    <pre><code class="lang-js">
+// built-in or npm modules 
+var http = require('http');
+
+// custom module, same dir
+var dt = require('./module');
+
+// custom module, other dir
+var dt = require('/path/module');</code></pre>
+    <h2>exports</h2>
+    <pre><code class="lang-js">
+exports.myDateTime = () => {...};
+
+// multiple functions
+module.exports = {
+	add,
+	subtract
+}</code></pre>
+    <hr />
+    <!-- #endregion -->
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>React</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">React</a>
+      <a
+        id="nav__github"
+        href="https://github.com/Jamezuki/notes"
+        target="_blank"
+        >GitHub</a
+      >
+    </nav>
+    <main>
+      <!-- #region start -->
+      <h1 id="start" class="bookmark">Start</h1>
+      <ul>
+        <li>Needs Node.js and npm.</li>
+        <li>Uses predefined webpack setup.</li>
+        <li>Can make your own webpack setup.</li>
+      </ul>
+      <pre><code class="lang-js">
+npx create-react-app react-tutorial</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region jsx -->
+      <h1 id="jsx" class="bookmark">JSX</h1>
+      <ul>
+        <li>JavaScript XML</li>
+        <li>Properties and methods in JSX are camelCase.</li>
+        <li>className is used instead of class</li>
+        <li>Self-closing tags must end in a slash - e.g. &lt;img/&gt;</li>
+      </ul>
+      <p>
+        JavaScript expressions can also be embedded inside JSX using curly
+        braces, including variables, functions, and properties.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region class-components -->
+      <h1 id="class-components" class="bookmark">Class Components</h1>
+      <ul>
+        <li>Regular components</li>
+      </ul>
+      <p>
+        A class component must include render(), and the return can only return
+        one parent element.
+      </p>
+      <pre><code class="lang-js">
+class ClassComponent extends Component {
+  render() {
+  	return &lt;div&gt;Example&lt;/div&gt;
+  }
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region simple-components -->
+      <h1 id="simple-components" class="bookmark">Simple Components</h1>
+      <ul>
+        <li>It's a Function</li>
+        <li>Doesn't use the class keyword.</li>
+      </ul>
+      <p>
+        components can be nested in other components, and simple and class
+        components can be mixed.
+      </p>
+      <pre><code class="lang-js">
+const SimpleComponent = () => {
+  return &lt;div&gt;Example&lt;/div&gt;
+}</code></pre>
+      <p>
+        if the return is contained to one line, it does not need parentheses.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region props -->
+      <h1 id="props" class="bookmark">props</h1>
+      <p>
+        The data that's stored here is known as the virtual DOM, which is a fast
+        and efficient way of syncing data with the actual DOM.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region keys -->
+      <h1 id="keys" class="bookmark">keys</h1>
+      <p>
+        Keys help React identify which items have changed, are added, or are
+        removed.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region state -->
+      <h1 id="state" class="bookmark">state</h1>
+      <p>
+        You can think of state as any data that should be saved and modified
+        without necessarily being added to a database - for example, adding and
+        removing items from a shopping cart before confirming your purchase. You
+        must use this.setState() to modify an array. Simply applying a new value
+        to this.state.property will not work.
+      </p>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS Functions</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS Functions</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region named -->
+      <h1 id="named" class="bookmark">Named</h1>
+      <p>If an argument is missing the parameter is <strong>undefined</strong></p>
+      <pre><code class="lang-js">
+function name(parameters) {
+    // body
+}
+
+name(arguments);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region anonymous -->
+      <h1 id="anonymous" class="bookmark">Anonymous</h1>
+      <p>
+        Used for passing them into other functions as a
+        <strong>callback</strong>
+      </p>
+      <p>If an argument is missing the parameter is <strong>undefined</strong></p>
+      <h2>Function expression</h2>
+      <pre><code class="lang-js">
+let name = function(parameters) {
+    // body
+};
+
+name(arguments);</code></pre>
+      <h2>Arrow functions</h2>
+      <p>short form of function expression</p>
+      <ul>
+        <li>one parameter, () can be omitted</li>
+        <li>one line body, {} can be omitted</li>
+        <li>if no {}, return keyword is omitted</li>
+      </ul>
+      <pre><code class="lang-js">
+// complete
+let name = (a, b) => {
+    return a + b;
+};
+
+// one parameter
+let name = param => {
+    return param + 1;
+};
+
+// one line body
+let name = param => param + 1;
+
+// no parameters
+let name = () => 'Hi';
+
+name(args);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region callbacks -->
+      <h1 id="callbacks" class="bookmark">Callbacks</h1>
+      <ul>
+        <li>functions passed into other functions as arguments</li>
+        <li>called inside other function</li>
+        <li>passed without () if no arguments</li>
+      </ul>
+      <pre><code class="lang-js">
+function callback(){
+    console.log('callback');
+}
+
+function msg(fn) {
+    fn();
+}
+
+msg(callback);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region default -->
+      <h1 id="default" class="bookmark">Default parameters</h1>
+      <ul>
+        <li>value given if there is no argument</li>
+        <li>can use other functions as value</li>
+      </ul>
+      <pre><code class="lang-js">
+function showMessage(from, text = 'no message'){
+    alert( from + ": " + text );
+}
+
+showMessage('Erina'); // Erina: no message</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region restparam-arguments -->
+      <h1 id="restparam-arguments" class="bookmark">Rest parameter / argument</h1>
+      <h2>Rest parameter</h2>
+      <p>Contains the <strong>remaining</strong> arguments passed to the function</p>
+      <ul>
+        <li><strong>ES6</strong></li>
+        <li>Must be prefixed by ...</li>
+        <li>Must be the last parameter</li>
+        <li>Must be declared</li>
+        <li>It's a standard array</li>
+      </ul>
+      <pre><code class="lang-js">
+function myFun(a,  b, ...manyMoreArgs) {
+    console.log("a", a)
+    console.log("b", b)
+    console.log("manyMoreArgs", manyMoreArgs)
+}
+              
+myFun("one", "two", "three", "four", "five", "six")
+// a, one
+// b, two
+// manyMoreArgs, ["three", "four", "five", "six"]
+</code></pre>
+      <h2>arguments</h2>
+      <p>Contains <strong>all</strong> the arguments passed to the function</p>
+      <ul>
+        <li><strong>ES5</strong></li>
+        <li>Array-like object accessible inside functions</li>
+        <li>For non-arrow functions</li>
+        <li><strong>It's not an array</strong></li>
+        <li>Can use arguments.length</li>
+      </ul>
+      <pre><code class="lang-js">
+function myConcat(separator) {
+    let args = Array.prototype.slice.call(arguments, 1);
+    return args.join(separator);
+}
+
+myConcat(', ', 'red', 'orange', 'blue');
+// "red, orange, blue"
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region foreach -->
+      <h1 id="foreach" class="bookmark">forEach</h1>
+      <p>
+        Loops through data.<br />
+        Does not return anything.<br />
+      </p>
+      <dl>
+        <dt>index / array</dt>
+        <dd>Optional</dd>
+        <dt>thisArg</dt>
+        <dd>Argument to pass as 'this'</dd>
+        <dd>Optional</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Arrow function
+myArray.forEach((element, index, array) => { ... } )
+
+// Callback function
+myArray.forEach(callbackFn)
+myArray.forEach(callbackFn, thisArg)
+
+// Actual callback
+function callbackFn(element, index, array) { ... }
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region filter -->
+      <h1 id="filter" class="bookmark">filter</h1>
+      <p>
+        Returns an array with the elements who passed the condition.<br />
+        Callback must return true if the element pass the condition.
+      </p>
+      <dl>
+        <dt>element</dt>
+        <dd>The current element of the array</dd>
+        <dt>index (optional)</dt>
+        <dd>The index of the current element</dd>
+        <dt>array (optional)</dt>
+        <dd>The array of the element</dd>
+        <dt>thisArg (optional)</dt>
+        <dd>Argument to pass as 'this'</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Arrow function
+myArray.filter((element, index, array) => { condition ? true : false } )
+
+// Callback function
+myArray.filter(callbackFn)
+myArray.filter(callbackFn, thisArg)
+
+// Actual callback
+function callbackFn(element, index, array) { condition ? true : false }
+</code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+const ages = [10, 20, 30, 40]
+
+const canDrink = ages.filter(age => age >= 21)
+console.log(canDrink) // [30, 40]
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region map -->
+      <h1 id="map" class="bookmark">map</h1>
+      <p>
+        Loops the array and returns a new one of the same lenght.<br />
+        Callback must return the evaluated element.<br />
+        Used when the returning array will be used.
+      </p>
+      <dl>
+        <dt>element</dt>
+        <dd>The current element of the array</dd>
+        <dt>index (optional)</dt>
+        <dd>The index of the current element</dd>
+        <dt>array (optional)</dt>
+        <dd>The array of the element</dd>
+        <dt>thisArg (optional)</dt>
+        <dd>Argument to pass as 'this'</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Arrow function
+myArray.map((element, index, array) => { ... } )
+
+// Callback function
+myArray.map(callbackFn)
+myArray.map(callbackFn, thisArg)
+
+// Actual callback
+function callbackFn(element, index, array) { ... }
+</code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+const x = [10, 20, 30, 40]
+
+const y = x.map(element => element * 2 )
+console.log(y) // [20, 40, 60, 80]
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region sort -->
+      <h1 id="sort" class="bookmark">sort</h1>
+      <p>If functionless, converts elements to string and sorts by unicode<br /></p>
+      <dl>
+        <dt>firstEl</dt>
+        <dd>First element for comparison</dd>
+        <dt>secondEl</dt>
+        <dd>Second element for comparison</dd>
+        <dt>Callback</dt>
+        <dd>return &gt; 0 change places</dd>
+        <dd>return &lt;= 0 do nothing</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Functionless
+myArray.sort()
+
+// Arrow function
+myArray.sort((firstEl, secondEl) => { ... } )
+
+// Callback function
+myArray.sort(callbackFn)
+
+// Actual callback
+function callbackFn(firstEl, secondEl) { ... }
+      </code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+const numbers = [1, 30, 4, 21, 100000]
+let myArray
+
+// Functionless (by unicode)
+myArray = numbers.sort()
+console.log(myArray) // [1, 100000, 21, 30, 4]
+
+// Ascending
+myArray = numbers.sort((a, b) => a - b)
+console.log(myArray) // [1, 4, 21, 30, 100000]
+
+// Descending
+myArray = numbers.sort((a, b) => b - a)
+console.log(myArray) // [100000, 30, 21, 4, 1]
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region reduce -->
+      <h1 id="reduce" class="bookmark">reduce</h1>
+      <p>
+        Returns the accumulator, whose value is remembered across each iteration.<br />
+        If no initialValue provided, array[0] will be used as accumulator.
+      </p>
+      <dl>
+        <dt>accumulator</dt>
+        <dd>Accumulates callback's return values.</dd>
+        <dt>element</dt>
+        <dd>The current element of the array.</dd>
+        <dt>index (optional)</dt>
+        <dd>The index of the current element.</dd>
+        <dt>array (optional)</dt>
+        <dd>The array of the element.</dd>
+        <dt>initialValue (optional)</dt>
+        <dd>Accumulator first value.</dd>
+        <dd>If not provided, array[0] will be used as accumulator.</dd>
+      </dl>
+      <pre><code class="lang-js">
+// Arrow function
+myArray.reduce((accumulator, element, index, array) => { ... } )
+myArray.reduce((accumulator, element, index, array) => { ... }, initialValue)
+
+// Callback function
+myArray.map(callbackFn)
+myArray.map(callbackFn, initialValue)
+
+// Actual callback
+function callbackFn(accumulator, element, index, array) { ... }
+</code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+// Number accumulator
+const myArray = [1, 2, 3, 4]
+
+const x = myArray.reduce((total, element) => total + element, 0)
+console.log(x) // 10
+
+// Object accumulator
+const data = ['a', 'a', 'b', 'b', 'b', 'c']
+
+const letters = data.reduce((obj, item) => {
+    if (!obj[item]) obj[item] = 0
+    obj[item]++
+    return obj
+}, {})
+console.log(letters) // { a: 2, b: 3, c: 1 }
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region closures -->
+      <h1 id="closures" class="bookmark">Closures</h1>
+      <p>
+        Function body has access to outside variables.<br />
+        Functions are closures.
+      </p>
+      <pre><code class="lang-js">
+let me = 'Bruce Wayne';
+function greetMe() {
+	console.log('Hello, ' + me + '!');
+}
+me = 'Batman';
+greetMe(); // 'Hello Batman!'
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region factories -->
+      <h1 id="factories" class="bookmark">Factory functions</h1>
+      <p>Function that returns a new object.</p>
+      <ul>
+        <li>Use them instead of Classes.</li>
+        <li>Avoid use of new and this keywords.</li>
+        <li>Classes have a bit better performance (+10000 objects).</li>
+      </ul>
+      <pre><code class="lang-js">
+const dog = () => {
+	const sound = 'woof' // encapsulation
+	return {
+		talk: () => console.log(sound)
+	}
+}
+const sniffles = dog()
+sniffles.talk() // Outputs: "woof"
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region module-pattern -->
+      <h1 id="module-pattern" class="bookmark">Module Pattern</h1>
+      <p>
+        Wraps a factory function in an IIFE (Immediately Invoked Function Expression).<br />
+        Used when only one object is needed.<br />
+        Good for encapsulation and namespacing.
+      </p>
+      <pre><code class="lang-js">
+const calculator = (() => {
+  const add = (a, b) => a + b;
+  const sub = (a, b) => a - b;
+  return {
+    add,
+    sub
+  };
+})();
+
+calculator.add(3,5) // 8
+calculator.sub(6,2) // 4
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

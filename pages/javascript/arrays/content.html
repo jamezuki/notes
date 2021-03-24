@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS Arrays</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS Arrays</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region spread-syntax -->
+      <h1 id="spread-syntax" class="bookmark">Spread syntax</h1>
+      <ul>
+        <li><strong>ES6</strong></li>
+        <li>Allows an iterable to be expanded</li>
+        <li>Must be prefixed by ...</li>
+      </ul>
+      <pre><code class="lang-js">
+let a1 = [2, 3];
+let a2 = [1, ...a1, 4, 5];
+//  [1, 2, 3, 4, 5]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region array-like -->
+      <h1 id="array-like" class="bookmark">array-like</h1>
+      <ul>
+        <li>It's not an array</li>
+        <li>Can use .lenght</li>
+      </ul>
+      <h2>to Array</h2>
+      <pre><code class="lang-js">
+// ES5 & IE
+let args = Array.prototype.slice.call(arguments);
+
+// ES6
+let args = Array.from(arguments);</code></pre>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#js-functions-arguments">Functions: arguments</a></li>
+        <li><a href="#js-dom-queryselector">DOM: querySelector</a></li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region tostring -->
+      <h1 id="tostring" class="bookmark">toString</h1>
+      <pre><code class="lang-js">
+let x = [1, 2, 3];
+
+let string = x.join('');
+// '123'
+
+let string = x.toString();
+// '1,2,3'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region push-pop -->
+      <h1 id="push-pop" class="bookmark">push/pop</h1>
+      <h2>push()</h2>
+      <p>add to end</p>
+      <pre><code class="lang-js">
+// returns new length
+array.push('text');</code></pre>
+      <h2>pop()</h2>
+      <p>remove from end</p>
+      <pre><code class="lang-js">
+// returns removed item
+array.pop();</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region unshift-shift -->
+      <h1 id="unshift-shift" class="bookmark">unshift/shift</h1>
+      <h2>unshift()</h2>
+      <p>add to start</p>
+      <pre><code class="lang-js">
+// returns new length
+array.unshift('text');</code></pre>
+      <h2>shift()</h2>
+      <p>remove from start</p>
+      <pre><code class="lang-js">
+// returns removed item
+array.shift();</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region splice -->
+      <h1 id="splice" class="bookmark">splice</h1>
+      <ul>
+        <li>add/remove items by index</li>
+        <li><strong>returns removed items</strong></li>
+      </ul>
+      <p></p>
+      <table>
+        <tr>
+          <th>start</th>
+          <td>index to start</td>
+        </tr>
+        <tr>
+          <th>deleteCount</th>
+          <td>number of items to be removed</td>
+        </tr>
+        <tr>
+          <th>item1, item2, ..</th>
+          <td>items to be added at start</td>
+        </tr>
+      </table>
+      <pre><code class="lang-js">
+let x = [0, 1, 2, 3];
+
+const start = 1;
+const deleteCount = 2;
+
+let y = x.splice(start, deleteCount, 5, 6)
+
+// x = [0, 5, 6, 3]
+// y = [1, 2]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region slice -->
+      <h1 id="slice" class="bookmark">slice</h1>
+      <p>slice(start, end)</p>
+      <ul>
+        <li>returns sliced array</li>
+        <li><strong>end not included in the extracted array</strong></li>
+        <li>if a parameter is negative, the position is counted from the end of the string.</li>
+        <li>if start is omitted starts from 0</li>
+        <li>if end is omitted returns the rest of the string</li>
+      </ul>
+      <table>
+        <tr>
+          <th>start</th>
+          <td>index to start</td>
+        </tr>
+        <tr>
+          <th>end</th>
+          <td>index to end</td>
+        </tr>
+      </table>
+      <pre><code class="lang-js">
+const x = [0, 1, 2, 3, 4];
+
+console.log(x.slice(2));
+// [2, 3, 4]
+            
+console.log(x.slice(2, 4));
+// [2, 3]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region concat-->
+      <h1 id="concat" class="bookmark">concat</h1>
+      <p>.concat(a1, a2, ..)</p>
+      <ul>
+        <li>Concatenate</li>
+        <li>Can take strings as arguments</li>
+      </ul>
+      <pre><code class="lang-js">
+const x = [0, 1, 2];
+const y = [3, 4, 5];
+const z = x.concat(y);
+// z = [0, 1, 2, 3, 4, 5]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region reverse -->
+      <h1 id="reverse" class="bookmark">reverse</h1>
+      <p>Reverses array</p>
+      <p><strong>Changes original array</strong></p>
+      <pre><code class="lang-js">
+const array1 = [1, 2, 3];
+
+const reversed = array1.reverse();
+
+console.log(reversed); // [3, 2, 1]
+
+// It's destructive
+console.log(array1); // [3, 2, 1]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region filter -->
+      <h1 id="filter" class="bookmark">filter</h1>
+      <p>Creates a new array with the elements that pass the callback condition.</p>
+      <pre><code class="lang-js">
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const result = numbers.filter( n => n > 3);
+
+console.log(result); // Array [4, 5, 6]</code></pre>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Callback arguments</th>
+        </tr>
+        <tr>
+          <th>currentValue</th>
+          <td>The current element of the array</td>
+        </tr>
+        <tr>
+          <th>index (optional)</th>
+          <td>The index of the current element</td>
+        </tr>
+        <tr>
+          <th>array (optional)</th>
+          <td>The array of the element</td>
+        </tr>
+        <tr>
+          <th>thisArg (optional)</th>
+          <td>Value to use as this</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region map -->
+      <h1 id="map" class="bookmark">map</h1>
+      <p>Loops the array and returns a new one of the same lenght.</p>
+      <p>Used when the returning array will be used.</p>
+      <pre><code class="lang-js">
+const array1 = [1, 4, 9, 16];
+
+const map1 = array1.map(x => x * 2);
+
+map1; // Array [2, 8, 18, 32]</code></pre>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Callback arguments</th>
+        </tr>
+        <tr>
+          <th>currentValue</th>
+          <td>The current element of the array</td>
+        </tr>
+        <tr>
+          <th>index (optional)</th>
+          <td>The index of the current element</td>
+        </tr>
+        <tr>
+          <th>array (optional)</th>
+          <td>The array of the element</td>
+        </tr>
+        <tr>
+          <th>thisArg (optional)</th>
+          <td>Value to use as this</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region sort -->
+      <h1 id="sort" class="bookmark">sort</h1>
+      <h2>No callback</h2>
+      <p>Converts elements to string and sorts alphabetically</p>
+      <p><strong>For strings only</strong></p>
+      <pre><code class="lang-js">
+const months = ['March', 'Jan', 'Feb', 'Dec'];
+months.sort();
+months; // Array ["Dec", "Feb", "Jan", "March"]
+</code></pre>
+      <h2>With callback</h2>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Callback arguments</th>
+        </tr>
+        <tr>
+          <th>a</th>
+          <td>The first element for comparison</td>
+        </tr>
+        <tr>
+          <th>b</th>
+          <td>The second element for comparison</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Callback return</th>
+        </tr>
+        <tr>
+          <th>return &gt; 0</th>
+          <td>change elements places</td>
+        </tr>
+        <tr>
+          <th>return &lt;= 0</th>
+          <td>do nothing</td>
+        </tr>
+      </table>
+      <pre><code class="lang-js">
+const numbers = [1, 30, 4, 21, 100000];
+
+// Ternary
+numbers.sort((a, b) => a &gt; b ? 1 : -1);
+
+// Short
+numbers.sort((a, b) => a - b);
+
+numbers; // Array[1, 4, 21, 30, 100000]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region reduce -->
+      <h1 id="reduce" class="bookmark">reduce</h1>
+      <p>Returns the accumulator, whose value is remembered across each iteration</p>
+      <p>
+        <strong>If no initialValue provided, index 0 will be used as accumulator</strong>
+      </p>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">reduce arguments</th>
+        </tr>
+        <tr>
+          <th>callback</th>
+          <td>function to execute on each element</td>
+        </tr>
+        <tr>
+          <th>initialValue (optional)</th>
+          <td>accumulator first value</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Callback arguments</th>
+        </tr>
+        <tr>
+          <th>accumulator</th>
+          <td>accumulates callback's return values</td>
+        </tr>
+        <tr>
+          <th>currentValue</th>
+          <td>The current element of the array</td>
+        </tr>
+        <tr>
+          <th>index (optional)</th>
+          <td>The index of the current element</td>
+        </tr>
+        <tr>
+          <th>array (optional)</th>
+          <td>The array of the element</td>
+        </tr>
+      </table>
+      <pre><code class="lang-js">
+const array1 = [1, 2, 3, 4];
+const x = array1.reduce((accumulator, current) => {
+    return accumulator + current;
+}, 0);
+
+x; // 10</code></pre>
+      <h2>Example with object</h2>
+      <pre><code class="lang-js">
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk',
+'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+const transports = data.reduce((obj, item) => {
+    if (!obj[item]) obj[item] = 0;
+        obj[item]++;
+        return obj;
+}, {});
+
+console.log(transports); // {car: 5, truck: 3, ... }</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region includes -->
+      <h1 id="includes" class="bookmark">includes</h1>
+      <p>Returns true if the array includes the value.</p>
+      <p><strong>No callback</strong></p>
+      <p>Arguments:</p>
+      <ul>
+        <li>valueToFind</li>
+        <li>fromIndex (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const array1 = [1, 2, 3];
+
+array1.includes(2); // true</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region some-every -->
+      <h1 id="some-every" class="bookmark">some / every</h1>
+      <h2>some()</h2>
+      <p>Returns true if at least one element match the condition.</p>
+      <p>Callback arguments:</p>
+      <ul>
+        <li>element</li>
+        <li>index (optional)</li>
+        <li>array (optional)</li>
+        <li>thisArg (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const array = [1, 2, 3, 4, 5];
+
+const even = (element) => element % 2 === 0;
+
+console.log(array.some(even)); // true</code></pre>
+      <h2>every()</h2>
+      <p>Returns true if all elements match the condition.</p>
+      <p>Callback arguments:</p>
+      <ul>
+        <li>element</li>
+        <li>index (optional)</li>
+        <li>array (optional)</li>
+        <li>thisArg (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const array = [1, 2, 3, 4, 5];
+
+const even = (element) => element % 2 === 0;
+
+console.log(array.every(even)); // false</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region find -->
+      <h1 id="find" class="bookmark">find</h1>
+      <p>Returns the first element that matches the condition.</p>
+      <p>Callback arguments:</p>
+      <ul>
+        <li>element</li>
+        <li>index (optional)</li>
+        <li>array (optional)</li>
+        <li>thisArg (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+
+console.log(found); // 12</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region findindex -->
+      <h1 id="findindex" class="bookmark">findIndex</h1>
+      <p>Returns the index of the first element that matches the condition.</p>
+      <p>Returns -1 if no matches.</p>
+      <p>Callback arguments:</p>
+      <ul>
+        <li>element</li>
+        <li>index (optional)</li>
+        <li>array (optional)</li>
+        <li>thisArg (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const array1 = [5, 12, 8, 130, 44];
+
+const x = (element) => element > 13;
+
+console.log(array1.findIndex(x)); // 3</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region indexof -->
+      <h1 id="indexof" class="bookmark">indexOf</h1>
+      <p>Returns the index of the first element that matches the value.</p>
+      <ul>
+        <li>Returns -1 if no matches</li>
+        <li><strong>No callback</strong></li>
+      </ul>
+      <p>Arguments:</p>
+      <ul>
+        <li>searchElement</li>
+        <li>fromIndex (optional)</li>
+      </ul>
+      <pre><code class="lang-js">
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison')); // 1
+
+console.log(beasts.indexOf('bison', 2)); // 4</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region spread -->
+      <h1 id="spread" class="bookmark">Spread syntax</h1>
+      <p>Expands an iterable.</p>
+      <pre><code class="lang-js">
+const sum = (x, y, z) => x + y + z
+const numbers = [1, 2, 3]
+
+console.log(sum(...numbers)) // 6
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region destructuring -->
+      <h1 id="destructuring" class="bookmark">Destructuring</h1>
+      <p>
+        Unpack values into variables.<br />
+        Based on position in the array.
+      </p>
+      <pre><code class="lang-js">
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F']
+const numbers = [1, 2, 3, 4, 5, 6]
+</code></pre>
+      <h3>Assign</h3>
+      <pre><code class="lang-js">
+const [a, b] = alphabet 
+console.log(a) // 'A'
+console.log(b) // 'B'
+</code></pre>
+      <h3>Skip</h3>
+      <pre><code class="lang-js">
+const [a,, c] = alphabet
+console.log(a) // 'A'
+console.log(c) // 'C'
+</code></pre>
+      <h3>Spread Operator</h3>
+      <pre><code class="lang-js">
+const [a,, c, ...rest] = alphabet
+console.log(a) // 'A'
+console.log(c) // 'C'
+console.log(rest) // ['D', 'E', 'F']
+</code></pre>
+      <h3>Combine</h3>
+      <pre><code class="lang-js">
+const combined = [...alphabet, ...numbers]
+</code></pre>
+      <h3>Default values</h3>
+      <pre><code class="lang-js">
+function sumAndMultiply(a, b) {
+	return [a+b, a*b]
+}
+
+const [sum, mul, div = 'no division'] = sumAndMultiply(2, 3)
+console.log(sum) // '5'
+console.log(mul) // '6'
+console.log(div) // 'no division'
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

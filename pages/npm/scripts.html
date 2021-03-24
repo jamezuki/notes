@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>npm scripts</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <h1 class="bookmark">package.json</h1>
+      <pre><code class="lang-js">
+"scripts": {
+    "start": "node index.js",
+    "server": "live-server",
+    "sass": "sass --style=compressed --no-source-map 
+--watch styles/sass/master.scss styles/master.css"
+}</code></pre>
+      <p>
+        npm start<br />
+        npm run server<br />
+        npm run sass
+      </p>
+      <hr />
+    </main>
+  </body>
+</html>
