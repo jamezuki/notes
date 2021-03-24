@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Bash</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">Bash</a>
+      <a
+        id="nav__github"
+        href="https://github.com/Jamezuki/notes"
+        target="_blank"
+        >GitHub</a
+      >
+    </nav>
+    <main>
+      <!-- #region bash-update -->
+      <h1 id="bash-update" class="bookmark">Bash: Update</h1>
+      <pre><code class="lang-bash">
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-repositories -->
+      <h1 id="bash-repositories" class="bookmark">Bash: Repositories</h1>
+      <h2>List</h2>
+      <pre><code class="lang-bash">
+apt policy</code></pre>
+      <h2>Add</h2>
+      <pre><code class="lang-bash">
+sudo add-apt-repository ppa:'link'</code></pre>
+      <h2>Remove</h2>
+      <pre><code class="lang-bash">
+sudo add-apt-repository --remove ppa:'link'</code></pre>
+      <h2>Search</h2>
+      <pre><code class="lang-bash">
+apt search 'repository'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-compress -->
+      <h1 id="bash-compress" class="bookmark">Bash: Compress</h1>
+      <h2>Decompress</h2>
+      <pre><code class="lang-bash">
+# .tar
+tar -xvf 'file'.tar
+
+# .tar.gz
+tar -xvzf 'file'.tar.gz
+
+# .zip
+unzip 'file' -d 'directory'
+
+# .rar
+unrar e 'file' 'directory'</code></pre>
+      <h2>Compress</h2>
+      <pre><code class="lang-bash">
+# .zip
+zip -r 'file'.zip 'file'
+            
+# .rar
+rar a 'file'.rar 'file'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-kill -->
+      <h1 id="bash-kill" class="bookmark">Bash: Kill Process</h1>
+      <p>PID = Process ID</p>
+      <h2>Get PID</h2>
+      <pre><code class="lang-bash">
+ps ux</code></pre>
+      <h2>Kill by PID</h2>
+      <pre><code class="lang-bash">
+kill -9 'PID'</code></pre>
+      <h2>Kill by name</h2>
+      <pre><code class="lang-bash">
+killall 'name'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-permissions -->
+      <h1 id="bash-permissions" class="bookmark">Bash: Permissions</h1>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Who</th>
+        </tr>
+        <tr>
+          <th>u</th>
+          <td>user</td>
+        </tr>
+        <tr>
+          <th>g</th>
+          <td>group</td>
+        </tr>
+        <tr>
+          <th>o</th>
+          <td>others</td>
+        </tr>
+        <tr>
+          <th>a</th>
+          <td>all</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Permissions</th>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>(r) read</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>(w) write</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>(x) execute</td>
+        </tr>
+      </table>
+      <pre><code class="lang-bash">
+# 755 = rwxr-xr-x
+# u = rwx
+# g = r-x
+# o = r-x</code></pre>
+      <h2>Check</h2>
+      <pre><code class="lang-bash">
+ls -l 'file'</code></pre>
+      <h2>Change</h2>
+      <pre><code class="lang-bash">
+# file
+sudo chmod '755' 'file'
+
+# directory
+sudo chmod -R '755' 'dir'</code></pre>
+      <h2>Ownership</h2>
+      <pre><code class="lang-bash">
+chown 'user' 'file'</code></pre>
+      <h2>Group</h2>
+      <pre><code class="lang-bash">
+chgrp 'group' 'file'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-symbolic-link -->
+      <h1 id="bash-symbolic-link" class="bookmark">Bash: Symbolic link</h1>
+      <pre><code class="lang-bash">
+ln -s 'source' 'destination'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-path -->
+      <h1 id="bash-path" class="bookmark">Bash: Add to PATH</h1>
+      <pre><code class="lang-bash">
+echo 'export PATH=$PATH:'directory' >> ~/.profile</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-search -->
+      <h1 id="bash-search" class="bookmark">Bash: Search</h1>
+      <p>-iname = case insensitive</p>
+      <h2>File</h2>
+      <pre><code class="lang-bash">
+find 'dir' -name 'file'</code></pre>
+      <h2>Directory</h2>
+      <pre><code class="lang-bash">
+find 'dir' -type d -name 'file'</code></pre>
+      <h2>Word</h2>
+      <p>-i = case insensitive</p>
+      <pre><code class="lang-bash">
+# in file
+grep 'string' 'file'
+
+# in dir
+grep -R 'string' 'dir'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-redirect -->
+      <h1 id="bash-redirect" class="bookmark">Bash: Redirect</h1>
+      <table>
+        <tr>
+          <th>></th>
+          <td>output to file</td>
+        </tr>
+        <tr>
+          <th>>></th>
+          <td>append output</td>
+        </tr>
+        <tr>
+          <th>|</th>
+          <td>output to command (Pipe)</td>
+        </tr>
+      </table>
+      <h2>Examples</h2>
+      <h3>copy output to file</h3>
+      <pre><code class="lang-bash">
+# 1 file
+cat 'file1' > 'file2'
+
+# 2 files
+cat 'file1' 'file2' > 'file3'</code></pre>
+      <h3>append output to file</h3>
+      <pre><code class="lang-bash">
+cat 'file1' >> 'file2'</code></pre>
+      <h3>append string to file</h3>
+      <pre><code class="lang-bash">
+echo "string" >> 'file'</code></pre>
+      <h3>show content</h3>
+      <pre><code class="lang-bash">
+cat 'file' | less</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-scripts -->
+      <h1 id="bash-scripts" class="bookmark">Bash: Scripts</h1>
+      <h2>Create</h2>
+      <pre><code class="lang-bash">
+touch 'file.sh'</code></pre>
+      <h2>Permissions</h2>
+      <pre><code class="lang-bash">
+chmod 755 'file.sh'</code></pre>
+      <h2>Execute</h2>
+      <pre><code class="lang-bash">
+# current dir
+./'file.sh'
+
+# other dir
+/'path'/'file.sh'</code></pre>
+      <h2>^M error</h2>
+      <pre><code class="lang-bash">
+sed -i -e 's/\r$//' 'file.sh'</code></pre>
+      <h2>Example</h2>
+      <pre><code class="lang-bash">
+#!/bin/bash
+echo "Hello World!"</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-ffmpeg -->
+      <h1 id="bash-ffmpeg" class="bookmark">Bash: FFmpeg</h1>
+      <h2>cut media</h2>
+      <pre><code class="lang-bash">
+ffmpeg -i 'input.mp4' -ss 00:00:00 -to 00:00:00 -c copy 'output.mp4'</code></pre>
+      <h2>change format</h2>
+      <pre><code class="lang-bash">
+ffmpeg -i 'input.mp4' 'output.mp3'</code></pre>
+      <h2>change volume</h2>
+      <pre><code class="lang-bash">
+ffmpeg -i 'input.mp3' -filter:a "volume= '1.5 or 3dB'
+# actual volume * 1.5
+# actual volume + 3dB</code></pre>
+      <h2>Kazam to Whatsapp fix</h2>
+      <pre><code class="lang-bash">
+# \ = escape new line
+ffmpeg -i 'input.mp4' -c:v libx264 -profile:v baseline -level 3.0 \
+-pix_fmt yuv420p 'output.mp4'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-hardware -->
+      <h1 id="bash-hardware" class="bookmark">Bash: Hardware</h1>
+      <table>
+        <tr>
+          <th>list processes</th>
+          <td>top</td>
+        </tr>
+        <tr>
+          <th>list usb</th>
+          <td>lsusb</td>
+        </tr>
+        <tr>
+          <th>list pci</th>
+          <td>lspci</td>
+        </tr>
+        <tr>
+          <th>disk usage</th>
+          <td>df</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-network -->
+      <h1 id="bash-network" class="bookmark">Bash: Network</h1>
+      <table>
+        <tr>
+          <th>ip adress</th>
+          <td>hostname</td>
+        </tr>
+        <tr>
+          <th>network</th>
+          <td>ip addr</td>
+        </tr>
+        <tr>
+          <th>wireless</th>
+          <td>iwconfig</td>
+        </tr>
+        <tr>
+          <th>connection</th>
+          <td>ping 'url'</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-fixes -->
+      <h1 id="bash-fixes" class="bookmark">Bash: Fixes</h1>
+      <h2>thumbnails</h2>
+      <pre><code class="lang-bash">
+rm -rfv ~/.cache/thumbnails</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-man -->
+      <h1 id="bash-man" class="bookmark">Bash: man</h1>
+      <p>shows command manual</p>
+      <pre><code class="lang-bash">
+man 'command'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-clear -->
+      <h1 id="bash-clear" class="bookmark">Bash: clear</h1>
+      <p>Clear terminal</p>
+      <pre><code class="lang-bash">
+clear</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-multiline -->
+      <h1 id="bash-multiline" class="bookmark">Bash: Multiline</h1>
+      <p>\ = escape new line</p>
+      <pre><code class="lang-bash">
+command input \
+--option1 arg1 \
+--option2 arg2</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-cd -->
+      <h1 id="bash-cd" class="bookmark">Bash: cd</h1>
+      <table>
+        <tr>
+          <th>cd</th>
+          <td>home</td>
+        </tr>
+        <tr>
+          <th>cd 'dir'</th>
+          <td>dir</td>
+        </tr>
+        <tr>
+          <th>cd ..</th>
+          <td>parent</td>
+        </tr>
+        <tr>
+          <th>cd -</th>
+          <td>previous</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-ls -->
+      <h1 id="bash-ls" class="bookmark">Bash: ls</h1>
+      <table>
+        <tr>
+          <th>ls</th>
+          <td>show files</td>
+        </tr>
+        <tr>
+          <th>ls -l</th>
+          <td>show details</td>
+        </tr>
+        <tr>
+          <th>ls -a</th>
+          <td>show hidden files</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-pwd -->
+      <h1 id="bash-pwd" class="bookmark">Bash: pwd</h1>
+      <p>Get current directory</p>
+      <pre><code class="lang-bash">
+pwd</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-mkdir -->
+      <h1 id="bash-mkdir" class="bookmark">Bash: mkdir</h1>
+      <pre><code class="lang-bash">
+# create directory
+mkdir 'dir'
+
+# create full path
+mkdir -p 'd1/d2/d3'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-touch -->
+      <h1 id="bash-touch" class="bookmark">Bash: touch</h1>
+      <pre><code class="lang-bash">
+# create file
+touch 'file'
+
+# create files
+touch 'file1' 'file2'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-cp -->
+      <h1 id="bash-cp" class="bookmark">Bash: cp</h1>
+      <pre><code class="lang-bash">
+# copy file
+cp 'file' 'dest'
+
+# copy directory
+cp -r 'dir' 'dest</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-mv -->
+      <h1 id="bash-mv" class="bookmark">Bash: mv</h1>
+      <pre><code class="lang-bash">
+# rename file
+mv 'oldname' 'newname'
+
+# cut file
+mv -i 'file' 'dir'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-rm -->
+      <h1 id="bash-rm" class="bookmark">Bash: rm</h1>
+      <pre><code class="lang-bash">
+# delete file
+rm 'file'
+
+# delete directory
+rm -r 'directory'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bash-cat -->
+      <h1 id="bash-cat" class="bookmark">Bash: cat</h1>
+      <pre><code class="lang-bash">
+# read file
+cat 'file.txt' | less
+
+# read files
+cat 'file1' 'file2'</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

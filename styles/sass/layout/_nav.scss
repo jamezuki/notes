@@ -1,6 +1,7 @@
+@use '../abstracts/variables' as *;
+
 nav {
-    color: #ddd;
-    background: #333;
+    background: $nav-background;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,13 +14,16 @@ nav {
     font-size: 16px;
     z-index: 1;
     a {
-        color: white;
-        margin: 0 5px;
+        color: $nav-color;
+        margin: 0 20px;
         padding: 0;
         text-decoration: none;
         outline: none;
         &:hover {
             text-decoration: underline;
         }
+    }
+    #nav__github {
+        margin-left: auto;
     }
 }

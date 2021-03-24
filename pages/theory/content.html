@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Theory</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">Theory</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region theory-general-frontend -->
+      <h1 id="theory-general-frontend" class="bookmark">General: Frontend</h1>
+      <ul>
+        <li>Part of the web that you can see and interact with.</li>
+        <li>Client side</li>
+      </ul>
+      <table>
+        <tr>
+          <th>Web design</th>
+          <td>Photoshop, Sketch, ...</td>
+        </tr>
+        <tr>
+          <th>Frontend web development</th>
+          <td>Html, CSS, JavaScript</td>
+        </tr>
+      </table>
+      <h2>Frameworks (CSS)</h2>
+      <ul>
+        <li>Bootstrap</li>
+        <li>Materialize</li>
+        <li>Foundation</li>
+      </ul>
+      <h2>Frameworks (JavaScript)</h2>
+      <ul>
+        <li>Vue</li>
+        <li>AngularJS</li>
+        <li>Angular 2</li>
+        <li>React</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-general-backend -->
+      <h1 id="theory-general-backend" class="bookmark">General: Backend</h1>
+      <ul>
+        <li>The code that gives dynamic data to the frontend.</li>
+        <li>Server, Database</li>
+      </ul>
+      <h2>Database</h2>
+      <table>
+        <tr>
+          <th>MySQL</th>
+          <td>relational</td>
+        </tr>
+        <tr>
+          <th>PostgreSQL</th>
+          <td>relational</td>
+        </tr>
+        <tr>
+          <th>MongoDB</th>
+          <td>non-relational</td>
+        </tr>
+        <tr>
+          <th>Firebase</th>
+          <td>
+            <ul>
+              <li>non-relational</li>
+              <li>Backend-as-a-Service (BaaS)</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <h2>Server</h2>
+      <p>Handle requests from clients computers.</p>
+      <ul>
+        <li>Apache</li>
+        <li>Nginx</li>
+      </ul>
+      <h2>Caching System</h2>
+      <p>Reduce the load on the database to handle large amounts of traffic.</p>
+      <ul>
+        <li>Memcached</li>
+        <li>Redis</li>
+      </ul>
+      <h2>Frameworks</h2>
+      <table>
+        <tr>
+          <th>Express</th>
+          <td>JavaScript</td>
+        </tr>
+        <tr>
+          <th>Ruby on Rails</th>
+          <td>Ruby</td>
+        </tr>
+        <tr>
+          <th>Spring MVC</th>
+          <td>Java</td>
+        </tr>
+        <tr>
+          <th>Django</th>
+          <td>Python</td>
+        </tr>
+        <tr>
+          <th>Laravel</th>
+          <td>PHP</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-general-tech-stack -->
+      <h1 id="theory-general-tech-stack" class="bookmark">General: Tech Stack</h1>
+      <p>Collection of Server, Database, Language, Framework, Frontend tools.</p>
+      <p>choosed based on project requeriments</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-general-versioning -->
+      <h1 id="theory-general-versioning" class="bookmark">General: Versioning</h1>
+      <table>
+        <tr>
+          <th>0.0.x</th>
+          <td>Patch, bug fixes</td>
+        </tr>
+        <tr>
+          <th>0.x.0</th>
+          <td>Minor version, does not break API</td>
+        </tr>
+        <tr>
+          <th>x.0.0</th>
+          <td>Major version, breaks the API</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-html-css-selectors -->
+      <h1 id="theory-html-css-selectors" class="bookmark">Html & CSS: Selectors</h1>
+      <p>Use ids and classes over other selectors</p>
+      <ul>
+        <li>Faster</li>
+        <li>Cleaner</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-html-css-bem -->
+      <h1 id="theory-html-css-bem" class="bookmark">Html & CSS: BEM naming</h1>
+      <ul>
+        <li>Naming convention for classes</li>
+        <li>Block Element Modifier (BEM)</li>
+        <li>Verbose</li>
+      </ul>
+      <h2>Usage</h2>
+      <ul>
+        <li>block__element--modifier</li>
+        <li>block--modifier</li>
+        <li>element--modifier</li>
+      </ul>
+      <p>Modifier means appearance or behaviour</p>
+      <h2>Example</h2>
+      <pre><code class="lang-html">
+ &lt;div class="dialog dialog--hidden"&gt;
+    &lt;p class="dialog__msg"&gt;&lt;/p&gt;
+    &lt;button class="dialog__button-yes"&gt;&lt;/button&gt;
+    &lt;button class="dialog__button-no"&gt;&lt;/button&gt;
+ &lt;/div&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-css-property-order -->
+      <h1 id="theory-css-property-order" class="bookmark">CSS: Property order</h1>
+      <ol>
+        <li>Position</li>
+        <li>Display</li>
+        <li>Box model</li>
+        <li>Color</li>
+        <li>Text</li>
+        <li>Other</li>
+      </ol>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region ecmascript -->
+      <h1 id="ecmascript" class="bookmark">ECMAScript</h1>
+      <p>
+        ES6 is a version of JavaScript released in 2015.<br />
+        ES6 is widely supported for modern browsers.<br />
+        ECMAScript is a standard, JavaScript is the most popular implementation of that standard.
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region theory-services-rest -->
+      <h1 id="theory-services-rest" class="bookmark">Services: REST</h1>
+      <h2>What stands for?</h2>
+      <p>Representational State Transfer</p>
+      <ul>
+        <li>Network of webpages (state-machine).</li>
+        <li>The user progresses through an application by selecting links (state transitions).</li>
+        <li>
+          Resulting in pages (states) being transferred to the user and rendered for their use.
+        </li>
+      </ul>
+      <h2>What is?</h2>
+      <ul>
+        <li>Architectural Style, Not a Standard.</li>
+        <li>Describes how a well-designed Web application behaves.</li>
+        <li>Consistency by following web standards and conventions.</li>
+      </ul>
+      <h2>Characteristics:</h2>
+      <dl>
+        <dt>Client-Server</dt>
+        <dd>A pull-based interaction style: consuming components pull representations.</dd>
+        <dt>Stateless</dt>
+        <dd>Each request must contain all the information necessary to understand the request.</dd>
+        <dd>Request cannot take advantage of any stored context on the server.</dd>
+        <dt>Cache</dt>
+        <dd>Use of cache to improve network efficiency.</dd>
+        <dd>responses must be capable of being labeled as cacheable or non-cacheable.</dd>
+        <dt>Uniform interface</dt>
+        <dd>CRUD operations (Create, Read, Update, Delete).</dd>
+        <dd>All resources are accessed with a generic interface (HTTP: GET, POST, PUT, DELETE).</dd>
+        <dt>Named resources</dt>
+        <dd>The system is comprised of resources which are named using a URL.</dd>
+        <dt>Interconnected resource representations</dt>
+        <dd>Hypermedia as the Engine of Application State (HATEOAS)</dd>
+        <dd>
+          Resources are interconnected using URLs, enabling a client to navigate between states.
+        </dd>
+        <dt>Layered components</dt>
+        <dd>
+          Middlewares can be inserted between clients and resources to support performance,
+          security, etc.
+        </dd>
+      </dl>
+      <h2>Principles:</h2>
+      <ul>
+        <li>Use of JSON, SSL/TLS, and HTTP status codes.</li>
+        <li>Handle errors with standard error codes.</li>
+        <li>Loose coupling between Client and Server.</li>
+        <li>Use of nouns only since the HTTP methods indicate the action we want to take.</li>
+        <li>Paths of nested resources should come after the path of the parent resource.</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region http-statuses -->
+      <h1 id="http-statuses" class="bookmark">HTTP Statuses</h1>
+      <table>
+        <tr>
+          <th>200 OK</th>
+          <td>Everything is fine</td>
+        </tr>
+        <tr>
+          <th>400 Bad Request</th>
+          <td>Client-side input fails validation</td>
+        </tr>
+        <tr>
+          <th>401 Unauthorized</th>
+          <td>User isn’t authenticated</td>
+        </tr>
+        <tr>
+          <th>403 Forbidden</th>
+          <td>User is authenticated, but it’s not allowed to access</td>
+        </tr>
+        <tr>
+          <th>404 Not Found</th>
+          <td>Resource is not found</td>
+        </tr>
+        <tr>
+          <th>500 Internal server error</th>
+          <td>Generic server error</td>
+        </tr>
+        <tr>
+          <th>502 Bad Gateway</th>
+          <td>Invalid response from an upstream server</td>
+        </tr>
+        <tr>
+          <th>503 Service Unavailable</th>
+          <td>Something unexpected happened on server side</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region apis -->
+      <h1 id="apis" class="bookmark">APIs</h1>
+      <p>Usually to fetch data from an API endpoint you need:</p>
+      <ul>
+        <li>Account</li>
+        <li>API key</li>
+      </ul>
+      <p>The API key usually have to be included in the request URL.</p>
+      <pre><code class="lang-js">
+http://api.openweathermap.org/data/2.5/weather?q=London&APPID=1111111111
+</code></pre>
+      <p>Most API services offers a paid tier.</p>
+      <p>
+        <strong>Any data in client-side is vulnerable.</strong><br />
+        Make the request server-side.
+      </p>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

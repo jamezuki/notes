@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Html</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">Html</a>
+      <a
+        id="nav__github"
+        href="https://github.com/Jamezuki/notes"
+        target="_blank"
+        >GitHub</a
+      >
+    </nav>
+    <main>
+      <!-- #region html-theory -->
+      <h1 id="html-theory" class="bookmark">Theory</h1>
+      <ul>
+        <li>HyperText Markup Language</li>
+        <li>Defines structure and semantics.</li>
+      </ul>
+      <h2>tags</h2>
+      <pre><code class="lang-html">
+&lt;start-tag attribute="value"&gt; html element &lt;/end-tag&gt;</code></pre>
+      <h2>Structure</h2>
+      <pre><code class="lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;!-- Metadata, Styles, Scripts --&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!-- Content --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <h2>Markup Language</h2>
+      <ul>
+        <li>Describe data rather than logic.</li>
+        <li>Use of tags to define elements of a document.</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-header -->
+      <h1 id="html-header" class="bookmark">header</h1>
+      <p>Contains metadata, styles, scripts.</p>
+      <h2>Encoding</h2>
+      <pre><code class="lang-html">
+&lt;meta charset="utf-8"&gt;</code></pre>
+      <h2>Mobile viewport</h2>
+      <pre><code class="lang-html">
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+      <h2>Icon</h2>
+      <pre><code class="lang-html">
+&lt;link rel="icon" href="icon.png" type="image/png"&gt;</code></pre>
+      <h2>No Icon</h2>
+      <pre><code class="lang-html">
+&lt;link rel="icon" href="data:,"&gt;</code></pre>
+      <h2>CSS</h2>
+      <pre><code class="lang-html">
+&lt;link rel="stylesheet" href="file.css"&gt;</code></pre>
+      <h2>JavaScript</h2>
+      <dl>
+        <dt>defer</dt>
+        <dd>executed when the page has been loaded</dd>
+        <dd>for dependencies ( use of DOM, etc.. )</dd>
+        <dd>executed in order.</dd>
+      </dl>
+      <pre><code class="lang-html">
+&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+      <dl>
+        <dt>async</dt>
+        <dd>executed independently</dd>
+        <dd>no dependencies</dd>
+      </dl>
+      <pre><code class="lang-html">
+&lt;script src="script.js" async&gt;&lt;/script&gt;</code></pre>
+      <h2>Title</h2>
+      <pre><code class="lang-html">
+&lt;title&gt; title &lt;/title&gt;</code></pre>
+      <h2>Search description</h2>
+      <pre><code class="lang-html">
+&lt;meta name="description" content="text"&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-wrappers -->
+      <h1 id="html-wrappers" class="bookmark">Wrappers</h1>
+      <h2>Semantic</h2>
+      <table>
+        <tr>
+          <th>&lt;header&gt;&lt;/header&gt;</th>
+          <td>top bar</td>
+        </tr>
+        <tr>
+          <th>&lt;nav&gt;&lt;/nav&gt;</th>
+          <td>navigation</td>
+        </tr>
+        <tr>
+          <th>&lt;main&gt;&lt;/main&gt;</th>
+          <td>
+            <ul>
+              <li>main content</li>
+              <li>one per page</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>&lt;article&gt;&lt;/article&gt;</th>
+          <td>independent content</td>
+        </tr>
+        <tr>
+          <th>&lt;section&gt;&lt;/section&gt;</th>
+          <td>grouped related content</td>
+        </tr>
+        <tr>
+          <th>&lt;aside&gt;&lt;/aside&gt;</th>
+          <td>indirect information</td>
+        </tr>
+        <tr>
+          <th>&lt;footer&gt;&lt;/footer&gt;</th>
+          <td>bottom bar</td>
+        </tr>
+      </table>
+      <h2>Non-Semantic</h2>
+      <table>
+        <tr>
+          <th>&lt;span&gt;&lt;/span&gt;</th>
+          <td>inline</td>
+        </tr>
+        <tr>
+          <th>&lt;div&gt;&lt;/div&gt;</th>
+          <td>block</td>
+        </tr>
+      </table>
+      <h2>Others</h2>
+      <table>
+        <tr>
+          <th>&lt;br&gt;</th>
+          <td>line break</td>
+        </tr>
+        <tr>
+          <th>&lt;hr&gt;</th>
+          <td>horizontal rule</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-id-class -->
+      <h1 id="html-id-class" class="bookmark">id</h1>
+      <p>Used to reference one html element.</p>
+      <p>html</p>
+      <pre><code class="lang-html">
+&lt;p id="text"&gt; red text &lt;p&gt;</code></pre>
+      <p>css</p>
+      <pre><code class="lang-css">
+#text {
+    color: red;
+}</code></pre>
+      <h2>Bookmarks</h2>
+      <pre><code class="lang-html">
+&lt;a href="#C4"&gt; text &lt;/a&gt;
+...
+&lt;h2 id="C4"&gt; C4 &lt;/h2&gt;</code></pre>
+      <h1>class</h1>
+      <p>Used to reference multiple html elements.</p>
+      <p>html</p>
+      <pre><code class="lang-html">
+&lt;p class="text"&gt; red text 1 &lt;p&gt;
+&lt;p class="text"&gt; red text 2 &lt;p&gt;</code></pre>
+      <p>css</p>
+      <pre><code class="lang-css">
+.text {
+    color: red;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-images -->
+      <h1 id="html-images" class="bookmark">Images</h1>
+      <p>inline element</p>
+      <pre><code class="lang-html">
+&lt;img src="url" alt="text" width="100" height="100"&gt;</code></pre>
+      <table>
+        <tr>
+          <th>src</th>
+          <td>Image location.</td>
+        </tr>
+        <tr>
+          <th>alt</th>
+          <td>
+            <ul>
+              <li>Text shown if the image cant load.</li>
+              <li>Empty if image is decorative.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <p>Always specify the width and height of an image.</p>
+      <h2>Caption</h2>
+      <p>Description of image.</p>
+      <pre><code class="lang-html">
+&lt;figure&gt;
+    &lt;img src="url" alt="text"&gt;
+    &lt;figcaption> text &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      <p>A figure can contain many images.</p>
+      <h2>Different formats</h2>
+      <p>Browser choose the first compatible.</p>
+      <pre><code class="lang-html">
+&lt;picture&gt;
+    &lt;source srcset="file.webp" type="image/webp"&gt;
+    &lt;img src="file.png" alt="text"&gt;
+&lt;/picture&gt;</code></pre>
+      <h2>Responsive</h2>
+      <h3>Size</h3>
+      <pre><code class="lang-html">
+&lt;img srcset="file1 480w, file2 800w" 
+    sizes="(max-width: 600px) 480px, 800px" 
+    src="file1" alt="text"&gt;</code></pre>
+      <table>
+        <tr>
+          <th>srcset</th>
+          <td>Images and files widths</td>
+        </tr>
+        <tr>
+          <th>sizes</th>
+          <td>Media conditions</td>
+        </tr>
+        <tr>
+          <th>src</th>
+          <td>Default</td>
+        </tr>
+      </table>
+      <h3>Resolution</h3>
+      <pre><code class="lang-html">
+&lt;img srcset="file1, file2 1.5x, file3 2x" src="file3" alt="text"&gt;</code></pre>
+      <p>The browser selects the most appropriate image.</p>
+      <table>
+        <tr>
+          <th>srcset</th>
+          <td>Images and display resolution</td>
+        </tr>
+        <tr>
+          <th>src</th>
+          <td>Default</td>
+        </tr>
+      </table>
+      <h3>Art direction</h3>
+      <p>Show different image.</p>
+      <pre><code class="lang-html">
+&lt;picture&gt;
+    &lt;source media="(max-width: 799px)" srcset="file1"&gt;
+    &lt;source media="(min-width: 800px)" srcset="file2"&gt;
+    &lt;img src="file2" alt="text"&gt;
+&lt;/picture&gt;</code></pre>
+      <table>
+        <tr>
+          <th>media</th>
+          <td>Condition</td>
+        </tr>
+        <tr>
+          <th>srcset</th>
+          <td>File</td>
+        </tr>
+        <tr>
+          <th>src</th>
+          <td>Default</td>
+        </tr>
+      </table>
+      <h2>Map</h2>
+      <p>img with clickeable areas.</p>
+      <pre><code class="lang-html">
+&lt;img src="url" alt="text" usemap="#text"&gt;
+
+&lt;map name="text"&gt;
+    &lt;area shape="rect" coords="34,44,270,350" href="url" alt="area"&gt;
+&lt;/map&gt;</code></pre>
+      <table>
+        <tr>
+          <th class="table-title" colspan="2">Shapes</th>
+        </tr>
+        <tr>
+          <th>rect</th>
+          <td>Two points</td>
+        </tr>
+        <tr>
+          <th>circle</th>
+          <td>Center, radius</td>
+        </tr>
+        <tr>
+          <th>poly</th>
+          <td>Multiple points</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-links -->
+      <h1 id="html-links" class="bookmark">Links</h1>
+      <pre><code class="lang-html">
+&lt;a href="url"&gt; text or img &lt;/a&gt;</code></pre>
+      <h2>Dummy</h2>
+      <pre><code class="lang-html">
+&lt;a href="#"&gt; text or img &lt;/a&gt;</code></pre>
+      <h2>New tab</h2>
+      <pre><code class="lang-html">
+&lt;a href="url" target="_blank"&gt; text &lt;/a&gt;</code></pre>
+      <h2>Bookmarks</h2>
+      <pre><code class="lang-html">
+&lt;a href="#C4"&gt; text &lt;/a&gt;
+...
+&lt;h2 id="C4"&gt; C4 &lt;/h2&gt;</code></pre>
+      <h2>Tooltip</h2>
+      <p>On mouse over.</p>
+      <pre><code class="lang-html">
+&lt;a href="url" title="tooltip"&gt; text &lt;/a&gt;</code></pre>
+      <h2>Download</h2>
+      <pre><code class="lang-html">
+&lt;a href="url" download&gt; text &lt;/a&gt;</code></pre>
+      <h2>Email</h2>
+      <p>Opens email program.</p>
+      <pre><code class="lang-html">
+&lt;a href="mailto:email@.com"&gt; text &lt;/a&gt;</code></pre>
+      <h2>Telephone</h2>
+      <p>Autodial or add to contacts.</p>
+      <pre><code class="lang-html">
+&lt;a href="tel:666666"&gt;666666&lt;/a&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-lists -->
+      <h1 id="html-lists" class="bookmark">Lists</h1>
+      <h2>Unordered</h2>
+      <pre><code class="lang-html">
+&lt;ul&gt;
+    &lt;li&gt; item &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      <h2>Ordered</h2>
+      <pre><code class="lang-html">
+&lt;ol&gt;
+    &lt;li&gt; item &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      <h2>Description</h2>
+      <pre><code class="lang-html">
+&lt;dl&gt;
+    &lt;dt&gt; description term &lt;/dt&gt;
+    &lt;dd&gt; description definition &lt;/dd&gt;
+    &lt;dd&gt; description definition &lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+      <h2>Nested</h2>
+      <pre><code class="lang-html">
+&lt;ol&gt;
+    &lt;li&gt; item &lt;/li&gt;
+    &lt;li&gt;
+        &lt;ul&gt;
+            &lt;li&gt; nested &lt;/li&gt; 
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-tables -->
+      <h1 id="html-tables" class="bookmark">Tables</h1>
+      <table>
+        <tr>
+          <th>&lt;caption&gt;&lt;/caption&gt;</th>
+          <td>title</td>
+        </tr>
+        <tr>
+          <th>&lt;th&gt;&lt;/th&gt;</th>
+          <td>table header</td>
+        </tr>
+        <tr>
+          <th>&lt;td&gt;&lt;/td&gt;</th>
+          <td>table data</td>
+        </tr>
+        <tr>
+          <th>&lt;tr&gt;&lt;/tr&gt;</th>
+          <td>table row</td>
+        </tr>
+        <tr>
+          <th>colspan</th>
+          <td>column span</td>
+        </tr>
+        <tr>
+          <th>rowspan</th>
+          <td>row span</td>
+        </tr>
+        <tr>
+          <th>scope</th>
+          <td>col/row (th target)</td>
+        </tr>
+      </table>
+      <pre><code class="lang-html">
+&lt;table&gt;
+    &lt;caption&gt;example&lt;/caption&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;th colspan="2" scope="col"&gt;H1&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th rowspan="2" scope="row"&gt;H2&lt;/th&gt;
+        &lt;td&gt;data&lt;/td&gt;
+        &lt;td&gt;data&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;data&lt;/td&gt;
+        &lt;td&gt;data&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      <table>
+        <caption>
+          example
+        </caption>
+        <tr>
+          <td></td>
+          <th colspan="2">H1</th>
+        </tr>
+        <tr>
+          <th rowspan="2">H2</th>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+        <tr>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-text -->
+      <h1 id="html-text" class="bookmark">Text</h1>
+      <table>
+        <tr>
+          <th>&lt;h1..h6&gt;&lt;/h1..h6&gt;</th>
+          <td>
+            headings
+            <ul>
+              <li>One h1 per page</li>
+              <li>Use CSS for size</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>&lt;p&gt;&lt;/p&gt;</th>
+          <td>paragraphs</td>
+        </tr>
+        <tr>
+          <th>lorem</th>
+          <td>
+            dummy text
+            <ul>
+              <li>lorem5 = 5 words</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <h2>Others</h2>
+      <table>
+        <tr>
+          <th>&lt;strong&gt;&lt;/strong&gt;</th>
+          <td><strong>bold</strong></td>
+        </tr>
+        <tr>
+          <th>&lt;mark&gt;&lt;/mark&gt;</th>
+          <td><mark>highlighted</mark></td>
+        </tr>
+        <tr>
+          <th>&lt;em&gt;&lt;/em&gt;</th>
+          <td><em>italics</em></td>
+        </tr>
+        <tr>
+          <th>&lt;del&gt;&lt;/del&gt;</th>
+          <td><del>deleted</del></td>
+        </tr>
+        <tr>
+          <th>&lt;sup&gt;&lt;/sup&gt;</th>
+          <td>text<sup>superscript</sup></td>
+        </tr>
+        <tr>
+          <th>&lt;sub&gt;&lt;/sub&gt;</th>
+          <td>text<sub>subscript</sub></td>
+        </tr>
+        <tr>
+          <th>&lt;br&gt;</th>
+          <td>line break</td>
+        </tr>
+        <tr>
+          <th>&lt;hr&gt;</th>
+          <td>horizontal rule</td>
+        </tr>
+        <tr>
+          <th>&lt;pre&gt;&lt;/pre&gt;</th>
+          <td>preformated text</td>
+        </tr>
+      </table>
+      <h2>Escape characters</h2>
+      <table>
+        <tr>
+          <th>&lt;</th>
+          <td>&amp;lt;</td>
+        </tr>
+        <tr>
+          <th>&gt;</th>
+          <td>&amp;gt;</td>
+        </tr>
+        <tr>
+          <th>&quot;</th>
+          <td>&amp;quot;</td>
+        </tr>
+        <tr>
+          <th>&apos;</th>
+          <td>&amp;apos;</td>
+        </tr>
+        <tr>
+          <th>&amp;</th>
+          <td>&amp;amp;</td>
+        </tr>
+        <tr>
+          <th>&#10140;</th>
+          <td>&amp;#10140;</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-abbr -->
+      <h1 id="html-abbr" class="bookmark">abbr</h1>
+      <p>Abbreviation</p>
+      <p><abbr title="Data Base">DB</abbr></p>
+      <pre><code class="lang-html">
+&lt;abbr title="Data Base"&gt; DB &lt;/abbr&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-time -->
+      <h1 id="html-time" class="bookmark">time</h1>
+      <p>Times and Dates</p>
+      <time datetime="1990-11-06">6 de Noviembre de 1990</time>
+      <br />
+      <time datetime="07:00">7 am</time>
+      <pre><code class="lang-html">
+&lt;time datetime="1990-11-06"&gt; 6 de Noviembre de 1990 &lt;/time&gt;
+&lt;br&gt;
+&lt;time datetime="07:00"&gt; 7 am &lt;/time&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-cite-q -->
+      <h1 id="html-cite-q" class="bookmark">Cite</h1>
+      <p>Used to reference source.</p>
+      <p>With or without link.</p>
+      <cite><a href="#html-cite-q">source</a></cite>
+      <pre><code class="lang-html">
+&lt;cite&gt;&lt;a href="#cite-q"&gt;source&lt;/a&gt;&lt;/cite&gt;</code></pre>
+      <h1>Quote</h1>
+      <h2>Inline</h2>
+      <q>Quote...</q>
+      <pre><code class="lang-html">
+&lt;q cite="url"&gt; Quote... &lt;/q&gt;</code></pre>
+      <h2>Block</h2>
+      <blockquote>
+        <p>Quote...</p>
+        <cite><a href="#html-cite-q">source</a></cite>
+      </blockquote>
+      <pre><code class="lang-html">
+&lt;blockquote cite="#cite-q"&gt;
+    &lt;p&gt; Quote... &lt;/p&gt;
+    &lt;cite&gt;&lt;a href="#cite-q"&gt;source&lt;/a&gt;&lt;/cite&gt;
+&lt;/blockquote&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-code -->
+      <h1 id="html-code" class="bookmark">code</h1>
+      <table>
+        <tr>
+          <th>&lt;pre&gt;&lt;/pre&gt;</th>
+          <td>block code</td>
+        </tr>
+        <tr>
+          <th>&lt;code&gt;&lt;/code&gt;</th>
+          <td>inline code</td>
+        </tr>
+        <tr>
+          <th>&lt;var&gt;&lt;/var&gt;</th>
+          <td>Variables (outside of code)</td>
+        </tr>
+        <tr>
+          <th>&lt;samp&gt;&lt;/samp&gt;</th>
+          <td>Output (outside of code)</td>
+        </tr>
+        <tr>
+          <th>&lt;kbd&gt;&lt;/kbd&gt;</th>
+          <td>Keyboard</td>
+        </tr>
+      </table>
+      <pre><code class="lang-html">
+&lt;pre&gt;&lt;code&gt; &lt;!-- code here --&gt; &lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;&lt;code&gt;inline code&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;var&gt;variable&lt;var&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;c&lt;/kbd&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;samp&gt;output&lt;/samp&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-address -->
+      <h1 id="html-address" class="bookmark">address</h1>
+      <address>
+        <a href="mailto:example@mail.com">nowhere@mail.com</a><br />
+        <a href="tel:666666">666666</a>
+      </address>
+      <pre><code class="lang-html">
+&lt;address&gt;
+    &lt;a href="mailto:example@mail.com"&gt;nowhere@mail.com&lt;/a&gt;&lt;br&gt;
+    &lt;a href="tel:666666"&gt;666666&lt;/a&gt;
+&lt;/address&gt;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-input-text -->
+      <h1 id="html-input-text" class="bookmark">Input Text</h1>
+      <form action="#html-input-text">
+        <input type="text" placeholder="placeholder" required />
+        <button type="submit">submit</button>
+      </form>
+      <pre><code class="lang-html">
+&lt;form action="url"&gt;
+    &lt;input type="text" placeholder="placeholder" required&gt;
+    &lt;button type="submit"&gt;submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <table>
+        <tr>
+          <th>action</th>
+          <td>submits data to link</td>
+        </tr>
+        <tr>
+          <th>placeholder</th>
+          <td>text shown</td>
+        </tr>
+        <tr>
+          <th>required</th>
+          <td>must fill</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-input-date -->
+      <h1 id="html-input-date" class="bookmark">Input Date</h1>
+      <form action="#html-input-date">
+        <label>
+          Enter a date:
+          <input value="1990-11-06" type="date" name="date" />
+        </label>
+        <button type="submit">submit</button>
+      </form>
+      <pre><code class="lang-html">
+&lt;form action="url"&gt;
+    &lt;!-- label around --&gt;
+    &lt;label&gt;
+        Enter a date:
+        &lt;input value="1990-11-06" type="date" name="date"&gt;
+    &lt;/label&gt;
+
+    &lt;!-- label before --&gt;
+    &lt;label for="date"&gt;Enter a date:&lt;/label&gt;
+    &lt;input id="date" value="1990-11-06" type="date" name="date"&gt;
+
+    &lt;button type="submit"&gt;submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <table>
+        <tr>
+          <th>action</th>
+          <td>submits data to link</td>
+        </tr>
+        <tr>
+          <th>name</th>
+          <td>for backend</td>
+        </tr>
+        <tr>
+          <th>required</th>
+          <td>must fill</td>
+        </tr>
+        <tr>
+          <th class="table-title" colspan="2">yyyy-mm-dd</th>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>default value</td>
+        </tr>
+        <tr>
+          <th>min</th>
+          <td>minimum value</td>
+        </tr>
+        <tr>
+          <th>max</th>
+          <td>maximum value</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-input-button -->
+      <h1 id="html-input-button" class="bookmark">Input Button</h1>
+      <button accesskey="b" tabindex="0">Button</button>
+      <pre><code class="lang-html">
+&lt;button accesskey="b" tabindex="0"&gt;Button&lt;/button&gt;</code></pre>
+      <table>
+        <tr>
+          <th>accesskey</th>
+          <td>keyboard shortcut</td>
+        </tr>
+        <tr>
+          <th>tabindex</th>
+          <td>
+            tab key focus
+            <ul>
+              <li>-1 not accesible</li>
+              <li>0, 1... order</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-input-radio -->
+      <h1 id="html-input-radio" class="bookmark">Input Radio</h1>
+      <form action="#html-input-radio">
+        <label>
+          <input value="A" type="radio" name="group" checked />
+          A
+        </label>
+        <input id="B" value="B" type="radio" name="group" />
+        <label for="B">B</label>
+        <button type="submit">submit</button>
+      </form>
+      <pre><code class="lang-html">
+&lt;form action="url"&gt;
+    &lt;!-- label around --&gt;
+    &lt;label&gt;
+        &lt;input value="A" type="radio" name="group" checked&gt;
+        A
+    &lt;/label&gt;
+
+    &lt;!-- label after --&gt;
+    &lt;input id="B" value="B" type="radio" name="group"&gt;
+    &lt;label for="B"&gt;B&lt;/label&gt;
+
+    &lt;button type="submit"&gt;submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <table>
+        <tr>
+          <th>action</th>
+          <td>submits data to link</td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>returning value if checked</td>
+        </tr>
+        <tr>
+          <th>name</th>
+          <td>
+            <ul>
+              <li>radio group</li>
+              <li>only one check</li>
+              <li>for backend</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>checked</th>
+          <td>default</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-input-checkbox -->
+      <h1 id="html-input-checkbox" class="bookmark">Input Checkbox</h1>
+      <form action="#html-input-checkbox">
+        <label>
+          <input value="A" type="checkbox" name="group" />
+          A
+        </label>
+        <input id="B" value="B" type="checkbox" name="group" />
+        <label for="B">B</label>
+        <button type="submit">submit</button>
+      </form>
+      <pre><code class="lang-html">
+&lt;form action="url"&gt;
+    &lt;!-- label around --&gt;
+    &lt;label&gt;
+        &lt;input value="A" type="checkbox" name="group"&gt;
+        A
+    &lt;/label&gt;
+              
+    &lt;!-- label after --&gt;
+    &lt;input id="B" value="B" type="checkbox" name="group"&gt;
+    &lt;label for="B"&gt;B&lt;/label&gt;
+              
+    &lt;button type="submit"&gt;submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <table>
+        <tr>
+          <th>action</th>
+          <td>submits data to link</td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>returning value if checked</td>
+        </tr>
+        <tr>
+          <th>name</th>
+          <td>
+            <ul>
+              <li>checkbox group</li>
+              <li>allows multiple</li>
+              <li>for backend</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-video -->
+      <h1 id="html-video" class="bookmark">Video</h1>
+      <p>Use Youtube share code.</p>
+      <pre><code class="lang-html">
+&lt;video width="100" height="100" poster="url" controls&gt;
+    &lt;source src="file.mp4" type="video/mp4"&gt;
+    &lt;source src="file.webm" type="video/webm"&gt;
+    &lt;a href="url"&gt; video &lt;/a&gt;
+&lt;/video&gt;</code></pre>
+      <table>
+        <tr>
+          <th>source</th>
+          <td>file / fallback</td>
+        </tr>
+        <tr>
+          <th>controls</th>
+          <td>browser default controls</td>
+        </tr>
+        <tr>
+          <th>poster="url"</th>
+          <td>thumbnail (optional)</td>
+        </tr>
+      </table>
+      <ul>
+        <li>Always specify the width and height.</li>
+        <li>Provide a link in case the video cant load.</li>
+        <li>mp4 and webm are the most used.</li>
+      </ul>
+      <h2>Subtitles</h2>
+      <p>Two files:</p>
+      <h3>en.vtt</h3>
+      <pre><code class="lang-bash">
+WEBVTT
+1
+00:00:22.230 --> 00:00:24.606
+This is the first subtitle.
+            
+2
+00:00:30.739 --> 00:00:34.074
+This is the second.</code></pre>
+      <h3>page.html</h3>
+      <pre><code class="lang-html">
+&lt;video controls&gt;
+    &lt;source src="file.mp4" type="video/mp4"&gt;
+    &lt;track label="English" kind="subtitles" 
+    srclang="en" src="en.vtt default"&gt;
+&lt;/video></code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-audio -->
+      <h1 id="html-audio" class="bookmark">Audio</h1>
+      <pre><code class="lang-html">
+&lt;audio controls&gt;
+    &lt;source src="file.mp3" type="audio/mp3"&gt;
+    &lt;source src="file.ogg" type="audio/ogg"&gt;
+    &lt;a href="url"&gt; audio &lt;/a&gt;
+&lt;/audio&gt;</code></pre>
+      <table>
+        <tr>
+          <th>source</th>
+          <td>file / fallback</td>
+        </tr>
+        <tr>
+          <th>controls</th>
+          <td>browser default controls</td>
+        </tr>
+      </table>
+      <ul>
+        <li>Provide a link in case the audio cant load.</li>
+        <li>mp3 and ogg are the most used.</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-data -->
+      <h1 id="html-data" class="bookmark">data-*</h1>
+      <ul>
+        <li>Store extra information on tags</li>
+        <li>Associated with element but does not need any defined meaning</li>
+      </ul>
+      <p>
+        Any attribute on any element whose attribute name starts with data- is a
+        data attribute.
+      </p>
+      <h2>Html</h2>
+      <pre><code class="lang-html">
+&lt;article
+    id="myArticle"
+    data-columns="3"
+    data-index-number="12314"&gt;
+    ...
+&lt;/article&gt;</code></pre>
+      <h2>JavaScript access</h2>
+      <p><strong>Dashes are converted to camelCase</strong></p>
+      <pre><code class="lang-js">
+const article = document.querySelector('#myArticle');
+
+article.dataset.columns // "3"
+article.dataset.indexNumber // "12314"</code></pre>
+      <h2>CSS access</h2>
+      <pre><code class="lang-css">
+article::before {
+    content: attr(data-index-number);
+}
+
+article[data-columns='3'] {
+    width: 400px;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region html-embed -->
+      <h1 id="html-embed" class="bookmark">Embed</h1>
+      <h2>iframe</h2>
+      <p>Embeds another document within the current HTML document.</p>
+      <p>Use only when completely necessary.</p>
+      <ul>
+        <li>Be aware of copyright</li>
+        <li>
+          Be aware of security
+          <ul>
+            <li>sandbox</li>
+            <li>HTTPS</li>
+            <li>CSP (Content Security Policy)</li>
+            <li>X-Frame-Options</li>
+          </ul>
+        </li>
+      </ul>
+      <pre><code class="lang-html">
+&lt;iframe src="url" width="100%" height="500" allowfullscreen sandbox&gt;
+    &lt;p&gt;&lt;a href="url"&gt; link &lt;/a&gt;&lt;/p&gt;
+&lt;/iframe&gt;</code></pre>
+      <table>
+        <tr>
+          <th>sandbox</th>
+          <td>for security (required)</td>
+        </tr>
+      </table>
+      <p>Provide a link in case the frame cant load.</p>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

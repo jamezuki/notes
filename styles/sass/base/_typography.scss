@@ -6,10 +6,6 @@
     margin-top: -$nav-offset;
 }
 
-p {
-    max-width: 40rem;
-}
-
 a {
     text-decoration: underline;
     color: $anchor;
@@ -32,9 +28,13 @@ figcaption {
 dl dt,
 strong {
     color: $strong;
-    font-weight: 900;
 }
 
 hr {
     margin: 30px 0;
+}
+
+.big {
+    font-size: 2rem;
+    line-height: 0;
 }

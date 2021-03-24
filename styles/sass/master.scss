@@ -1,4 +1,10 @@
+@use "vendors/prism";
+
 @use "base/base";
 @use "base/typography";
 
 @use "layout/nav";
+@use 'layout/index';
+
+@use "modules/table";
+@use "modules/example";

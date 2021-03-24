@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS DOM</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS DOM</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region dom -->
+      <h1 id="dom" class="bookmark">DOM</h1>
+      <p>Document Object Model</p>
+      <ul>
+        <li>Tree-like representation of the contents of a webpage</li>
+        <li>Relationships between it's nodes (Html tags)</li>
+        <li>Browser converts Html to DOM</li>
+        <li>DOM objects can be manipulated with JavaScript</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region query-selectors -->
+      <h1 id="query-selectors" class="bookmark">Query Selectors</h1>
+      <ul>
+        <li>gets html element</li>
+        <li>selector is like css</li>
+        <li>can be used in any element (document is root)</li>
+      </ul>
+      <pre><code class="lang-js">
+// reference to the first match of selector
+let x = document.querySelector(selector);
+
+// nodelist with references to all matches
+let y = document.querySelectorAll(selectors);</code></pre>
+      <h2>nodelist to array</h2>
+      <pre><code class="lang-js">
+// ES6
+let z = Array.from(y);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region element-creation -->
+      <h1 id="element-creation" class="bookmark">Element Creation</h1>
+      <ul>
+        <li>creates element in memory</li>
+      </ul>
+      <pre><code class="lang-js">
+const div = document.createElement('div');</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region element-append -->
+      <h1 id="element-append" class="bookmark">Element Append</h1>
+      <ul>
+        <li>returns node appended</li>
+      </ul>
+      <pre><code class="lang-js">
+// appends childNode as the last child of parentNode
+let child = parentNode.appendChild(childNode);
+
+// inserts newNode into parentNode before referenceNode
+let child = parentNode.insertBefore(newNode, referenceNode);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region element-remove -->
+      <h1 id="element-remove" class="bookmark">Element Remove</h1>
+      <pre><code class="lang-js">
+// removes child from parentNode on the DOM 
+let child = parentNode.removeChild(child);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region attribute-edit -->
+      <h1 id="attribute-edit" class="bookmark">Attribute Edit</h1>
+      <h2>Set</h2>
+      <pre><code class="lang-js">
+div.setAttribute('id', 'theDiv');
+// if id exists update it to 'theDiv'
+// else create an id with value 'theDiv'
+// returns undefined</code></pre>
+      <h2>Get</h2>
+      <pre><code class="lang-js">
+div.getAttribute('id');
+// returns value of specified attribute</code></pre>
+      <h2>Remove</h2>
+      <pre><code class="lang-js">
+div.removeAttribute('id');
+// removes specified attribute
+// returns undefined</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region class-edit -->
+      <h1 id="class-edit" class="bookmark">Class Edit</h1>
+      <h2>Add</h2>
+      <pre><code class="lang-js">
+div.classList.add('new');
+// adds class "new" to div</code></pre>
+      <h2>Remove</h2>
+      <pre><code class="lang-js">
+div.classList.remove('new');
+// remove "new" class from div</code></pre>
+      <h2>Toggle</h2>
+      <pre><code class="lang-js">
+div.classList.toggle('active');
+// if div does not have class "active" add it
+// if div does have class "active" remove it</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region add-text -->
+      <h1 id="add-text" class="bookmark">Add Text</h1>
+      <pre><code class="lang-js">
+div.textContent = 'Hello World!'
+// creates a text node
+// inserts it in div</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region add-css -->
+      <h1 id="add-css" class="bookmark">Add CSS</h1>
+      <p>Use <a href="#class-edit">toggle</a> rather than adding and removing CSS.</p>
+      <pre><code class="lang-js">
+div.style.cssText = 'color: blue; background: white';
+// adds several style rules</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region add-html -->
+      <h1 id="add-html" class="bookmark">Add HTML</h1>
+      <ul>
+        <li>Use <a href="#add-text">textContent</a> for text</li>
+        <li>Escape characters if it's user input</li>
+      </ul>
+      <pre><code class="lang-js">
+div.innerHTML = '&lt;span&gt;Hello World!&lt;/span&gt;';
+// renders the html inside div</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region events -->
+      <h1 id="events" class="bookmark">Events</h1>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;button&gt; text &lt;/button&gt;</code></pre>
+      <p>file.js</p>
+      <pre><code class="lang-js">
+const btn = document.querySelector('button');</code></pre>
+      <h2>Add event</h2>
+      <table>
+        <tr>
+          <th>e</th>
+          <td>reference to event</td>
+        </tr>
+      </table>
+      <p>Events:</p>
+      <ul>
+        <li>click</li>
+        <li>dblclick</li>
+        <li>keypress</li>
+        <li>keydown</li>
+        <li>keyup</li>
+      </ul>
+      <pre><code class="lang-js">
+btn.addEventListener('click', e => {
+    e.target.style.background = 'blue';
+});</code></pre>
+      <h2>Remove event</h2>
+      <pre><code class="lang-js">
+btn.removeEventListener('click', function);</code></pre>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#js-functions-callbacks">Callbacks</a></li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

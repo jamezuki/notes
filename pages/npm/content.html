@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>npm</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">npm</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region setup -->
+      <h1 id="setup" class="bookmark">Setup</h1>
+      <h2>Install</h2>
+      <p>
+        <a href="https://nodejs.org/en/" target="_blank"> https://nodejs.org/en/ </a>
+      </p>
+      <h2>Update</h2>
+      <pre><code class="lang-js">
+npm install npm@latest -g
+</code></pre>
+      <h2>Check version</h2>
+      <pre><code class="lang-js">
+node -v
+npm -v
+</code></pre>
+      <h2>.gitignore</h2>
+      <pre><code class="lang-bash">
+node_modules/
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region config-->
+      <h1 id="config" class="bookmark">config</h1>
+      <h2>Set</h2>
+      <pre><code class="lang-js">
+npm config set init-author-name "James Layne"
+npm config set init-license "MIT"</code></pre>
+      <h2>Get</h2>
+      <pre><code class="lang-js">
+npm config get init-author-name</code></pre>
+      <h2>Default</h2>
+      <pre><code class="lang-js">
+npm config delete init-author-name</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region init -->
+      <h1 id="init" class="bookmark">init</h1>
+      <p>Creates package.json</p>
+      <h2>manual</h2>
+      <pre><code class="lang-js">
+npm init</code></pre>
+      <h2>auto</h2>
+      <pre><code class="lang-js">
+npm init -y</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region install -->
+      <h1 id="install" class="bookmark">install</h1>
+      <h2>Download dependencies</h2>
+      <p>Downloads all dependencies specified in package.json</p>
+      <pre><code class="lang-js">
+/* downloads all dependencies */
+npm install	
+
+/* downloads non dev dependencies */
+npm install --production
+</code></pre>
+      <h2>Production dependencies</h2>
+      <p>Adds dependency to package.json</p>
+      <pre><code class="lang-js">
+npm install 'package'
+
+/* before npm 5.0 */
+npm install 'package' --save
+</code></pre>
+      <h2>Development dependencies</h2>
+      <p>
+        Not deployed to production.<br />
+        Adds dependency to package.json dev section.
+      </p>
+      <pre><code class="lang-js">
+npm install 'package' --save-dev
+</code></pre>
+      <h2>Global dependencies</h2>
+      <p>
+        Modules for development.<br />
+        Modules to use in the console.<br />
+        Installs on machine not in node_modules.<br />
+        Not added to package.json
+      </p>
+      <pre><code class="lang-js">
+npm install -g 'package'
+
+/* shows global install dir */
+npm root -g
+</code></pre>
+      <h2>Install specific version</h2>
+      <pre><code class="lang-js">
+npm install 'package@version'
+
+/* example */
+npm install lodash@4.17.3
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region uninstall -->
+      <h1 id="uninstall" class="bookmark">uninstall</h1>
+      <h2>Production dependencies</h2>
+      <pre><code class="lang-js">
+npm uninstall 'package'
+
+/* before npm 5.0 */
+npm uninstall 'package' --save</code></pre>
+      <h2>Development dependencies</h2>
+      <pre><code class="lang-js">
+npm uninstall 'package' --save-dev</code></pre>
+      <h2>Global dependencies</h2>
+      <pre><code class="lang-js">
+npm uninstall -g 'package'</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region update -->
+      <h1 id="update" class="bookmark">update</h1>
+      <pre><code class="lang-js">
+npm update 'package'
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region list -->
+      <h1 id="list" class="bookmark">list</h1>
+      <pre><code class="lang-js">
+/* show all dependencies */
+npm list
+
+/* top level dependencies 1, 2, .. */
+npm list --depth 0
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region versioning -->
+      <h1 id="versioning" class="bookmark">Versioning</h1>
+      <pre><code class="lang-js">
+// package.json
+"package": "^4.17.4"
+</code></pre>
+      <p><img src="../../images/node-js/patch.png" alt="patch.png" /></p>
+      <h2>Prefix modifier</h2>
+      <table>
+        <tr>
+          <th class="table-center">~</th>
+          <td>Updates Patch.</td>
+        </tr>
+        <tr>
+          <th class="table-center">^</th>
+          <td>Updates Minor & Patch (Default).</td>
+        </tr>
+        <tr>
+          <th class="table-center">*</th>
+          <td>Updates Major, Minor & Patch</td>
+        </tr>
+        <tr>
+          <th class="table-center">none</th>
+          <td>Installs exact version.</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region global-modules -->
+      <h1 id="global-modules" class="bookmark">Global Modules</h1>
+      <table>
+        <tr>
+          <th>sass</th>
+          <td>npm install -g sass</td>
+        </tr>
+        <tr>
+          <th>nodemon</th>
+          <td>restarts Node app when file changes</td>
+        </tr>
+        <tr>
+          <th>live server</th>
+          <td>refresh browser when file changes</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region nvm -->
+      <h1 id="nvm" class="bookmark">nvm</h1>
+      <p>Tool to switch between different node versions.</p>
+      <p>
+        <a href="https://github.com/nvm-sh/nvm" target="_blank">https://github.com/nvm-sh/nvm</a>
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region require-export -->
+      <h1 id="require-export" class="bookmark">Node.js: require/export</h1>
+      <h2>Import</h2>
+      <pre><code class="lang-js">
+// built-in or npm modules 
+var http = require('http');
+
+// custom module, same dir
+var dt = require('./module');
+
+// custom module, other dir
+var dt = require('/path/module');
+</code></pre>
+      <h2>Export</h2>
+      <pre><code class="lang-js">
+exports.myDateTime = () => {...};
+
+// multiple functions
+module.exports = {
+	add,
+	subtract
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region axios -->
+      <h1 id="axios" class="bookmark">axios</h1>
+      <p>For request</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region date-fns -->
+      <h1 id="date-fns" class="bookmark">date-fns</h1>
+      <p>For dates</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region dotenv -->
+      <h1 id="dotenv" class="bookmark">dotenv</h1>
+      <p>Envirotment variables</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region uuid -->
+      <h1 id="uuid" class="bookmark">uuid</h1>
+      <p>For unique identifiers</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region classnames -->
+      <h1 id="classnames" class="bookmark">classnames</h1>
+      <p>For React ????</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region socket-io -->
+      <h1 id="socket-io" class="bookmark">socket.io</h1>
+      <p>For sockets</p>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

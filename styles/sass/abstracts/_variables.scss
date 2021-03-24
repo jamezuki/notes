@@ -3,7 +3,20 @@
 $font-family: "Roboto Mono", monospace;
 $root-font-size: 14px;
 
+$color: #333;
+$background: #fff;
+
 $nav-offset: 30px;
+$nav-color: #fff;
+$nav-background: #333;
+
+$card-color: #333;
+$card-background: #fff;
+$card-background-hover: darken($card-background, 5%);
+$shadow-color: #999;
+
+$index-color: #333;
+$index-background: #eee;
 
 $color-1: #333;
 $color-2: #bbb;

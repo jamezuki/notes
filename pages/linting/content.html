@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Linting</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region concept -->
+      <h1 id="concept" class="bookmark">ESLint + Prettier</h1>
+      <h2>Linting</h2>
+      <p>Checks for:</p>
+      <ul>
+        <li>Formatting discrepancy</li>
+        <li>Non-adherence to coding standards and conventions</li>
+        <li>Possible logical errors in your program</li>
+      </ul>
+      <h2>ESLint</h2>
+      <p>For non-formatting issues.</p>
+      <pre><code class="lang-js">
+npm install eslint --save-dev
+npx eslint --init
+</code></pre>
+      <h2>Prettier</h2>
+      <p>Automatically formats your code.</p>
+      <pre><code class="lang-js">
+npm install --save-dev --save-exact prettier
+npm install --save-dev eslint-config-prettier
+</code></pre>
+      <h3>.eslintrc.*</h3>
+      <pre><code class="lang-js">
+{
+  "extends": [
+    "prettier"
+  ]
+}
+</code></pre>
+      <h2>VSCode Integration</h2>
+      <p>Install:</p>
+      <ul>
+        <li>ESLint</li>
+        <li>Prettier - Code formatter</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

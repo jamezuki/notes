@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS Strings</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS Strings</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region strings -->
+      <h1 id="strings" class="bookmark">Strings</h1>
+      <ul>
+        <li>Primitive data type.</li>
+        <li>Immutable: cannot be changed, only replaced.</li>
+      </ul>
+      <pre><code class="lang-js">
+let x = "Hello";
+let x = 'Hello';
+let x = `Hello ${y}`;</code></pre>
+      <h2>Length</h2>
+      <pre><code class="lang-js">
+let str = 'one';
+str.length; // 3</code></pre>
+      <h2>Concatenate</h2>
+      <pre><code class="lang-js">
+let one = 'Hello, ';
+let two = 'how are you?';
+one + two; // "Hello, how are you?"</code></pre>
+      <p><strong>string + number = string</strong></p>
+      <h2>Template literals (backticks)</h2>
+      <p>unicode + 0060</p>
+      <p>unicode: ctrl + shift + u</p>
+      <pre><code class="lang-js">
+let x = 'James';
+`Hello, ${x}!` // "Hello, James!"
+`The result is ${1 + 2}` // "The result is 3"</code></pre>
+      <h2>Escape characters</h2>
+      <table>
+        <tr>
+          <th>Code</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>\n</td>
+          <td>line feed</td>
+        </tr>
+        <tr>
+          <td>\t</td>
+          <td>horizontal tab</td>
+        </tr>
+        <tr>
+          <td>\'</td>
+          <td>single quote</td>
+        </tr>
+        <tr>
+          <td>\"</td>
+          <td>double quote</td>
+        </tr>
+        <tr>
+          <td>\\</td>
+          <td>backslash</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region convert-string-to-number -->
+      <h1 id="convert-string-to-number" class="bookmark">Convert: String to Number</h1>
+      <h2>Number(<strong>string</strong>)</h2>
+      <pre><code class="lang-js">
+typeof(Number(str)); // number</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region convert-number-to-string -->
+      <h1 id="convert-number-to-string" class="bookmark">Convert: Number to String</h1>
+      <h2>.toString()</h2>
+      <pre><code class="lang-js">
+typeof(num.toString()); // string</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region convert-string-to-array -->
+      <h1 id="convert-string-to-array" class="bookmark">Convert: String to Array</h1>
+      <h2>.split(<strong>separator</strong>)</h2>
+      <h2>.split(<strong>separator</strong>, <strong>limit</strong>)</h2>
+      <pre><code class="lang-js">
+let s1 = "a,b,c,d,e";
+let a1 = x.split(','); // [a, b, c, d, e]
+
+let s2 = "Hello";
+let a2 = x.split(''); // [H, e, l, l, o]</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region convert-uppercase-lowercase -->
+      <h1 id="convert-uppercase-lowercase" class="bookmark">Convert: Uppercase/Lowercase</h1>
+      <h2>.toUpperCase()</h2>
+      <pre><code class="lang-js">
+let x = str.toUpperCase();</code></pre>
+      <h2>.toLowerCase()</h2>
+      <pre><code class="lang-js">
+let x = str.toLowerCase();</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region search-includes -->
+      <h1 id="search-includes" class="bookmark">Search: Includes</h1>
+      <h2>.includes(<strong>search</strong>)</h2>
+      <h2>.includes(<strong>search</strong>, <strong>start</strong>)</h2>
+      <ul>
+        <li>Returns true if the search string is found</li>
+      </ul>
+      <pre><code class="lang-js">
+const sentence = 'The quick brown fox';
+
+sentence.includes('fox'); // true</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region search-index-first -->
+      <h1 id="search-index-first" class="bookmark">Search: Index of First match</h1>
+      <h2>.indexOf(<strong>search</strong>)</h2>
+      <h2>.indexOf(<strong>search</strong>, <strong>start</strong>)</h2>
+      <ul>
+        <li>Returns -1 if not found.</li>
+      </ul>
+      <pre><code class="lang-js">
+let str = "01234567895";
+str.indexOf("5"); // 5
+str.indexOf("5", 9); // 10</code></pre>
+      <h2>.search(<strong>regex</strong>)</h2>
+      <pre><code class="lang-js">
+str.search('/^Hello$/');</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region search-index-last -->
+      <h1 id="search-index-last" class="bookmark">Search: Index of Last match</h1>
+      <h2>.lastIndexOf(<strong>search</strong>)</h2>
+      <h2>.lastIndexOf(<strong>search</strong>, <strong>start</strong>)</h2>
+      <ul>
+        <li>Searches backwards.</li>
+        <li><strong>start</strong> is counted form end of string.</li>
+        <li>Returns -1 if not found.</li>
+      </ul>
+      <pre><code class="lang-js">
+'canal'.lastIndexOf('a');     // returns 3
+'canal'.lastIndexOf('a', 2);  // returns 1</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region extract-strings -->
+      <h1 id="extract-strings" class="bookmark">Extract: Strings</h1>
+      <h2>.slice(<strong>startIndex</strong>)</h2>
+      <h2>.slice(<strong>startIndex</strong>, <strong>endIndex</strong>)</h2>
+      <ul>
+        <li><strong>endIndex</strong> not included in the extracted string.</li>
+        <li>If a parameter is negative, the position is counted from the end of the string.</li>
+        <li>If <strong>endIndex</strong> is omitted returns the rest of the string.</li>
+      </ul>
+      <pre><code class="lang-js">
+let str = "0123456789";
+let x1 = str.slice(2, 4); // 23
+let x2 = str.slice(0, -6); // 012
+let x3 = str.slice(7); // 789</code></pre>
+      <h2>.substr(<strong>start</strong>, <strong>length</strong>)</h2>
+      <pre><code class="lang-js">
+let str = "0123456789";
+let x = str.substr(2, 2); // 23</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region extract-characters -->
+      <h1 id="extract-characters" class="bookmark">Extract: Characters</h1>
+      <h2>.charAt(<strong>index</strong>)</h2>
+      <pre><code class="lang-js">
+let str = "0123456789";
+str.charAt(5); // 5</code></pre>
+      <h2>str[<strong>index</strong>]</h2>
+      <ul>
+        <li>Strings are not arrays.</li>
+        <li>Read only (strings are immutable).</li>
+        <li>Returns undefined if not found.</li>
+      </ul>
+      <pre><code class="lang-js">
+let str = "0123456789";
+str[5]; // 5</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region replace -->
+      <h1 id="replace" class="bookmark">Replace</h1>
+      <h2>.replace(<strong>oldStr</strong>, <strong>newStr</strong>)</h2>
+      <ul>
+        <li>Case sensitive.</li>
+        <li>Replaces only the first match.</li>
+        <li>Returns a new string.</li>
+        <li>Regex are written without quotes.</li>
+      </ul>
+      <pre><code class="lang-js">
+let str1 = "Apple, Banana, Kiwi";
+let str2 = str.replace("Banana", "Melon");
+// "Apple, Melon, Kiwi"</code></pre>
+      <h2>Case insensitive regex</h2>
+      <pre><code class="lang-js">
+let str3 = str.replace(/BANANA/i, "Melon");</code></pre>
+      <h2>Replace all regex:</h2>
+      <pre><code class="lang-js">
+let str4 = str.replace(/Banana/g, "Melon");</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region regex -->
+      <h1 id="regex" class="bookmark">Regex</h1>
+      <h2>Example</h2>
+      <pre><code class="lang-js">
+// 10 digits from start to end
+let telephone = /^\d{10}$/;
+let str = '0123456789';
+
+telephone.test('str'); // true</code></pre>
+      <h2>Basics</h2>
+      <pre><code class="lang-js">
+/foo/       // first 'foo' match
+/foo/g      // multiple matches
+/foo/i      // case insensitive</code></pre>
+      <h2>Ranges</h2>
+      <pre><code class="lang-js">
+/[a-z]/       // every letter of alphabet</code></pre>
+      <h2>Character Sets</h2>
+      <pre><code class="lang-js">
+/[ab]/      // first letter must be 'a' or 'b'
+/[^p]/      // first letter must be any character except 'p'</code></pre>
+      <h2>Repeating Characters</h2>
+      <pre><code class="lang-js">
+/[0-9]+/        // at least 1 number from 0 to 9
+/[0-9]{11}/     // 11 numbers between 0 to 9
+/[0-9]{5,9}/    // 5 to 9 numbers between 0 to 9
+/[0-9]{5,}/     // at least 5 numbers between 0 to 9</code></pre>
+      <h2>Meta-characters</h2>
+      <pre><code class="lang-js">
+\d      // any digit, same as [0-9]
+\w      // any word character a-z, A-Z, 0-9 and _
+\s      // any whitespace characer (space, tab, etc)
+\t      // tab character only</code></pre>
+      <h2>Special characters</h2>
+      <pre><code class="lang-js">
+/\./        // match '.'
+/foo?/      // last 'o' is 0 or 1 (is optional)
+/foo*/      // last 'o' is &gt;= 0
+/./         // any character except new line</code></pre>
+      <h2>Starting & Ending Patterns</h2>
+      <pre><code class="lang-js">
+/^foo/      // must start with 'foo'
+/foo$/      // must end with 'foo'
+/^foo$/     // only 'foo' (start & end)</code></pre>
+      <h2>Alternate Characters</h2>
+      <pre><code class="lang-js">
+/(F|f)oo/       // 'Foo' or 'foo'</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

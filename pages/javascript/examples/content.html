@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS Examples</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS Examples</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region random -->
+      <h1 id="random" class="bookmark">Random</h1>
+      <pre><code class="lang-js">
+/* random number between min and max (both included) */
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region power -->
+      <h1 id="power" class="bookmark">Power</h1>
+      <pre><code class="lang-js">
+function power(a, b) {
+	// let result = 1;
+	// for(let i = 0; i &lt; b; i++){
+	// 	result = result * a;
+	// }
+	// return result;
+	return a ** b;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region factorial -->
+      <h1 id="factorial" class="bookmark">Factorial</h1>
+      <pre><code class="lang-js">
+function factorial(num) {
+	if (num == 0) return 1;
+	let result = 1;
+	for (let i = num; i &gt; 0; i--) {
+		result = result * i;
+	}
+	return result;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region palindrome -->
+      <h1 id="palindrome" class="bookmark">Palindrome</h1>
+      <pre><code class="lang-js">
+const palindrome = function(str) {
+    array1 = str.toLowerCase().split('');
+    let noSpaceArray = array1.filter(n =&gt; /^[A-Z]$/i.test(n) ? true : false);
+    let noSpaceStr = noSpaceArray.join('');
+    let reverseStr = noSpaceArray.reverse().join('');
+    return noSpaceStr === reverseStr ? true : false;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region fibonacci -->
+      <h1 id="fibonacci" class="bookmark">Fibonacci</h1>
+      <pre><code class="lang-js">
+const fibonacci = function(num) {
+    if ( num &lt; 0) return 'OOPS';
+    let fibonacci = [1, 1];
+    if (num &gt; 0 && num &lt; 3) return fibonacci[num - 1];
+    for(let i = 2; i &lt; num; i++){
+        fibonacci.push(fibonacci[i-1] + fibonacci[i-2]);
+    }
+    return fibonacci[num - 1];
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region findTheOldest -->
+      <h1 id="findTheOldest" class="bookmark">findTheOldest</h1>
+      <pre><code class="lang-js">
+let findTheOldest = function (people) {
+    return people.reduce((oldest, person) =&gt; {
+        if (!oldest.yearOfDeath) oldest.yearOfDeath = (new Date()).getFullYear();
+        if (!person.yearOfDeath) person.yearOfDeath = (new Date()).getFullYear();
+        if( oldest.yearOfDeath - oldest.yearOfBirth &lt; person.yearOfDeath - person.yearOfBirth) {
+            return person
+        }
+        return oldest;
+    });
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region non-refresh-form -->
+      <h1 id="non-refresh-form" class="bookmark">Non refresh &lt;form&gt;</h1>
+      <p>Html</p>
+      <pre><code class="lang-html">
+&lt;form onsubmit="return false;"&gt;
+    &lt;label for="foo"&gt;&lt;/label&gt;
+    &lt;input type="number" name="foo" value="1" min="1" max="100" required&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;button id="cancel-button"&gt;Cancel&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <p>JavaScript</p>
+      <pre><code class="lang-js">
+const form = document.querySelector('form');
+const cancelButton = document.querySelector('#cancel-button');
+
+form.addEventListener('submit', (e) => {
+    // code
+})
+
+cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    // code
+});</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region delete-by-id -->
+      <h1 id="delete-by-id" class="bookmark">Delete by id</h1>
+      <pre><code class="lang-js">
+const comments = [
+    { text: 'Love this!', id: 523423 },
+    { text: 'Super good', id: 823423 },
+    { text: 'You are the best', id: 2039842 },
+    { text: 'Ramen is my fav food ever', id: 123523 },
+    { text: 'Nice Nice Nice!', id: 542328 }
+];
+
+const index = comments.findIndex(comment => comment.id === 823423);
+
+// delete from original
+comments.splice(index, 1);
+
+// keep the original
+newComments = [
+   ...comments.slice(0, index),
+   ...comments.slice(index + 1)
+];
+
+console.table(newComments);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region form-validation -->
+      <h1 id="form-validation" class="bookmark">Form validation</h1>
+      <pre><code class="lang-js">
+const inputs = document.querySelectorAll('input');
+
+const patterns = {
+    telephone: /^\d{10}$/,
+    username: /^[a-z\d]{5,12}$/i,
+    password: /^[\w@-]{8,20}$/,
+    email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
+}
+
+function validate(field, regex){
+    if (regex.test(field.value)){
+        field.className = 'valid';
+    } else {
+        field.className = 'invalid';
+    }
+}
+
+inputs.forEach(input => {
+    input.addEventListener('keyup', e => {
+        validate(e.target, patterns[e.target.attributes.name.value]);
+    });
+});</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

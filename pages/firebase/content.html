@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>Firebase</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">Firebase</a>
+      <a
+        id="nav__github"
+        href="https://github.com/Jamezuki/notes"
+        target="_blank"
+        >GitHub</a
+      >
+    </nav>
+    <main>
+      <!-- #region realtime-theory -->
+      <h1 id="realtime-theory" class="bookmark">Realtime: Theory</h1>
+      <ul>
+        <li>Cloud Database</li>
+        <li>JSON</li>
+        <li>Clients share one Realtime Database instance</li>
+        <li>Clients automatically receive updates with the newest data</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region realtime-setup -->
+      <h1 id="firebase-realtime-setup" class="bookmark">Realtime: Setup</h1>
+      <h2>For JavaScript</h2>
+      <p>
+        <a href="https://firebase.google.com/docs/web/setup" target="_blank"
+          >Documentation</a
+        >
+      </p>
+      <ol>
+        <li>
+          <h3>Create a Firebase project to connect to your app.</h3>
+          <ol>
+            <li>
+              A Firebase project is a Google Cloud project that has additional
+              configurations and services.
+            </li>
+            <li>
+              You can even create a Google Cloud project first, then add
+              Firebase to the project later.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <h3>Register your app with Firebase</h3>
+          <ol>
+            <li>Click the Web icon to launch the setup workflow.</li>
+            <li>Enter your app's nickname.</li>
+            <li>Click Register app</li>
+          </ol>
+        </li>
+        <li>
+          <h3>Create a Database</h3>
+          <ol>
+            <li>
+              firebase console (webpage)
+              <span class="big">&rarr;</span> Realtime Database
+            </li>
+          </ol>
+        </li>
+        <li>
+          <h3>Add Firebase SDKs and initialize Firebase</h3>
+          <ul>
+            <li>
+              <h4>With CDN</h4>
+              <ol>
+                <li>
+                  firebase console (webpage)
+                  <span class="big">&rarr;</span> project
+                  <span class="big">&rarr;</span> General
+                  <span class="big">&rarr;</span> app
+                </li>
+                <li>Copy core SDK link to end of body tag</li>
+                <li>
+                  Copy Others
+                  <a
+                    href="https://firebase.google.com/docs/web/setup#libraries-cdn"
+                    >SDKs</a
+                  >
+                  links to end of body tag
+                </li>
+                <li>Copy code to script.js</li>
+              </ol>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h3>Setup security rules</h3>
+          <ol>
+            <li>
+              firebase console (webpage)
+              <span class="big">&rarr;</span> Realtime Database
+              <span class="big">&rarr;</span> Rules
+            </li>
+          </ol>
+        </li>
+        <li>
+          <h3>Read and Write data</h3>
+          <ul>
+            <li>
+              <a
+                href="https://firebase.google.com/docs/database/web/read-and-write"
+                >Read and Write data</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <h3>Example</h3>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;body&gt;
+    ...
+    &lt;script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"&gt;&lt;/script&gt;
+    &lt;script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"&gt;&lt;/script&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+      <p>script.js</p>
+      <pre><code class="lang-js">
+const firebaseConfig = {
+    apiKey: "...",
+    authDomain: "...",
+    databaseURL: "...",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+};
+firebase.initializeApp(firebaseConfig);</code></pre>
+      <p>Security rules (no security)</p>
+      <pre><code class="lang-js">
+{
+    "rules": {
+        ".read": true,
+        ".write": true
+    }
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region realtime-use -->
+      <h1 id="realtime-use" class="bookmark">Realtime: Use</h1>
+      <h2>Reference a collection</h2>
+      <pre><code class="lang-js">
+const books = firebase.database().ref('books');</code></pre>
+      <h2>CREATE</h2>
+      <pre><code class="lang-js">
+const book = new Book(
+    title.value,
+    author.value,
+    pages.value
+);
+
+// CREATE database item with generated key
+const bookRef = books.push();
+
+// WRITE object in database item
+bookRef.set(book);</code></pre>
+      <h2>READ</h2>
+      <pre><code class="lang-js">
+// eventListener called every time a database value change
+books.on('value', snapshot => {
+    snapshot.forEach(callback);
+});
+
+function callback(item) {
+    const book = item.val(); // Object
+    const key = item.key; // Key
+    console.table(book);
+}</code></pre>
+      <h2>UPDATE</h2>
+      <pre><code class="lang-js">
+function callback(item) {
+    // item from READ
+    const book = item.val(); // Object
+    const key = item.key; // Key
+    
+    // UDATE object value
+    books.child(key).update({ title: 'Gantz' });
+}</code></pre>
+      <h2>DELETE</h2>
+      <pre><code class="lang-js">
+function callback(item) {
+    // item from READ
+    const book = item.val(); // Object
+    const key = item.key; // Key
+    
+    // DELETE database item
+    books.child(key).remove();
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

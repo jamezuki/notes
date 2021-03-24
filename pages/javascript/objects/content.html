@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../../styles/master.css" />
+    <script src="../../../scripts/prism.js" defer></script>
+    <title>JS Objects</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../../index.html">Home</a>
+      <a href="index.html">JS Objects</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region prototype -->
+      <h1 id="prototype" class="bookmark">prototype</h1>
+      <p>
+        Attach properties and methods to prototype property to implement inheritance.<br />
+        Constructor prototype is empty by default
+      </p>
+      <dl>
+        <dt>Prototype chain</dt>
+        <dd>The chain from an object’s prototype to its prototype’s prototype and onwards.</dd>
+        <dd>If the property does not exists then undefined is returned.</dd>
+        <dt>Object.prototype</dt>
+        <dd>All objects inherits from Object.prototype.</dd>
+      </dl>
+      <pre><code class="lang-js">
+function Book(title, author) {
+    this.title = title
+    this.author = author
+}
+
+Book.prototype.getSummary = function() {
+    return `${this.title} was written by ${this.author}`
+}
+
+function Magazine(title, author, month) {
+    Book.call(this, title, author)
+    this.month = month
+}
+
+// Inherit prototype
+Magazine.prototype = Object.create(Book.prototype)
+
+// Use Magazine constructor instead of Book
+Magazine.prototype.constructor = Magazine
+
+const mag1 = new Book('Mag One', 'John Doe', 'Jan')
+console.log(mag1.getSummary())
+</code></pre>
+      <h2>__proto__</h2>
+      <p>
+        Property of Object, pointing to its prototype.<br />
+        Actual object that is used in the lookup chain.
+      </p>
+      <pre><code class="lang-js">
+let cat = { breed: 'munchkin' }
+let myCat = { name: Fluffykins' }
+
+Object.setPrototype(myCat, cat);
+
+myCat.breed // munchkin
+myCat.__proto__ // Object { breed: 'munchkin' }</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region new -->
+      <h1 id="new" class="bookmark">new</h1>
+      <ol>
+        <li>Creates a new object</li>
+        <li>Assigns it's prototype</li>
+        <li>Feeds prototype to object constructor</li>
+        <li>Returns object</li>
+      </ol>
+      <ul>
+        <li>Every function has a prototype</li>
+        <li>Every function its an object</li>
+      </ul>
+      <pre><code class="lang-js">
+function Dog() { }
+Dog.prototype.breed = 'Bulldog'
+
+let myDoggie = new Dog()
+myDoggie.breed // Bulldog</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region create -->
+      <h1 id="create" class="bookmark">Object.create()</h1>
+      <p>
+        Creates a new object using an existing object as the prototype.<br />
+        Use instead of "new" keyword (bad performance).<br />
+        Dont use Object.setPrototype() either.
+      </p>
+      <pre><code class="lang-js">
+const behaviour = {
+	getFullName() {
+		return this.firstName + ' ' + this.lastName;
+	}
+}
+
+/* Factory function */
+function createPerson(firstName, lastName) {
+	let person = Object.create(behaviour);
+	person.firstName = firstName;
+	person.lastName = lastName;
+	return person;
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region object-keys -->
+      <h1 id="object-keys" class="bookmark">Object.keys()</h1>
+      <p>Returns an array with all object keys</p>
+      <pre><code class="lang-js">
+console.log(Object.keys(obj))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region object-values -->
+      <h1 id="object-values" class="bookmark">Object.values()</h1>
+      <p>Returns an array with all object values</p>
+      <pre><code class="lang-js">
+console.log(Object.values(obj))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region bind -->
+      <h1 id="bind" class="bookmark">.bind()</h1>
+      <p>Gives context to "this" keyword.</p>
+      <pre><code class="lang-js">
+class Dog {
+	constructor() { this.sound = 'woof' }
+	talk() { console.log(this.sound) }
+}
+const sniffles = new Dog();
+
+/* undefined, "this" context is button */
+$('button.myButton').click(sniffles.talk)
+
+/* "woof", "this" context is sniffles */
+$('button.myButton').click(sniffles.talk.bind(sniffles))
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region key-variable -->
+      <h1 id="key-variable" class="bookmark">Key variable</h1>
+      <p>
+        Allows to take the key from a variable<br />
+        Object iteration<br />
+        Expressions
+      </p>
+      <h2>Get value from key variable</h2>
+      <pre><code class="lang-js">
+let user = { name: "John", age: 32 }
+
+let key = 'name';
+console.log(user[key]) // 'John'
+</code></pre>
+      <h2>Set key from key variable</h2>
+      <pre><code class="lang-js">
+let fruit = 'apple'
+/*
+let bag = {};
+bag[fruit] = 5;
+*/
+let bag = { [fruit]: 5 }
+    
+console.log(bag.apple) // 5
+</code></pre>
+      <h2>Iterate object</h2>
+      <p>
+        Integer keys ("52": "x") loops sorted<br />
+        String keys ("+52": "x") loops in creation order.
+      </p>
+      <pre><code class="lang-js">
+let user = {
+    name: "John",
+    age: 30,
+};
+
+for (let key in user) {
+    key;  // name, age
+    user[key]; // John, 30
+}
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region object-literal -->
+      <h1 id="object-literal" class="bookmark">Object literal</h1>
+      <p>For ONE static object</p>
+      <pre><code class="lang-js">
+const book1 = {
+    title: 'Book One',
+    author: 'John Doe',
+    getSummary: function() {
+        return `${this.title} was written by ${this.author}`
+    }
+}
+console.log(book1.getSummary())
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region es5-objects -->
+      <h1 id="es5-objects" class="bookmark">ES5 Objects</h1>
+      <p>
+        Generic functionality must be in prototype (Same functionality for every object)<br />
+        Object properties must be in constructor (Different values for every object)
+      </p>
+      <pre><code class="lang-js">
+function Book(title, author) {
+    this.title = title
+    this.author = author
+}
+
+Book.prototype.getSummary = function() {
+    return `${this.title} was written by ${this.author}`
+}
+
+const book1 = new Book('Book One', 'John Doe')
+console.log(book1.getSummary())
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region es6-classes -->
+      <h1 id="es6-classes" class="bookmark">ES6 Classes</h1>
+      <p>
+        Syntactic sugar for ES5 objects.<br />
+        Uses prototype internally.<br />
+        Methods are stored in prototype.
+      </p>
+      <pre><code class="lang-js">
+class Book {
+  constructor(title, author) {
+    this.title = title
+    this.author = author
+  }
+  getSummary() {
+    return `${this.title} was written by ${this.author}`
+  }
+}
+const book1 = new Book('Book One', 'John Doe')
+console.log(book1.getSummary())
+</code></pre>
+      <h2>Getter/Setter</h2>
+      <pre><code class="lang-js">
+class Book {
+  constructor(title, author) {
+    this.title = title
+  }
+  get title() {
+    return this._title    
+  }
+  set title(value) {
+    this._title = value
+  }
+}
+const book1 = new Book('Book One')
+book1.title // Getter
+book1.title = 'Book Two' // Setter
+</code></pre>
+      <h2>Private</h2>
+      <pre><code class="lang-js">
+class PrivateExample {
+  #foo1;
+  constructor() {
+    this.#foo1 = 42;
+  }
+  #foo2() {
+    return 'hello world';
+  }
+}
+const test = new PrivateExample()
+test.#foo1 == 42 // Error
+test.#foo2() // Error
+</code></pre>
+      <h2>Static</h2>
+      <pre><code class="lang-js">
+class StaticExample {
+  static foo1 = 'someValue';
+  static foo2() {
+    return 'hello world';
+  }
+}
+console.log(StaticExample.foo1) // 'someValue'
+console.log(StaticExample.foo2()) // 'hello world'
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region inheritance -->
+      <h1 id="inheritance" class="bookmark">Inheritance</h1>
+      <p>
+        Inheritance is when you design objects around what they are.<br />
+        Composition is when you design objects around what they do.
+      </p>
+      <h2>ES5 Objects</h2>
+      <pre><code class="lang-js">
+function Book(title, author) {
+    this.title = title
+    this.author = author
+}
+
+Book.prototype.getSummary = function() {
+    return `${this.title} was written by ${this.author}`
+}
+
+function Magazine(title, author, month) {
+    Book.call(this, title, author)
+    this.month = month
+}
+
+// Inherit prototype
+Magazine.prototype = Object.create(Book.prototype)
+
+// Use Magazine constructor instead of Book
+Magazine.prototype.constructor = Magazine
+
+const mag1 = new Book('Mag One', 'John Doe', 'Jan')
+console.log(mag1.getSummary())
+</code></pre>
+      <h2>ES6 Classes</h2>
+      <pre><code class="lang-js">
+class Book {
+    constructor(title, author) {
+        this.title = title
+        this.author = author
+    }
+    getSummary() {
+        return `${this.title} was written by ${this.author}`
+    }
+}
+
+class Magazine extends Book {
+    constructor(title, author, month) {
+        super(title, author)
+        this.month = month
+    }
+}
+
+const mag1 = new Magazine('Book One', 'John Doe', 'Jan')
+console.log(mag1.getSummary())
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region composition -->
+      <h1 id="composition" class="bookmark">Composition</h1>
+      <p>
+        Inheritance is when you design objects around what they are.<br />
+        Composition is when you design objects around what they do.<br />
+        Loose coupling, more flexible and easier to change.
+      </p>
+      <pre><code class="lang-js">
+function flyer({ name }) {
+    return {
+        fly: () => console.log(`${name} flew`)
+    }
+}
+
+function swimmer({ name }) {
+    return {
+        swim: () => console.log(`${name} swam`)
+    }
+}
+
+function flyerSwimmerMonster(name) {
+    /*
+    this.name = name
+    return Object.assign(
+        this,
+        flyer(this),
+        swimmer(this)
+    )
+    */
+    const monster = { name: name }
+    return {
+        ...monster,
+        ...flyer(monster),
+        ...swimmer(monster)
+    }
+} 
+
+// const myMonster = new flyerSwimmerMonster('Monster')
+const myMonster = flyerSwimmerMonsterCreator('Monster')
+myMonster.fly()
+myMonster.swim()
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region spread -->
+      <h1 id="spread" class="bookmark">Spread syntax</h1>
+      <p>Expands an iterable.</p>
+      <pre><code class="lang-js">
+let obj1 = { foo: 'bar', x: 42 };
+let obj2 = { foo: 'baz', y: 13 };
+
+let clonedObj = { ...obj1 };
+// Object { foo: "bar", x: 42 }
+
+let mergedObj = { ...obj1, ...obj2 };
+// Object { foo: "baz", x: 42, y: 13 }
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region destructuring -->
+      <h1 id="destructuring" class="bookmark">Destructuring</h1>
+      <p>
+        Unpack values into variables.<br />
+        Based on key name.
+      </p>
+      <pre><code class="lang-js">
+const personOne = {
+	name: 'James',
+	age: 30
+	address: {
+		city: 'Puebla',
+		state: 'Puebla'
+	}
+}
+</code></pre>
+      <h3>Assign</h3>
+      <pre><code class="lang-js">
+const { name, age } = personOne
+console.log(name) // 'James'
+console.log(age) // 30
+</code></pre>
+      <h3>Reassign</h3>
+      <pre><code class="lang-js">
+const { name: firstName, age } = personOne
+console.log(firstName) // 'James'
+console.log(age) // 30
+</code></pre>
+      <h3>Default</h3>
+      <pre><code class="lang-js">
+const { name, age, favoriteFood = 'Sushi' } = personOne
+console.log(name) // 'James'
+console.log(age) // 30
+console.log(favoriteFood) // 'Sushi'
+</code></pre>
+      <h3>Spread Operator</h3>
+      <pre><code class="lang-js">
+const { name, ...rest } = personOne
+console.log(name) // 'James'
+console.log(rest) 
+/* { age: 30, address: { city: 'Puebla',
+state: 'Puebla'	}} */
+</code></pre>
+      <h3>Nested</h3>
+      <pre><code class="lang-js">
+const { name, address: { city } } = personOne
+console.log(name) // 'James'
+console.log(city) // 'Puebla'
+</code></pre>
+      <h3>Combine</h3>
+      <pre><code class="lang-js">
+const personThree = {...personOne, ...personTwo }
+/* personTwo overrides personOne repeated keys */
+</code></pre>
+      <h3>As arguments</h3>
+      <pre><code class="lang-js">
+function printUser({ name, age, food = 'Sushi' }) {
+	console.log(`Name is: ${name}. Age is ${age}. 
+        Food is ${food}.`)
+}
+
+printUser(personTwo)
+// Name is James. Age is 30. Food is Sushi
+</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

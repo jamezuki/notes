@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../../images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../styles/master.css" />
+  <script src="../../scripts/prism.js" defer></script>
+  <title>Tools</title>
+</head>
+
+<body>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="index.html">Tools</a>
+    <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+  </nav>
+  <main>
+    <!-- #region tools-browser -->
+    <h1 id="tools-browser" class="bookmark">Tools: Browser</h1>
+    <table>
+      <tr>
+        <th class="table-title" colspan="2">Webtools shortcuts</th>
+      </tr>
+      <tr>
+        <th>Web tools</th>
+        <td>F12</td>
+      </tr>
+      <tr>
+        <th>Mobile mode</th>
+        <td>Ctrl + Shift + m</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-vscode -->
+    <h1 id="tools-vscode" class="bookmark">Tools: VSCode</h1>
+    <ul>
+      <li>Visual Studio Code</li>
+      <li>
+        <a href="https://code.visualstudio.com/" target="_blank">https://code.visualstudio.com/</a>
+      </li>
+    </ul>
+    <pre><code class="lang-bash">
+# Open in current dir
+code .</code></pre>
+    <table>
+      <tr>
+        <th class="table-title" colspan="2">Shortcuts</th>
+      </tr>
+      <tr>
+        <th>Toggle comment</th>
+        <td>Ctrl + }</td>
+      </tr>
+      <tr>
+        <th>Select all ocurrences</th>
+        <td>Ctrl + Shift + l</td>
+      </tr>
+      <tr>
+        <th>Fold all regions</th>
+        <td>Ctrl + 1</td>
+      </tr>
+      <tr>
+        <th>Unfold all regions</th>
+        <td>Ctrl + 2</td>
+      </tr>
+      <tr>
+        <th>Format document</th>
+        <td>Ctrl + Q</td>
+      </tr>
+    </table>
+    <h2>Color Picker</h2>
+    <p>Hover over any square color in any supported file.</p>
+    <h2>Extensions</h2>
+    <ul>
+      <li>Remote WSL</li>
+      <li>Live Server</li>
+      <li>Prettier</li>
+      <li>REST Client</li>
+    </ul>
+    <h2>Errors</h2>
+    <h3>Server not loading</h3>
+    <p>
+      settings <span class="big">&rarr;</span> live server <span class="big">&rarr;</span> use
+      local ip
+    </p>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region rest-client -->
+    <h1 id="rest-client" class="bookmark">REST Client (VSCode)</h1>
+    <h2>example.http</h2>
+    <pre><code class="lang-js">
+GET https://example.com/comments/1
+
+###
+
+POST https://example.com/comments
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-windows-setup -->
+    <h1 id="tools-windows-setup" class="bookmark">Windows: Setup</h1>
+    <h2>Programs</h2>
+    <ul>
+      <li><a href="https://www.7-zip.org/" target="_blank">7-zip</a></li>
+      <li>
+        <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html" target="_blank">
+          Sumatra PDF
+        </a>
+      </li>
+      <li>
+        <a href="https://es.libreoffice.org/descarga/libreoffice/" target="_blank">
+          LibreOffice
+        </a>
+      </li>
+      <li><a href="https://www.gimp.org/" target="_blank">Gimp</a></li>
+      <li>
+        <a href="https://github.com/mifi/lossless-cut" target="_blank">LosslessCut</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/es-mx/p/file-renamer/9nblggh68201?activetab=pivot:overviewtab"
+          target="_blank">File Renamer</a>
+      </li>
+    </ul>
+    <h2>Settings</h2>
+    <ul>
+      <li>
+        Sistema
+        <ul>
+          <li>
+            Inicio/apagado y suspensión
+            <ul>
+              <li>Pantalla = 10 minutos</li>
+              <li>Suspender = Nunca</li>
+            </ul>
+          </li>
+          <li>
+            Portapapeles
+            <ul>
+              <li>Historial del Portapapeles = Desactivado</li>
+            </ul>
+          </li>
+          <li>
+            Acerca de
+            <ul>
+              <li>Cambiar el nombre de este equipo</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Dispositivos
+        <ul>
+          <li>Reproducción automática = Abrir</li>
+        </ul>
+      </li>
+      <li>
+        Peronalización
+        <ul>
+          <li>Fondo</li>
+          <li>Colores</li>
+          <li>Pantalla de bloqueo</li>
+          <li>Inicio</li>
+          <li>Barra de tareas</li>
+        </ul>
+      </li>
+      <li>
+        Aplicaciones
+        <ul>
+          <li>Aplicaciones y características</li>
+        </ul>
+      </li>
+      <li>
+        Cuentas
+        <ul>
+          <li>Tu información</li>
+        </ul>
+      </li>
+      <li>
+        Hora e idioma
+        <ul>
+          <li>Fecha y hora = Sincronizar ahora</li>
+        </ul>
+      </li>
+      <li>
+        Juegos
+        <ul>
+          <li>Xbox Game Bar = Desactivado</li>
+        </ul>
+      </li>
+      <li>
+        Búsqueda
+        <ul>
+          <li>Búsqueda de contenido en la nube (Todo) = Desactivado</li>
+          <li>Historial = Desactivado</li>
+        </ul>
+      </li>
+      <li>
+        Privacidad
+        <ul>
+          <li>Permisos de Windows (Todo) = Desactivado</li>
+        </ul>
+      </li>
+      <li>
+        Actualización y seguridad
+        <ul>
+          <li>Optimización de distribución = Desactivado</li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Preferences</h2>
+    <p>
+      <img src="../../images/tools/windows-inicio.png" alt="windows-inicio.png" />
+    </p>
+    <p>
+      <img src="../../images/tools/windows-toolbar.png" alt="windows-toolbar.png" />
+    </p>
+    <table>
+      <tr>
+        <th>Sans</th>
+        <td>Arial</td>
+      </tr>
+      <tr>
+        <th>Serif</th>
+        <td>Cambria</td>
+      </tr>
+      <tr>
+        <th>Code</th>
+        <td>Consolas Mono</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-windows-pin-file -->
+    <h1 id="tools-windows-pin-file" class="bookmark">Windows: Pin file</h1>
+    <ol>
+      <li>
+        Put shortcut in:
+        <pre><code class="lang-bash">
+%APPDATA%\Microsoft\Windows\Start Menu\Programs</code></pre>
+      </li>
+      <li>Start Menu &#10140; All Apps</li>
+      <li>Pin to Start</li>
+    </ol>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-windows-yt-dlp -->
+    <h1 id="tools-windows-yt-dlp" class="bookmark">Windows: yt-dlp</h1>
+    <ol>
+      <li>
+        Download
+        <a href="https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe" target="_blank">
+          yt-dlp.exe
+        </a>
+      </li>
+      <li>
+        Download
+        <a href="https://www.gyan.dev/ffmpeg/builds/" target="_blank">
+          FFmpeg release essentials
+        </a>
+      </li>
+      <li>Create yt-dlp directory in C</li>
+      <li>Copy inside yt-dlp directory:</li>
+      <ul>
+        <li>yt-dlp.exe</li>
+        <li>ffmpeg/bin content</li>
+        <li>
+          <a href="../../downloads/yt-dlp/yt-dlp.bat" download>yt-dlp.bat</a>
+        </li>
+        <li>
+          <a href="../../downloads/yt-dlp/icon.ico" download>icon.ico</a>
+        </li>
+        <li>
+          <a href="../../downloads/yt-dlp/yt-dlp.lnk" download>yt-dlp.lnk</a>
+        </li>
+      </ul>
+      <li>Put C:\yt-dlp in PATH</li>
+      <li>Assign icon to yt-dlp.lnk</li>
+      <li>Pin yt-dlp.lnk to Start menu</li>
+    </ol>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-windows-wsl2 -->
+    <h1 id="tools-windows-wsl2" class="bookmark">Windows: WSL2</h1>
+    <ul>
+      <li>Windows Subsystem for Linux</li>
+      <li>GNU/Linux environment for Windows</li>
+    </ul>
+    <h2>WSL2</h2>
+    <ul>
+      <li>
+        <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">
+          Install WSL2
+        </a>
+      </li>
+      <li>
+        <a href="https://ubuntu.com/wsl" target="_blank"> Install Ubuntu </a>
+      </li>
+    </ul>
+    <h2>Windows Terminal</h2>
+    <ul>
+      <li>
+        <a href="https://docs.microsoft.com/en-us/windows/terminal/get-started" target="_blank">
+          Install Windows Terminal
+        </a>
+      </li>
+      <li>
+        Copy
+        <a href="../../downloads/windows-terminal/settings.json" download="">settings.json</a>
+      </li>
+    </ul>
+    <h2>VSCode</h2>
+    <ul>
+      <li>
+        <a href="https://code.visualstudio.com/" target="_blank"> Install VSCode </a>
+        - Windows side
+      </li>
+      <li>Install extension: Remote - WSL</li>
+      <li>Run <mark>code .</mark> in ~/project</li>
+    </ul>
+    <h2>Quick Access: Working directory</h2>
+    <ul>
+      <li>Run <mark>explorer.exe .</mark> in /homes/james/</li>
+    </ul>
+    <h2>Update Git</h2>
+    <ul>
+      <li>
+        <a href="https://git-scm.com/download/linux" target="_blank"> Update Git </a>
+      </li>
+      <li>
+        <a href="https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection"
+          target="_blank">
+          Test SSH connection
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-windows-shortcuts -->
+    <h1 id="tools-windows-shortcuts" class="bookmark">Windows: Shortcuts</h1>
+    <table>
+      <tr>
+        <th class="table-title" colspan="2">screenshot</th>
+      </tr>
+      <tr>
+        <th>selection to clipboard</th>
+        <td>windows + shift + s</td>
+      </tr>
+      <tr>
+        <th>window to clipboard</th>
+        <td>alt + print</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region ssd-hdd-setup -->
+    <h1 id="ssd-hdd-setup" class="bookmark">SSD + HDD setup</h1>
+    <ol>
+      <li>Install OS in SSD</li>
+      <li>Format HDD as NTFS</li>
+      <li>Configuración <span class="big">&rarr;</span> Sistema <span class="big">&rarr;</span> Almacenamiento <span
+          class="big">&rarr;</span> Cambiar lugar donde se guarda el
+        contenido nuevo</li>
+      <li>Documentos, Imágenes, Música, Videos <span class="big">&rarr;</span> Propiedades <span
+          class="big">&rarr;</span> Ubicación <span class="big">&rarr;</span> Mover...</li>
+    </ol>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region tools-linux-shortcuts -->
+    <h1 id="tools-linux-shortcuts" class="bookmark">Linux: Shortcuts</h1>
+    <table>
+      <tr>
+        <th class="table-title" colspan="2">screenshot</th>
+      </tr>
+      <tr>
+        <th>selection to clipboard</th>
+        <td>ctrl + shift + print</td>
+      </tr>
+      <tr>
+        <th>selection to pictures</th>
+        <td>shift + print</td>
+      </tr>
+      <tr>
+        <th>window to pictures</th>
+        <td>alt + print</td>
+      </tr>
+      <tr>
+        <th class="table-title" colspan="2">text</th>
+      </tr>
+      <tr>
+        <th>unicode</th>
+        <td>ctrl + shift + u</td>
+      </tr>
+      <tr>
+        <th>delete line</th>
+        <td>ctrl + u</td>
+      </tr>
+      <tr>
+        <th class="table-title" colspan="2">system</th>
+      </tr>
+      <tr>
+        <th>new terminal</th>
+        <td>ctrl + alt + t</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+  </main>
+</body>
+
+</html>

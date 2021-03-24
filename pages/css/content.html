@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="../../styles/master.css" />
+    <script src="../../scripts/prism.js" defer></script>
+    <title>CSS</title>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">CSS</a>
+      <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+    </nav>
+    <main>
+      <!-- #region theory -->
+      <h1 id="theory" class="bookmark">Theory</h1>
+      <ul>
+        <li>Cascading Style Sheets</li>
+        <li>Presentation</li>
+      </ul>
+      <h2>Syntax</h2>
+      <p>selector = HTML element to style.</p>
+      <pre><code class="lang-css">
+// comment
+/* block comment */
+		
+selector1, selector2 {
+    property: value;
+}</code></pre>
+      <h2>Properties</h2>
+      <table>
+        <tr>
+          <th>Rules</th>
+          <td>selector { property: value; }</td>
+        </tr>
+        <tr>
+          <th>Cascade</th>
+          <td>The last rule is stronger.</td>
+        </tr>
+        <tr>
+          <th>Specificity</th>
+          <td>The more specific the stronger.</td>
+        </tr>
+        <tr>
+          <th>Inheritance</th>
+          <td>Rules can be inherited.</td>
+        </tr>
+      </table>
+      <h2>Override</h2>
+      <ul>
+        <li>browsers read CSS from top to bottom</li>
+        <li>ids overrides classes</li>
+        <li>inline styles overrides ids and classes</li>
+        <li>!important overrides everything</li>
+      </ul>
+      <h2>Lifecycle</h2>
+      <ol>
+        <li>Browser converts HTML to DOM(Document Object Model).</li>
+        <li>Browser loads the resources (CSS, JS, media).</li>
+        <li>Browser attaches the style to DOM.</li>
+        <li>Browser paints page.</li>
+      </ol>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region how-to-use -->
+      <h1 id="how-to-use" class="bookmark">How to use</h1>
+      <h2>Inline</h2>
+      <p>style attribute inside HTML elements.</p>
+      <ul>
+        <li>Single html element</li>
+      </ul>
+      <pre><code class="lang-html">
+&lt;tag style="property:value;"&gt; value &lt;/tag&gt;</code></pre>
+      <h2>Internal</h2>
+      <p>style tag in the head section.</p>
+      <ul>
+        <li>Single page</li>
+      </ul>
+      <pre><code class="lang-html">
+&lt;head&gt;
+    &lt;style&gt;
+        body {background-color: powderblue;}
+        h1 {color: blue;}
+        p {color: red;}
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+      <h2>External</h2>
+      <p>link tag in head section.</p>
+      <ul>
+        <li>Multiple pages</li>
+      </ul>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+      <p>style.css</p>
+      <pre><code class="lang-css">
+h1 {
+    color: blue;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region box-model-->
+      <h1 id="box-model" class="bookmark">Box model</h1>
+      <p><img src="../../images/css/box.png" alt="box model" /></p>
+      <h2>Box fix</h2>
+      <pre><code class="lang-css">
+html {
+    box-sizing: border-box;
+}
+                        
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}</code></pre>
+      <h2>margin collapse</h2>
+      <p>
+        The top and bottom margins of blocks are sometimes combined (collapsed) into a single margin
+        whose size is the largest of the individual margins.
+      </p>
+      <p>Note that the margins of floating and absolutely positioned elements never collapse.</p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region colors -->
+      <h1 id="colors" class="bookmark">Colors</h1>
+      <h2>RGB</h2>
+      <p><strong>Red, Green, Blue, Alpha (optional)</strong></p>
+      <pre><code class="lang-css">
+/* Hex */
+#f09
+#ff0099
+
+/* Hex with alpha */
+#f09f
+#ff0099ff
+
+/* Functional */
+rgb(255, 0, 153)
+rgb(100%, 0%, 60%)
+
+/* Functional with alpha*/
+rgb(255, 0, 153, 1)
+rgb(255, 0, 153, 100%)</code></pre>
+      <h2>HSL</h2>
+      <p><strong>Hue, Saturation, Lightness, Alpha (optional)</strong></p>
+      <table>
+        <tr>
+          <th>Hue</th>
+          <td>0 - 360</td>
+        </tr>
+        <tr>
+          <th>Saturation</th>
+          <td>0 - 100%</td>
+        </tr>
+        <tr>
+          <th>Lightness</th>
+          <td>0 - 100%</td>
+        </tr>
+        <tr>
+          <th>Alpha</th>
+          <td>0 - 100%</td>
+        </tr>
+      </table>
+      <pre><code class="lang-css">
+hsl(270, 60%, 70%)
+hsl(270, 60%, 50%, 15%)</code></pre>
+      <figure>
+        <figcaption>Hue</figcaption>
+        <img src="../../images/css/color-wheel.png" alt="color-wheel.png" />
+      </figure>
+      <h2>Gradients</h2>
+      <h3>linear-gradient</h3>
+      <div id="css-colors-linear-gradient"></div>
+      <p><strong>dir, color1 [color-stop], color2, ...</strong></p>
+      <pre><code class="lang-css">
+/* top to bottom, blue 0%, pink (default) */
+linear-gradient(blue, pink);
+
+linear-gradient(70deg, blue, pink);
+
+/* starts at opposite side, orange stops at 60% */
+linear-gradient(to bottom right, orange 60%, cyan);</code></pre>
+      <h3>radial-gradient</h3>
+      <div id="css-colors-radial-gradient"></div>
+      <p><strong>shape position, color1 [color-stop], color2, ...</strong></p>
+      <pre><code class="lang-css">
+/* ellipse at center, red 0%, blue (default) */
+radial-gradient(red, blue);
+
+/* yellow stops at 30% */
+radial-gradient(circle at top left, yellow 30%, green);</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region variables -->
+      <h1 id="variables" class="bookmark">Variables</h1>
+      <ul>
+        <li>fallback is optional</li>
+      </ul>
+      <h2>Local</h2>
+      <pre><code class="lang-css">
+parent {
+    --variable: value;
+}
+
+descendant {
+    property: var(--variable, fallback);
+}</code></pre>
+      <h2>Global</h2>
+      <pre><code class="lang-css">
+:root {
+    --variable: value;
+}
+  
+selector {
+    property: var(--variable, fallback);
+}</code></pre>
+      <h2>IE Fallback</h2>
+      <pre><code class="lang-css">
+selector {
+    property: fallback;
+    property: var(--variable);
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region display -->
+      <h1 id="display" class="bookmark">display</h1>
+      <p><img src="../../images/css/display.png" alt="display.png" /></p>
+      <table>
+        <tr>
+          <td class="table-hide"></td>
+          <th class="table-center">inline</th>
+          <th class="table-center">block</th>
+          <th class="table-center">inline-block</th>
+        </tr>
+        <tr>
+          <th>
+            margin-left<br />
+            padding-left
+          </th>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>
+            margin-right<br />
+            padding-right
+          </th>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>
+            margin-top<br />
+            padding-top
+          </th>
+          <td class="table-center"></td>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>
+            margin-bottom<br />
+            padding-bottom
+          </th>
+          <td class="table-center"></td>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>width</th>
+          <td class="table-center"></td>
+          <td class="table-center">full if not defined</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td class="table-center"></td>
+          <td class="table-center">&check;</td>
+          <td class="table-center">&check;</td>
+        </tr>
+        <tr>
+          <th>line break</th>
+          <td class="table-center"></td>
+          <td class="table-center">&check;</td>
+          <td class="table-center"></td>
+        </tr>
+        <tr>
+          <th>side elements</th>
+          <td class="table-center">&check;</td>
+          <td class="table-center"></td>
+          <td class="table-center">&check;</td>
+        </tr>
+      </table>
+      <h2>display: table</h2>
+      <ul>
+        <li>adjust size to fit its content</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region position -->
+      <h1 id="position" class="bookmark">position</h1>
+      <p><img src="../../images/css/position.png" alt="position.png" /></p>
+      <h2>position: static</h2>
+      <ul>
+        <li>Default</li>
+        <li>Not positioned</li>
+      </ul>
+      <h2>position: relative</h2>
+      <pre><code class="lang-css">
+div {
+    position: relative;
+    left: 30px;
+    top: -25px;
+}</code></pre>
+      <ul>
+        <li>Positioned relative to its normal position</li>
+        <li>top, right, bottom, left</li>
+      </ul>
+      <h2>position: fixed</h2>
+      <pre><code class="lang-css">
+header {
+    position: fixed;
+    top: 0;
+}
+            
+body {
+    margin-top: 50px;
+}
+        
+h1 {
+    // Offset anchor for fixed header
+    padding-top: 50px;
+    margin-top: -50px;
+}</code></pre>
+      <ul>
+        <li>Positioned relative to viewport</li>
+        <li>Removes the element from the normal flow</li>
+        <li>top, right, bottom, left</li>
+      </ul>
+      <h2>position: absolute</h2>
+      <pre><code class="lang-css">
+#container {
+    position: relative;
+}
+        
+nav {
+    position: absolute;
+    left: 0;
+}</code></pre>
+      <ul>
+        <li>Relative to positioned parent container</li>
+        <li>Uses body if no positioned parent</li>
+        <li>Removes the element from the normal flow</li>
+        <li>top, right, bottom, left</li>
+      </ul>
+      <h2>position: sticky</h2>
+      <pre><code class="lang-css">
+header {
+    position: sticky;
+    top: 30px;
+}</code></pre>
+      <ul>
+        <li>Relative to scroll position</li>
+        <li>Toggles between relative and fixed</li>
+        <li>Stays in normal flow while relative</li>
+        <li>top, right, bottom, left</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region responsive -->
+      <h1 id="responsive" class="bookmark">Responsive</h1>
+      <h2>images</h2>
+      <pre><code class="lang-css">
+img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+      <table>
+        <tr>
+          <th>max-width: 100%</th>
+          <td>never wider than the container</td>
+        </tr>
+        <tr>
+          <th>height: auto</th>
+          <td>keeps aspect ratio</td>
+        </tr>
+      </table>
+      <h2>relative units</h2>
+      <table>
+        <tr>
+          <th>rem</th>
+          <td>Relative to root font-size</td>
+        </tr>
+        <tr>
+          <th>em</th>
+          <td>Relative to element font-size</td>
+        </tr>
+        <tr>
+          <th>%</th>
+          <td>relative to container</td>
+        </tr>
+        <tr>
+          <th>vw</th>
+          <td>viewport width</td>
+        </tr>
+        <tr>
+          <th>vh</th>
+          <td>viewport height</td>
+        </tr>
+        <tr>
+          <th>vmin</th>
+          <td>viewport minimum dimension</td>
+        </tr>
+        <tr>
+          <th>vmax</th>
+          <td>viewport maximum dimension</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region media-queries -->
+      <h1 id="media-queries" class="bookmark">Media queries</h1>
+      <pre><code class="lang-css">
+@media (max-width: 600px) {
+    .selector {
+        display: flex;
+    }
+}</code></pre>
+      <ul>
+        <li>max-width</li>
+        <li>min-width</li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region float -->
+      <h1 id="float" class="bookmark">float</h1>
+      <img id="css-float-img" src="../../images/css/float.png" alt="float.png" />
+      <p id="css-float-p">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem inventore aperiam eum
+        sed perferendis ea saepe? Dolores architecto, rerum aperiam doloribus totam nulla eos error
+        molestias, iure nisi soluta sed optio ducimus nesciunt ad vel a quia sit possimus
+        asperiores? Enim eum ex nesciunt quaerat recusandae, adipisci reprehenderit totam
+        voluptatem.
+      </p>
+      <p>file.html</p>
+      <pre><code class="lang-html">
+&lt;img src="url" alt=""&gt;
+&lt;p&gt;Lorem50&lt;/p&gt;</code></pre>
+      <p>file.css</p>
+      <pre><code class="lang-css">
+img {
+    float: left;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region overflow -->
+      <h1 id="overflow" class="bookmark">overflow</h1>
+      <p>Behavior when an element is too big to fit in its block</p>
+      <ul>
+        <li>overflow</li>
+        <li>overflow-x</li>
+        <li>overflow-y</li>
+      </ul>
+      <pre><code class="lang-css">
+html,
+body {
+    overflow: auto;
+}</code></pre>
+      <table>
+        <tr>
+          <th>visible</th>
+          <td>
+            <ul>
+              <li>default</li>
+              <li>overflow is not clipped</li>
+              <li>overflow renders outside the box</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>hidden</th>
+          <td>
+            <ul>
+              <li>overflow is clipped</li>
+              <li>overflow will be invisible</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>scroll</th>
+          <td>
+            <ul>
+              <li>overflow is clipped</li>
+              <li>scrollbar is always showing</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>auto</th>
+          <td>
+            <ul>
+              <li>overflow is clipped</li>
+              <li>scrollbar only when necessary</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region z-index -->
+      <h1 id="z-index" class="bookmark">z-index</h1>
+      <p><img src="../../images/css/z-index.png" alt="z-index.png" /></p>
+      <ul>
+        <li>for positioned elements</li>
+        <li>can be negative</li>
+      </ul>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#css-position">position</a></li>
+      </ul>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region shadow -->
+      <h1 id="shadow" class="bookmark">Shadow</h1>
+      <h2>box-shadow</h2>
+      <div id="css-box-shadow-ex">example</div>
+      <pre><code class="lang-css">
+.box {
+    box-shadow: 5px 5px 3px 3px #333;
+}</code></pre>
+      <table>
+        <tr>
+          <th>inset</th>
+          <td>if present, shadow is drawn inside the border</td>
+        </tr>
+        <tr>
+          <th>offset-x</th>
+          <td>horizontal distance</td>
+        </tr>
+        <tr>
+          <th>offset-y</th>
+          <td>vertical distance</td>
+        </tr>
+        <tr>
+          <th>blur-radius</th>
+          <td>optional</td>
+        </tr>
+        <tr>
+          <th>spread-radius</th>
+          <td>shadow size, optional</td>
+        </tr>
+        <tr>
+          <th>color</th>
+          <td>optional</td>
+        </tr>
+      </table>
+      <h2>text-shadow</h2>
+      <h3 id="css-text-shadow-ex">example</h3>
+      <pre><code class="lang-css">
+.text {
+    text-shadow: 0.5px 2px yellowgreen;
+}</code></pre>
+      <table>
+        <tr>
+          <th>offset-x</th>
+          <td>horizontal distance</td>
+        </tr>
+        <tr>
+          <th>offset-y</th>
+          <td>vertical distance</td>
+        </tr>
+        <tr>
+          <th>blur-radius</th>
+          <td>optional</td>
+        </tr>
+        <tr>
+          <th>color</th>
+          <td>optional</td>
+        </tr>
+      </table>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region others-transform -->
+      <h1 id="others-transform" class="bookmark">Others: transform</h1>
+      <h2>scale</h2>
+      <pre><code class="lang-css">
+div:hover {
+    transform: scale(1.5);
+}</code></pre>
+      <h2>rotate</h2>
+      <pre><code class="lang-css">
+.heart {
+    transform: rotate(-45deg);
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region others-transition -->
+      <h1 id="others-transition" class="bookmark">Others: transition</h1>
+      <p>Shorthand for:</p>
+      <ul>
+        <li>transition-property</li>
+        <li>transition-duration</li>
+        <li>transition-timing-function</li>
+        <li>transition-delay</li>
+      </ul>
+      <h3>transition-property</h3>
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties"
+        target="_blank"
+        >Properties</a
+      >
+      <h3>transition-timing-function</h3>
+      <table>
+        <tr>
+          <th>ease</th>
+          <td>
+            Increases in velocity towards the middle of the transition, slowing back down at the
+            end.
+          </td>
+        </tr>
+        <tr>
+          <th>linear</th>
+          <td>Transitions at an even speed.</td>
+        </tr>
+        <tr>
+          <th>ease-in</th>
+          <td>Starts off slowly, with the transition speed increasing until complete.</td>
+        </tr>
+        <tr>
+          <th>ease-out</th>
+          <td>Starts transitioning quickly, slowing down the transition continues.</td>
+        </tr>
+        <tr>
+          <th>ease-in-out</th>
+          <td>Starts transitioning slowly, speeds up, and then slows down again.</td>
+        </tr>
+      </table>
+      <pre><code class="lang-css">
+.target {
+  font-size: 14px;
+  transition: font-size 4s 1s;
+}
+
+.target:hover {
+  font-size: 36px;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region others-animation -->
+      <h1 id="others-animation" class="bookmark">Others: animation</h1>
+      <div id="css-others-animation-ex"></div>
+      <dl>
+        <dt>animation</dt>
+        <dd>animation-duration</dd>
+        <dd>animation-timing-function</dd>
+        <dd>animation-iteration-count</dd>
+        <dd>animation-direction</dd>
+        <dd>animation-name</dd>
+      </dl>
+      <pre><code class="lang-css">
+#ball {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    animation: 2s linear infinite alternate ball;
+}
+            
+@keyframes ball {
+    0% {
+        background: #ddd;
+        left: 0;
+    }
+    100% {
+        background: #333;
+        left: 150px;
+    }
+}</code></pre>
+      <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation" target="_blank">
+          MDN: animation
+        </a>
+      </p>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region useful-fit-content -->
+      <h1 id="useful-fit-content" class="bookmark">Useful: fit-content</h1>
+      <pre><code class="lang-css">
+.item {
+    width: -moz-fit-content;
+    width: fit-content;
+}</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region useful-outline -->
+      <h1 id="useful-outline" class="bookmark">Useful: outline: none</h1>
+      <p>Removes focus outline</p>
+      <pre><code class="lang-css">
+outline: none;</code></pre>
+      <hr />
+      <!-- #endregion -->
+
+      <!-- #region useful-inline -->
+      <h1 id="useful-inline" class="bookmark">Useful: list-style: inline</h1>
+      <p>Bullet points will be inside the list item</p>
+      <pre><code class="lang-css">
+list-style: inside;</code></pre>
+      <hr />
+      <!-- #endregion -->
+    </main>
+  </body>
+</html>

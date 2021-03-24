@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../../images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../styles/master.css" />
+  <script src="../../scripts/prism.js" defer></script>
+  <title>Git</title>
+</head>
+
+<body>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="index.html">Git</a>
+    <a id="nav__github" href="https://github.com/Jamezuki/notes" target="_blank">GitHub</a>
+  </nav>
+  <main>
+    <!-- #region theory -->
+    <h1 id="theory" class="bookmark">Theory</h1>
+    <p>Version Control System (VCS) for tracking changes in computer files.</p>
+    <ul>
+      <li>Distributed version control.</li>
+      <li>Coordinates work between multiple developers.</li>
+      <li>Who made what changes and when.</li>
+      <li>Revert back anytime.</li>
+      <li>Local and remote repositories.</li>
+    </ul>
+    <h2>States</h2>
+    <table>
+      <tr>
+        <th>Modified</th>
+        <td>
+          <ul>
+            <li>File changed but not committed to local database.</li>
+            <li>Working directory</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>Staged</th>
+        <td>
+          <ul>
+            <li>Modified file marked to go into your next commit.</li>
+            <li>Staging area</li>
+            <li>index</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>Committed</th>
+        <td>
+          <ul>
+            <li>The data is safely stored in your local database.</li>
+            <li>Local repository</li>
+            <li>.git directory</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <p><img src="../../images/git/git.jpg" alt="git.jpg" /></p>
+    <h2>HEAD</h2>
+    <p>Pointer to current branch (local).</p>
+    <p><img src="../../images/git/head.jpg" alt="head.jpg" /></p>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region workflow -->
+    <h1 id="workflow" class="bookmark">Workflow</h1>
+    <h2>1. Get project</h2>
+    <pre><code class="lang-bash">
+git clone 'repoUrl'</code></pre>
+    <h2>2. Create feature branch</h2>
+    <pre><code class="lang-bash">
+git branch 'feature'    # Create feature branch
+git checkout 'feature'  # Change to feature</code></pre>
+    <h2>3. Commit changes</h2>
+    <p><strong>Check status and pull daily.</strong></p>
+    <pre><code class="lang-bash">
+git add -A                  # Stage changes
+git commit -m "message"     # Commit changes
+git status</code></pre>
+    <h2>4. Push to feature</h2>
+    <pre><code class="lang-bash">
+git push -u origin 'feature'    # -u enables "git push" only
+git branch -a                   # Check branches</code></pre>
+    <h2>5. Merge feature with master (CAUTION)</h2>
+    <p><strong>When feature is done.</strong></p>
+    <p>
+      Create a
+      <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request"
+        target="_blank">pull request</a>, or do the merge yourself:
+    </p>
+    <pre><code class="lang-bash">
+git checkout 'master'       # Change to master
+git pull origin 'master'    # Update master from origin
+git merge 'feature'         # Merge with feature
+git push origin 'master'    # Push master to origin</code></pre>
+    <h2>6. Delete feature</h2>
+    <p><strong>When already merged.</strong></p>
+    <pre><code class="lang-bash">
+git branch --merged                 # Check merged branches
+git branch -d 'feature'             # Delete local feature branch
+git push origin --delete 'feature'  # Delete remote feature branch
+git branch -a                       # Check branches</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region gitignore -->
+    <h1 id="gitignore" class="bookmark">.gitignore</h1>
+    <p>List of files you dont want to track.</p>
+    <p>Empty directories are ignored by default.</p>
+    <pre><code class="lang-bash">
+/dir    # Directories
+*.txt   # Wildcards</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region linux -->
+    <h1 id="linux" class="bookmark">Linux Setup</h1>
+    <h2>config</h2>
+    <pre><code class="lang-bash">
+git config --global user.name 'Jamezuki'
+git config --global user.email 'jamezuki@gmail.com'
+git config --global core.editor "code --wait"
+git config --global init.defaultBranch 'master'
+git config --global color.ui auto
+git config --list</code></pre>
+    <h2>SSH</h2>
+    <p>
+      <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh"
+        target="_blank">docs.github.com</a>
+    </p>
+    <h3>Check if a key exists</h3>
+    <pre><code class="lang-bash">
+ls ~/.ssh/id_rsa.pub</code></pre>
+    <h3>Create key</h3>
+    <pre><code class="lang-bash">
+ssh-keygen -C 'jamezuki@gmail.com'
+# location ➜ Enter
+# passphrase ➜ Enter</code></pre>
+    <h3>Link SSH key</h3>
+    <p>GitHub ➜ Settings ➜ SSH and GPG keys ➜ New SSH Key</p>
+    <p>Type key description.</p>
+    <pre><code class="lang-bash">
+cat ~/.ssh/id_rsa.pub</code></pre>
+    <p>Copy and Paste key content.</p>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region windows -->
+    <h1 id="windows" class="bookmark">Windows Setup</h1>
+    <p>Use <a href="https://git-scm.com/downloads" target="_blank">Git Bash</a></p>
+    <h2>config</h2>
+    <pre><code class="lang-bash">
+git config --global user.name 'Jamezuki'
+git config --global user.email 'jamezuki@gmail.com'</code></pre>
+    <h2>SSH</h2>
+    <p>
+      <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh"
+        target="_blank">docs.github.com</a>
+    </p>
+    <h3>Check if a key exists:</h3>
+    <pre><code class="lang-bash">
+dir ~/.ssh</code></pre>
+    <h3>Create key:</h3>
+    <pre><code class="lang-bash">
+ssh-keygen -t ed25519 -C "jamezuki@gmail.com"
+# location ➜ Enter
+# passphrase ➜ Enter</code></pre>
+    <h3>Add SSH key to the ssh-agent</h3>
+    <p>
+      <a href="https://docs.github.com/en/github/authenticating-to-github/working-with-ssh-key-passphrases"
+        target="_blank">
+        Auto-launching ssh-agent on Git for Windows</a>
+    </p>
+    <pre><code class="lang-bash">
+touch ~/.profile</code></pre>
+    <p>Add this to .profile</p>
+    <pre><code class="lang-bash">
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+            
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+            
+agent_load_env
+            
+agent_run_state=$(ssh-add -l >| /dev/null 2>&amp;1; echo $?)
+            
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add
+fi
+            
+unset env</code></pre>
+
+    <p>Reset Git Bash</p>
+    <h3>Link SSH key</h3>
+    <p>GitHub ➜ Settings ➜ SSH and GPG keys ➜ New SSH Key</p>
+    <p>Type key description.</p>
+    <pre><code class="lang-bash">
+clip &lt; ~/.ssh/id_ed25519.pub
+# Copies the contents of the id_ed25519.pub file to your clipboard</code></pre>
+    <p>Paste key content.</p>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region init -->
+    <h1 id="init" class="bookmark">init</h1>
+    <p>For projects that already exist locally, but doesn't have Git yet.</p>
+    <p>Transforms the current directory into a Git repository.</p>
+    <p>Creates .git directory.</p>
+    <pre><code class="lang-bash">
+git init</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-remote">remote</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region clone -->
+    <h1 id="clone" class="bookmark">clone</h1>
+    <p>The remote already exists.</p>
+    <p>Downloads a remote repository, including all of the files, branches, and commits.</p>
+    <pre><code class="lang-bash">
+git clone 'https or ssh'</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region add -->
+    <h1 id="add" class="bookmark">add</h1>
+    <p>Adds changes to staging area (index).</p>
+    <pre><code class="lang-bash">
+git add -A      # Stages all
+git add 'file'  # file/dir</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-commit">commit</a></li>
+      <li><a href="#git-rm">rm</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region commit -->
+    <h1 id="commit" class="bookmark">commit</h1>
+    <p>Save index (staged) to local repository.</p>
+    <p>Created on current branch (wherever HEAD is pointing).</p>
+    <h2>commit -m</h2>
+    <pre><code class="lang-bash">
+git commit -m "Subject
+
+* Separate subject from body with a blank line.
+Subject
+    * Use imperative mood.
+    * Capitalize first letter.
+    * Do not end with a period.
+    * 50 characters max.
+Body
+    * Wrap at 72 characters."</code></pre>
+    <h2>commit -a</h2>
+    <ul>
+      <li>Skips the staging phase.</li>
+      <li>Stages files that are already being tracked.</li>
+    </ul>
+    <pre><code class="lang-bash">
+git commit -am "Subject"</code></pre>
+    <h2>commit --amend</h2>
+    <ul>
+      <li>Replaces the most recent commit with a new commit.</li>
+      <li>Unstaged changes will not get committed.</li>
+    </ul>
+    <pre><code class="lang-bash">
+# Change last commit message
+git commit --amend -m "Subject"
+                                
+# Use last commit message
+git commit --amend --no-edit</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region status -->
+    <h1 id="status" class="bookmark">status</h1>
+    <p>Shows the current state of working directory and staging area.</p>
+    <p>Shows merge conflicts.</p>
+    <pre><code class="lang-bash">
+git status</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region log -->
+    <h1 id="log" class="bookmark">log</h1>
+    <p>Shows commit logs</p>
+    <pre><code class="lang-bash">
+git log                        
+git log --oneline
+git log --graph
+git log -3 # Show last 3
+git log --after="yyyy-mm-dd"
+git log --after="yyyy-mm-dd" --before="yyyy-mm-dd"
+git log --author="James"
+git log -- 'file'
+git log -S"content"
+git log --merges</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region diff -->
+    <h1 id="diff" class="bookmark">diff</h1>
+    <p>Shows differences between two inputs.</p>
+    <pre><code class="lang-bash">
+git diff                # Unstaged changes
+git diff --cached       # Staged but not committed
+git diff 'commit' 'commit'
+git diff 'branch' 'branch'</code></pre>
+    <h2>Output</h2>
+    <pre><code class="lang-bash">
+@@ -262,6 +262,9 @@     # Starting from line 262
+- something             # Deleted
++ something             # Added</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region remote -->
+    <h1 id="remote" class="bookmark">remote</h1>
+    <p>Manages the set of remotes that are tracked by local repository.</p>
+    <pre><code class="lang-bash">
+git remote -v                   # Show remotes
+git remote add 'name' 'URL'     # Add a remote
+git remote remove 'name'        # Remove a remote</code></pre>
+    <p><strong>origin</strong> is the default name associated with the URL.</p>
+    <h2>Communicating with remote</h2>
+    <ul>
+      <li><a href="#git-clone">clone</a></li>
+      <li><a href="#git-push">push</a></li>
+      <li><a href="#git-pull">pull</a></li>
+      <li><a href="#git-fetch">fetch</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region fetch -->
+    <h1 id="fetch" class="bookmark">fetch</h1>
+    <p>Updates remote-tracking branches (origin/x)</p>
+    <pre><code class="lang-bash">
+git fetch               # remote origin
+git fetch --all         # all remotes</code></pre>
+    <table>
+      <tr>
+        <th>x</th>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <th>origin x</th>
+        <td>Remote</td>
+      </tr>
+      <tr>
+        <th>origin/x</th>
+        <td>
+          <ul>
+            <li>Local</li>
+            <li>Tracks remote</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-merge">merge</a></li>
+      <li><a href="#git-pull">pull</a></li>
+      <li><a href="#git-remote">remote</a></li>
+      <li><a href="#git-reset">reset</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region pull -->
+    <h1 id="pull" class="bookmark">pull</h1>
+    <p>Updates from remote:</p>
+    <ul>
+      <li>Current branch</li>
+      <li>Remote tracking branches</li>
+    </ul>
+    <p><strong>pull = fetch + merge</strong></p>
+    <pre><code class="lang-bash">
+git pull
+git pull --all  # Multiple remotes</code></pre>
+    <h2>--rebase</h2>
+    <ul>
+      <li>Local commits occur after new remote commits.</li>
+      <li>No merge commit.</li>
+    </ul>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-fetch">fetch</a></li>
+      <li><a href="#git-merge">merge</a></li>
+      <li><a href="#git-rebase">rebase</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region push -->
+    <h1 id="push" class="bookmark">push</h1>
+    <p>Uploads current branch commits to remote.</p>
+    <pre><code class="lang-bash">
+git push
+git push --all  # All branches</code></pre>
+    <h2>-f</h2>
+    <p><strong>(DANGEROUS)</strong> Force a push, can delete or overwrite commits.</p>
+    <pre><code class="lang-bash">
+git push -f</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-remote">remote</a></li>
+      <li><a href="#git-revert">revert</a></li>
+      <li><a href="#git-reset">reset</a></li>
+      <li><a href="#git-reflog">reflog</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region branch -->
+    <h1 id="branch" class="bookmark">branch</h1>
+    <table>
+      <tr>
+        <th class="table-title" colspan="2">Types</th>
+      </tr>
+      <tr>
+        <th>x</th>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <th>origin x</th>
+        <td>Remote</td>
+      </tr>
+      <tr>
+        <th>origin/x</th>
+        <td>
+          <ul>
+            <li>Local</li>
+            <li>Tracks remote</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <h2>Create</h2>
+    <pre><code class="lang-bash">
+git branch 'branch'</code></pre>
+    <h2>Delete</h2>
+    <pre><code class="lang-bash">
+# Local
+git branch -d 'branch'          # --delete (if merged)
+git branch -D 'branch'          # --delete --force
+
+# Remote
+git push origin -d 'branch'     # --delete (if merged)
+git push origin -D 'branch'     # --delete --force </code></pre>
+    <h2>Info</h2>
+    <pre><code class="lang-bash">
+git branch -a               # Show all branches
+git branch --merged         # Show merged branches</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-checkout">checkout</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region checkout -->
+    <h1 id="checkout" class="bookmark">checkout</h1>
+    <p>Switches between:</p>
+    <ul>
+      <li>Branches</li>
+      <li>Commits</li>
+      <li>File versions</li>
+    </ul>
+    <p>Working directory must be clean to checkout.</p>
+    <h2>Branches</h2>
+    <p>Moves HEAD to branch tip.</p>
+    <pre><code class="lang-bash">
+git checkout 'branch'</code></pre>
+    <h2>Commits</h2>
+    <p>Moves HEAD to commit.</p>
+    <pre><code class="lang-bash">
+git checkout 'commit'</code></pre>
+    <ul>
+      <li>Detached HEAD state</li>
+      <li>Read only</li>
+    </ul>
+    <p>Create a new branch before adding commits to a detached HEAD.</p>
+    <p>checkout branch to return.</p>
+    <h2>Files</h2>
+    <pre><code class="lang-bash">
+# Reset file to commit
+git checkout 'commit' -- 'file'
+
+# Reset file to HEAD
+git checkout -- 'file'</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region merge -->
+    <h1 id="merge" class="bookmark">merge</h1>
+    <p>Combine two branches.</p>
+    <ul>
+      <li>Preserves history</li>
+      <li>Creates a merge commit</li>
+    </ul>
+    <p><strong>checkout first</strong></p>
+    <pre><code class="lang-bash">
+# merge branch to current branch
+git merge 'branch'
+
+# merge commit to current branch
+git merge 'commit'</code></pre>
+    <p><img src="../../images/git/merge.png" alt="merge.png" /></p>
+    <h2>merge conflicts</h2>
+    <h3>Competing line changes</h3>
+    <p>You must choose which changes to incorporate from the different branches in new commit.</p>
+    <pre><code class="lang-bash">
+git status
+# 1. See which files has conflicts.
+# 2. Edit the files to fix the conflicts.
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+head conflicts
+=======
+branch conflicts
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; BRANCH
+# 3. Delete the conflicts marks.
+# 4. Commit
+git add -A
+git commit -m "Resolved merge conflict"</code></pre>
+    <h3>Removed file</h3>
+    <p>You must choose wheter to delete or keep the removed file in new commit.</p>
+    <pre><code class="lang-bash">
+git status
+# 1. See which files has conflicts.
+# 2. Fix by:
+#   * git add file  - keeps file
+#   * git rm file	- removes file
+# 3. Commit
+git commit -m "Resolved merge conflict"</code></pre>
+    <h2>fast-forward</h2>
+    <ul>
+      <li>Occurs when master is not diverged from feature.</li>
+      <li>There is no merge commit in fast forward merge.</li>
+    </ul>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-status">status</a></li>
+      <li><a href="#git-checkout">checkout</a></li>
+      <li><a href="#git-pull">pull</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region rebase -->
+    <h1 id="rebase" class="bookmark">rebase</h1>
+    <p>Reapply commits on top of another base tip.</p>
+    <p>Change base of current branch (re-base).</p>
+    <p><strong>CAUTION</strong></p>
+    <ul>
+      <li>Never rebase public branches that are shared.</li>
+      <li>Rebasing results in brand new commits.</li>
+    </ul>
+    <p><strong>checkout first</strong></p>
+    <pre><code class="lang-bash">
+# Moves target on top of newBase
+git rebase 'newBase'
+git rebase 'newBase' 'target'</code></pre>
+    <p><img src="../../images/git/rebase.png" alt="rebase.png" /></p>
+    <h2>rebase -i</h2>
+    <p>Opens editor to make changes.</p>
+    <pre><code class="lang-bash">
+git rebase -i --root    # All commits
+git rebase -i HEAD~3    # last 3 commits</code></pre>
+    <table>
+      <tr>
+        <th>p, pick</th>
+        <td>Target of changes</td>
+      </tr>
+      <tr>
+        <th>r, reword</th>
+        <td>Change commit message</td>
+      </tr>
+      <tr>
+        <th>s, squash</th>
+        <td>Melds commits</td>
+      </tr>
+      <tr>
+        <th>f, fixup</th>
+        <td>Squash without commit</td>
+      </tr>
+    </table>
+    <pre><code class="lang-bash">
+# fixup C3 and C2 into C1
+p C1
+f C2
+f C3</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-linux">Linux Setup</a></li>
+      <li><a href="#git-windows">Windows Setup</a></li>
+      <li><a href="#git-commit">commit</a></li>
+      <li><a href="#git-checkout">checkout</a></li>
+      <li><a href="#git-pull">pull</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region revert -->
+    <h1 id="revert" class="bookmark">revert</h1>
+    <p>Undo commits</p>
+    <ul>
+      <li>Safest way to change history.</li>
+      <li>Creates a new commit.</li>
+      <li>Does not delete existing commits.</li>
+      <li>Does not need push --force</li>
+    </ul>
+    <pre><code class="lang-bash">
+git revert 'commit'</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region reset -->
+    <h1 id="reset" class="bookmark">reset</h1>
+    <p>Undo commits</p>
+    <pre><code class="lang-bash">
+- A - B - C (master)
+# HEAD ➜ C
+# index ➜ C
+# Working directory ➜ C</code></pre>
+    <h2>reset --soft</h2>
+    <p>HEAD only</p>
+    <pre><code class="lang-bash">
+git reset --soft B
+# HEAD ➜ B
+# index ➜ C (Staged)
+# Working directory ➜ C</code></pre>
+    <h2>reset --mixed</h2>
+    <p>HEAD and index</p>
+    <pre><code class="lang-bash">
+git reset --mixed B
+# HEAD ➜ B
+# index ➜ B
+# working directory ➜ C</code></pre>
+    <h2>reset --hard</h2>
+    <p>HEAD, index and filesystem</p>
+    <pre><code class="lang-bash">
+git reset --hard B
+# HEAD ➜ B
+# index ➜ B
+# working directory ➜ B</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-fetch">fetch</a></li>
+      <li><a href="#git-reflog">reflog</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region reflog -->
+    <h1 id="reflog" class="bookmark">reflog</h1>
+    <p>Log of every commit that HEAD has pointed to.</p>
+    <ul>
+      <li>Local only</li>
+      <li>May be purged automatically</li>
+    </ul>
+    <pre><code class="lang-bash">
+git reflog
+git reflog 'branch'
+git reflog --all</code></pre>
+    <p>reflog + reset</p>
+    <pre><code class="lang-bash">
+git reflog 'branch'
+git checkout 'branch'
+git reset --hard 'commit'</code></pre>
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#git-reset">reset</a></li>
+    </ul>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region clean -->
+    <h1 id="clean" class="bookmark">clean</h1>
+    <ul>
+      <li>deletes untracked files from working directory</li>
+    </ul>
+    <pre><code class="lang-bash">
+git clean -fdx</code></pre>
+    <table>
+      <tr>
+        <th>-f</th>
+        <td>force</td>
+      </tr>
+      <tr>
+        <th>-d</th>
+        <td>directories</td>
+      </tr>
+      <tr>
+        <th>-x</th>
+        <td>ignored files</td>
+      </tr>
+    </table>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region rm -->
+    <h1 id="rm" class="bookmark">rm</h1>
+    <p>Removes files</p>
+    <pre><code class="lang-bash">
+# Removes from git & filesystem
+git rm 'file'
+git rm -r 'dir'</code></pre>
+    <h2>rm --cached</h2>
+    <pre><code class="lang-bash">
+# Removes from index
+git rm --cached 'file'</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region github-merge -->
+    <h1 id="github-merge" class="bookmark">GitHub merge</h1>
+    <ol>
+      <li>Create Github repository.</li>
+      <li>git init</li>
+      <li>.gitignore</li>
+    </ol>
+    <pre><code class="lang-bash">
+git remote add origin 'ssh'
+git add -A
+git commit -m "msg"
+git pull origin master --rebase
+git add -A
+git push --set-upstream origin master
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region untrack -->
+    <h1 id="untrack" class="bookmark">Untrack</h1>
+    <pre><code class="lang-js">
+git rm --cache "file"</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region reset-to-origin -->
+    <h1 id="reset-to-origin" class="bookmark">Reset to origin</h1>
+    <pre><code class="lang-bash">
+git fetch origin
+git reset --hard origin/master
+git clean -fdx</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region check-commited -->
+    <h1 id="check-commited" class="bookmark">Check commited files</h1>
+    <pre><code class="lang-bash">
+# first level
+git diff-tree --name-status HEAD
+
+# all levels (recursive)
+git diff-tree --name-status -r HEAD
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region check-staged -->
+    <h1 id="check-staged" class="bookmark">Check staged files</h1>
+    <pre><code class="lang-js">
+git diff --cached --name-status
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region gitignore-express -->
+    <h1 id="gitignore-express" class="bookmark">.gitignore Express</h1>
+    <pre><code class="lang-js">
+.env
+node_modules
+route.rest
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+
+    <!-- #region err1 -->
+    <h1 id="err1" class="bookmark">Object file is empty</h1>
+    <pre><code class="lang-bash">
+// remove any empty object files
+find .git/objects/ -type f -empty | xargs rm
+
+// fetch down the missing objects
+git fetch -p
+
+// object store check
+git fsck --full
+</code></pre>
+    <hr />
+    <!-- #endregion -->
+  </main>
+</body>
+
+</html>
